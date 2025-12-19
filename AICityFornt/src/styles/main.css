@@ -1,0 +1,66 @@
+/* Import Feature Styles */
+@import './cyberpunk.css';
+@import './animations.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Theme Colors (CSS Variables) */
+:root {
+  /* Primary Brand Colors */
+  --color-primary: #06b6d4; /* Cyan 500 */
+  --color-primary-hover: #22d3ee; /* Cyan 400 */
+  
+  /* Secondary Brand Colors */
+  --color-secondary: #d946ef; /* Fuchsia 500 */
+  --color-secondary-hover: #e879f9; /* Fuchsia 400 */
+  
+  /* Alert Colors */
+  --color-danger: #ef4444; /* Red 500 */
+  --color-warning: #f59e0b; /* Amber 500 */
+  --color-success: #10b981; /* Emerald 500 */
+  
+  /* Backgrounds */
+  --bg-dark: #0f172a; /* Slate 900 */
+  --bg-darker: #020617; /* Slate 950 */
+  --bg-glass: rgba(15, 23, 42, 0.6);
+  
+  /* Text */
+  --text-light: #f8fafc; /* Slate 50 */
+  --text-dim: #94a3b8; /* Slate 400 */
+}
+
+/* Global Reset/Base Styles */
+html, body {
+  @apply h-full w-full overflow-hidden bg-slate-900 text-slate-50;
+  font-family: 'Alibaba PuHuiTi 2.0', 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* Custom Scrollbar for Webkit */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.5); 
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.8); 
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.8); 
+}
+
+/* Utility Classes */
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.absolute-center {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+}

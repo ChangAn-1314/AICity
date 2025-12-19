@@ -1,0 +1,87 @@
+/* Cyberpunk Theme Variables */
+:root {
+  --cyber-cyan: #06b6d4;    /* cyan-500 */
+  --cyber-purple: #d946ef;  /* fuchsia-500 */
+  --cyber-bg: rgba(15, 23, 42, 0.6); /* slate-900/60 */
+  --neon-glow-cyan: 0 0 10px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3);
+  --neon-glow-purple: 0 0 10px rgba(217, 70, 239, 0.5), 0 0 20px rgba(217, 70, 239, 0.3);
+}
+
+/* Cyberpunk Card Style */
+.cyber-card {
+  position: relative;
+  background: var(--cyber-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Neon Glow Border on Hover */
+.cyber-card:hover {
+  border-color: rgba(6, 182, 212, 0.5);
+  box-shadow: var(--neon-glow-cyan), inset 0 0 20px rgba(6, 182, 212, 0.1);
+}
+
+/* Corner Accents (Optional decorative corners) */
+.cyber-card::before,
+.cyber-card::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--cyber-cyan);
+  border-style: solid;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.cyber-card::before {
+  top: 0;
+  left: 0;
+  border-width: 2px 0 0 2px;
+}
+
+.cyber-card::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 2px 2px 0;
+}
+
+.cyber-card:hover::before,
+.cyber-card:hover::after {
+  opacity: 1;
+}
+
+/* Scanline Overlay */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.2)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+}
+
+/* Neon Text Utilities */
+.text-neon-cyan {
+  color: #22d3ee;
+  text-shadow: 0 0 5px rgba(34, 211, 238, 0.8);
+}
+
+.text-neon-purple {
+  color: #e879f9;
+  text-shadow: 0 0 5px rgba(232, 121, 249, 0.8);
+}

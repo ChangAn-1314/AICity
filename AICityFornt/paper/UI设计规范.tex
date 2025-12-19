@@ -1,0 +1,233 @@
+% !TEX program = xelatex
+% 智舆系统 UI 设计规范文档
+\documentclass[12pt,a4paper,fontset=windows]{ctexart}
+
+% 宏包引入
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{fancyvrb}
+
+% 页面设置
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+% 颜色定义（与系统配色一致）
+\definecolor{neoncyan}{HTML}{06B6D4}
+\definecolor{deepblue}{HTML}{0F172A}
+\definecolor{neonpurple}{HTML}{A855F7}
+\definecolor{alertred}{HTML}{EF4444}
+\definecolor{successgreen}{HTML}{10B981}
+\definecolor{textprimary}{HTML}{F8FAFC}
+\definecolor{textsecondary}{HTML}{94A3B8}
+
+% 标题格式
+\titleformat{\section}{\heiti\Large\bfseries\color{neoncyan}}{}{0em}{}
+\titleformat{\subsection}{\heiti\large\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\heiti\normalsize\bfseries}{}{0em}{}
+
+% 行间距
+\setstretch{1.5}
+
+% 代码样式
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{deepblue!10},
+    frame=single,
+    rulecolor=\color{neoncyan!50},
+    breaklines=true
+}
+
+\begin{document}
+
+% ==================== 标题页 ====================
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    
+    % 标题
+    {\heiti\fontsize{32pt}{40pt}\selectfont\color{neoncyan} 智舆}
+    
+    \vspace{0.5cm}
+    
+    {\heiti\fontsize{16pt}{22pt}\selectfont AI城市舆情态势监测感知与决策推演系统}
+    
+    \vspace{2cm}
+    
+    {\heiti\fontsize{24pt}{32pt}\selectfont UI 设计规范}
+    
+    \vspace{0.5cm}
+    
+    {\songti\large User Interface Design Specification}
+    
+    \vfill
+    
+    {\songti\normalsize 2025年}
+    
+\end{titlepage}
+
+% ==================== 正文 ====================
+
+\section{设计理念}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{核心主题}：Cyberpunk（赛博朋克）+ Glassmorphism（毛玻璃拟态）+ Data Vis（数据可视化）
+    \item \textbf{视觉关键词}：沉浸式、半透明、霓虹光效、全息投影、流动感
+    \item \textbf{用户体验}：强调信息的层级与直观展示，通过微交互提升操作的反馈感
+\end{itemize}
+
+\section{色彩系统}
+
+采用深色模式作为基底，以突显光效和数据图表。
+
+\subsection{背景色}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{3cm}p{4cm}p{6cm}}
+\toprule
+\textbf{名称} & \textbf{色值} & \textbf{用途} \\
+\midrule
+\colorbox{deepblue}{\textcolor{white}{Base}} & \#0F172A (Slate 900) & 深邃蓝黑色，作为主背景 \\
+Overlay & rgba(15, 23, 42, 0.6) & 用于遮罩或叠加层 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{主色调与强调色}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{3cm}p{4cm}p{6cm}}
+\toprule
+\textbf{名称} & \textbf{色值} & \textbf{用途} \\
+\midrule
+\colorbox{neoncyan}{\textcolor{white}{Cyber Blue}} & \#06B6D4 (Cyan 500) & 核心数据、选中状态、科技线条 \\
+\colorbox{neonpurple}{\textcolor{white}{Neon Purple}} & \#A855F7 (Purple 500) & 辅助图形、渐变光晕 \\
+\colorbox{alertred}{\textcolor{white}{Alert Red}} & \#EF4444 (Red 500) & 警报、异常状态 \\
+\colorbox{successgreen}{\textcolor{white}{Success Green}} & \#10B981 (Emerald 500) & 健康、通畅状态 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{中性色}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{3cm}p{4cm}p{6cm}}
+\toprule
+\textbf{名称} & \textbf{色值} & \textbf{用途} \\
+\midrule
+Text Primary & \#F8FAFC (Slate 50) & 主要文字 \\
+Text Secondary & \#94A3B8 (Slate 400) & 次要标签、说明文字 \\
+Glass Border & rgba(255,255,255,0.1) & 卡片描边 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{布局结构}
+
+采用 \textbf{Bento Grid（便当盒布局）} 或 \textbf{Dashboard（仪表盘布局）} 风格，利用 CSS Grid/Flex 实现全响应式适配。
+
+\subsection{断点策略}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{Desktop (lg/xl)}：完整的三栏布局（侧边栏 + 核心地图 + 右侧面板）
+    \item \textbf{Mobile (xs/sm)}：单列布局。地图作为背景，功能面板折叠，通过底部抽屉或浮动按钮唤起
+\end{itemize}
+
+\subsection{层级结构}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{3cm}p{4cm}p{6cm}}
+\toprule
+\textbf{层级} & \textbf{名称} & \textbf{内容} \\
+\midrule
+Layer 0 & 底层 & 动态背景或3D城市地图模型 \\
+Layer 1 & 顶层 & 悬浮的半透明玻璃卡片 \\
+Layer 2 & 覆盖层 & 全屏模态（Admin Overlay） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Layer 1 细分区域}：
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{顶部 Header}：全局状态栏（时间、天气、系统通知、用户档案）
+    \item \textbf{顶侧 Sidebar}：导航菜单（概览、交通、能源、安防、设置）
+    \item \textbf{中心 Main View}：核心交互区（3D地图、实时监控画面、主数据大屏）
+    \item \textbf{右侧 Widgets}：数据模块（关键指标KPI、实时日志、控制面板）
+\end{itemize}
+
+\section{关键组件设计}
+
+\subsection{玻璃面板 (GlassPanel)}
+
+所有面板采用统一的毛玻璃效果，确保背景可见，增强空间感。
+
+\textbf{样式规范}：
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{背景}：\texttt{bg-slate-900/40}（高模糊度 \texttt{backdrop-blur-xl}）
+    \item \textbf{边框}：\texttt{border border-white/10}
+    \item \textbf{圆角}：\texttt{rounded-2xl} 或 \texttt{rounded-3xl}
+    \item \textbf{阴影}：\texttt{shadow-lg shadow-cyan-500/10}（带微弱色光的阴影）
+\end{itemize}
+
+\subsection{导航 (Navigation)}
+
+采用顶部 \textbf{DynamicIsland（灵动岛）} 风格导航，整合状态与菜单，节省空间。
+
+\subsection{数据可视化}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{仪表盘}：环形进度条，使用青色到紫色的渐变
+    \item \textbf{波形图}：模拟声波或心跳，展示实时流量/能耗
+    \item \textbf{地图标记}：在3D地图上使用脉冲光点（\texttt{animate-ping}）标记事件地点
+\end{itemize}
+
+\subsection{字体排版}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{字体}：Inter 或 Orbitron（用于标题/数字，增加科技感）
+    \item \textbf{数字}：等宽字体（Monospaced），确保数字跳动时布局不抖动
+\end{itemize}
+
+\section{交互与动效}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{Hover效果}：鼠标悬停卡片时，边框亮度增加，背景轻微提亮，或出现光标跟随效果
+    \item \textbf{加载动画}：页面进入时，卡片依次错落上浮（staggered fade-in-up）
+    \item \textbf{数据更新}：数字变化时采用滚动计数器动画（Counter up）
+    \item \textbf{背景}：缓慢流动的极光或网格线条，营造"城市呼吸"的感觉
+\end{itemize}
+
+\section{技术实现}
+
+基于当前采用的技术栈（Vue 3 + Tailwind）：
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3cm}p{10cm}}
+\toprule
+\textbf{模块} & \textbf{技术选型} \\
+\midrule
+框架 & Vue 3 + Vite（Composition API） \\
+布局 & CSS Grid / Flexbox + TailwindCSS \\
+样式 & Tailwind CSS（opacity modifiers, backdrop-blur, gradients） \\
+UI组件 & Element Plus（企业级组件库） \\
+图标 & @element-plus/icons-vue（加发光滤镜） \\
+图表 & ECharts（支持3D和词云） \\
+3D/地图 & 高德 JS API 2.0 + Three.js（GLCustomLayer） \\
+动画 & CSS Transitions + Vue Transition \\
+状态管理 & Pinia \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

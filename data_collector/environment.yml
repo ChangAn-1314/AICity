@@ -1,0 +1,32 @@
+name: aicity_collector
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.10
+  - requests
+  - httpx
+  - aiohttp
+  - beautifulsoup4
+  - lxml
+  - pandas
+  - numpy
+  - jieba
+  - pymongo
+  - redis-py
+  - sqlalchemy
+  - apscheduler
+  - python-dotenv
+  - loguru
+  - tqdm
+  - tenacity
+  - pydantic
+  - pyyaml
+  - pip
+  - pip:
+    - fake-useragent
+    - snownlp
+    - selenium
+    - playwright
+    - celery
+    - DrissionPage

@@ -1,0 +1,106 @@
+% !TEX program = xelatex
+% 智舆——AI城市舆情态势监测感知与决策推演系统 项目策划书
+\documentclass[12pt,a4paper,fontset=windows,AutoFakeBold=2]{ctexart}
+
+% 宏包引入
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{tcolorbox}
+\usepackage{setspace}
+
+% 页面设置
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm,headheight=28pt}
+
+% ==================== 字体设置(符合模板要求) ====================
+% ctex 内置字体命令: \songti, \heiti, \kaishu, \fangsong, \yahei
+% fontset=windows 已自动配置中文字体
+
+% 字号定义(LaTeX标准字号对照)
+% 初号 = 42pt, 二号 = 22pt, 三号 = 16pt, 四号 = 14pt, 小四 = 12pt
+\newcommand{\chuhao}{\fontsize{42pt}{50pt}\selectfont}
+\newcommand{\erhao}{\fontsize{22pt}{26pt}\selectfont}
+\newcommand{\sanhao}{\fontsize{16pt}{20pt}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{18pt}\selectfont}
+\newcommand{\xiaosi}{\fontsize{12pt}{15pt}\selectfont}
+
+% 颜色定义
+\definecolor{primaryblue}{RGB}{0,82,155}
+\definecolor{accentcyan}{RGB}{6,182,212}
+\definecolor{codebg}{RGB}{245,245,245}
+
+% 超链接设置
+\hypersetup{colorlinks=true,linkcolor=primaryblue,urlcolor=accentcyan}
+
+% 代码样式
+\lstset{basicstyle=\small\ttfamily,backgroundcolor=\color{codebg},frame=single,breaklines=true}
+
+% 标题格式(符合模板要求)
+% 章标题：微软雅黑 三号 加粗
+\titleformat{\section}{\yahei\sanhao\color{primaryblue}}{第\chinese{section}章}{1em}{}
+% 节标题：微软雅黑 四号 加粗
+\titleformat{\subsection}{\yahei\sihao}{\thesubsection}{1em}{}
+% 小节标题：微软雅黑 小四 加粗
+\titleformat{\subsubsection}{\yahei\xiaosi}{\thesubsubsection}{1em}{}
+
+% 正文字体：宋体 四号(在document开始时设置)
+\AtBeginDocument{\songti\sihao}
+
+% 页眉页脚
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\raisebox{-0.3\height}{\includegraphics[height=0.8cm]{picture/logo.png}}\hspace{0.3cm}\small 信阳学院首届"数智讯飞杯"AI+创新应用大赛}
+\fancyhead[R]{\small 项目策划书}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{28pt}
+
+% 图表说明框
+\newtcolorbox{figurebox}{colback=blue!5,colframe=accentcyan,boxrule=1pt,arc=3pt}
+
+% 目录格式：宋体 二号
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\songti\erhao\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftsecfont}{\songti\sihao}
+\renewcommand{\cftsubsecfont}{\songti\xiaosi}
+
+% 表格列类型
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% 行间距
+\setstretch{1.5}
+
+\begin{document}
+
+% 封面
+\input{chapters/cover}
+
+% 目录
+\newpage
+\tableofcontents
+\newpage
+
+% 各章节
+\input{chapters/chapter1}
+\input{chapters/chapter2}
+\input{chapters/chapter3}
+\input{chapters/chapter4}
+\input{chapters/chapter5}
+\input{chapters/appendix}
+
+\end{document}

@@ -1,0 +1,302 @@
+% !TEX program = xelatex
+% 智舆系统 UX 设计方案文档
+\documentclass[12pt,a4paper,fontset=windows]{ctexart}
+
+% 宏包引入
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{fancyvrb}
+
+% 页面设置
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+% 颜色定义（与系统配色一致）
+\definecolor{neoncyan}{HTML}{06B6D4}
+\definecolor{deepblue}{HTML}{0F172A}
+\definecolor{neonpurple}{HTML}{A855F7}
+\definecolor{alertred}{HTML}{EF4444}
+\definecolor{successgreen}{HTML}{10B981}
+
+% 标题格式
+\titleformat{\section}{\heiti\Large\bfseries\color{neoncyan}}{}{0em}{}
+\titleformat{\subsection}{\heiti\large\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\heiti\normalsize\bfseries}{}{0em}{}
+
+% 行间距
+\setstretch{1.5}
+
+% 代码样式
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{deepblue!10},
+    frame=single,
+    rulecolor=\color{neoncyan!50},
+    breaklines=true
+}
+
+\begin{document}
+
+% ==================== 标题页 ====================
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    
+    % 标题
+    {\heiti\fontsize{32pt}{40pt}\selectfont\color{neoncyan} 智舆}
+    
+    \vspace{0.5cm}
+    
+    {\heiti\fontsize{16pt}{22pt}\selectfont AI城市舆情态势监测感知与决策推演系统}
+    
+    \vspace{2cm}
+    
+    {\heiti\fontsize{24pt}{32pt}\selectfont UX 设计方案}
+    
+    \vspace{0.5cm}
+    
+    {\songti\large User Experience Design Specification}
+    
+    \vfill
+    
+    {\songti\normalsize 2025年}
+    
+\end{titlepage}
+
+% ==================== 正文 ====================
+
+\section{设计目标}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{沉浸式指挥感}：让用户（政府/企业决策者）感觉自己处于一个全知全能的"城市大脑"指挥舱中
+    \item \textbf{数据降噪}：在炫酷的视觉下，确保核心舆情数据依然清晰可读，避免视觉干扰
+    \item \textbf{闭环决策}：引导用户完成从"发现问题"到"解决问题"的完整闭环
+\end{itemize}
+
+\section{用户画像与核心场景}
+
+\subsection{核心用户}
+
+\begin{itemize}[leftmargin=2em]
+    \item 政府城市管理者
+    \item 企业公关负责人
+\end{itemize}
+
+\subsection{核心场景}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3cm}p{10cm}}
+\toprule
+\textbf{场景} & \textbf{描述} \\
+\midrule
+\textbf{平态监视} & 挂在大屏上，实时查看城市舆情热力图，关注异常波动 \\
+\textbf{危态处置} & 突发热点事件，需要快速定位地点、还原现场、预测走向，并模拟决策后果 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{信息架构}
+
+将系统功能映射到布局区域中：
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{2.8cm}p{3.5cm}p{6.5cm}}
+\toprule
+\textbf{功能模块} & \textbf{UI区域} & \textbf{交互形式} \\
+\midrule
+全局导航/状态 & 顶部灵动岛 & 始终可见，显示系统时间、当前城市、全网情绪指数 \\
+\midrule
+1. 实时监测 & 左侧Sidebar & 实时滚动的舆情News Ticker，热搜榜单，点击联动地图 \\
+\midrule
+2. 地图可视化 & 中心Main View & 3D城市模型，热点事件以"光柱"或"脉冲圈"标记 \\
+\midrule
+3. LLM分析/还原 & 右侧Widget(上) & 关键词云、事件摘要、3D现场还原窗口 \\
+\midrule
+4. 走向预测 & 右侧Widget(中) & 折线图/波形图，展示"过去-现在-未来"趋势 \\
+\midrule
+5. 决策模拟 & 右侧Widget(下) & 交互式输入框/滑块，大模型反馈推演结果 \\
+\midrule
+6. 后台管理 & 全屏覆盖层 & 全屏毛玻璃覆盖层，不跳转页面，保持沉浸感 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{核心用户体验流程}
+
+\subsection{突发舆情事件处置流程}
+
+\subsubsection{阶段一：感知 (Monitoring)}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{视觉}：3D地图上某区域（如信阳市浉河区）出现红色脉冲警报
+    \item \textbf{交互}：左侧实时列表弹出"突发"标签的新闻条目
+    \item \textbf{操作}：用户点击地图上的红点，或点击列表条目
+\end{itemize}
+
+\subsubsection{阶段二：分析 (Analysis \& Reconstruction)}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{视觉}：
+    \begin{itemize}
+        \item 地图视角自动平滑推拉（Camera Zoom）到事发地点
+        \item 右侧面板滑出"事件详情卡片"（Glass Card）
+        \item 如果可用，在地图上方弹窗展示AI生成的"现场3D还原"全息影像
+    \end{itemize}
+    \item \textbf{数据}：显示大模型生成的"事件摘要"、"情绪占比"分析
+\end{itemize}
+
+\subsubsection{阶段三：预测 (Prediction)}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{视觉}：地图上显示动态箭头，预示舆情可能扩散的区域（如周边社区）
+    \item \textbf{数据}：趋势图展示未来24小时热度预测曲线
+    \item \textbf{AI建议}：界面弹出AI助手建议："建议立即发布官方通报"
+\end{itemize}
+
+\subsubsection{阶段四：模拟与决策 (Simulation \& Decision)}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{交互}：用户打开"决策模拟器"（底部或侧边浮层）
+    \item \textbf{操作}：用户输入/选择决策方案（例如：选择"发布辟谣公告" vs "冷处理"）
+    \item \textbf{反馈}：
+    \begin{itemize}
+        \item 系统即时计算，地图上的红色警报区域根据模拟结果发生变化（变绿或扩散）
+        \item 趋势图生成虚线分支，对比不同决策下的未来走向
+    \end{itemize}
+\end{itemize}
+
+\subsection{系统配置与数据管理 (Admin Flow)}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{入口}：用户点击顶部灵动岛的"设置"图标
+    \item \textbf{交互}：
+    \begin{itemize}
+        \item 主界面背景模糊变暗（Backdrop Blur）
+        \item "后台管理中心"作为全屏覆盖层（Modal Overlay）平滑淡入
+        \item 侧边栏提供Dashboard、热点管理、系统设置等导航
+    \end{itemize}
+    \item \textbf{退出}：点击关闭按钮或按ESC，覆盖层淡出，无缝回到3D地图指挥界面
+\end{itemize}
+
+\section{关键交互细节设计}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3.5cm}p{9.5cm}}
+\toprule
+\textbf{交互模式} & \textbf{描述} \\
+\midrule
+\textbf{聚焦模式} & 点击具体事件时，周围非相关UI自动降低不透明度（Dimming），背景地图模糊化，聚焦当前事件卡片 \\
+\midrule
+\textbf{数据流光} & 在组件连接处使用流动的光线效果，暗示数据正在实时传输和大模型正在推理 \\
+\midrule
+\textbf{语音交互} & 考虑到指挥大屏场景，增加语音唤醒AI的提示："嘿AI，模拟一下方案B的后果" \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{多端适配策略}
+
+\subsection{响应式设计}
+
+采用单一代码库，通过CSS媒体查询适配不同屏幕。
+
+\subsection{Web/PC端（核心）}
+
+\begin{itemize}[leftmargin=2em]
+    \item 全功能3D交互
+    \item 悬浮面板布局
+    \item 支持鼠标精细操作
+\end{itemize}
+
+\subsection{移动端 (Mobile)}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{主页自适应}：保持与PC端相同的URL（\texttt{/}）
+    \item \textbf{布局调整}：侧边栏自动收起为汉堡菜单，悬浮面板转为底部抽屉（Bottom Sheet）或全屏卡片
+    \item \textbf{交互优化}：针对触摸操作优化点击区域，禁用复杂的3D交互或切换为轻量级地图模式
+\end{itemize}
+
+\section{原型结构建议}
+
+建议在\texttt{src}目录下建立以下结构来支撑UX：
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{5cm}p{8cm}}
+\toprule
+\textbf{目录/文件} & \textbf{功能} \\
+\midrule
+\texttt{components/layout/} & 布局组件 \\
+\quad AppShell.vue & 整体布局容器（包含背景、Header） \\
+\quad DynamicIsland.vue & 灵动岛导航 \\
+\midrule
+\texttt{components/features/Map/} & 地图功能 \\
+\quad CityMap3D-AMap.vue & 核心地图组件（高德3D） \\
+\midrule
+\texttt{components/features/Monitor/} & 监测功能 \\
+\quad NewsTicker.vue & 左侧实时舆情流 \\
+\quad HotspotDetail.vue & 舆情详情面板 \\
+\quad FilterPanel.vue & 筛选面板 \\
+\midrule
+\texttt{components/features/Analysis/} & 分析功能 \\
+\quad InsightCard.vue & 右侧AI分析卡片 \\
+\quad KeywordCloud.vue & 关键词云 \\
+\quad TrendChart.vue & 趋势图表 \\
+\midrule
+\texttt{components/features/Simulation/} & 模拟功能 \\
+\quad DecisionPanel.vue & 决策模拟控制台 \\
+\quad SimulationResult.vue & 模拟结果展示 \\
+\midrule
+\texttt{components/features/Voice/} & 语音功能 \\
+\quad VoiceButton.vue & 语音交互按钮 \\
+\midrule
+\texttt{components/ui/} & 基础UI组件 \\
+\quad GlassPanel.vue & 基础玻璃容器 \\
+\quad NeonButton.vue & 交互按钮 \\
+\midrule
+\texttt{stores/} & 状态管理 \\
+\quad sentiment.js & 舆情状态管理 \\
+\quad map.js & 地图状态管理 \\
+\quad voice.js & 语音状态管理 \\
+\midrule
+\texttt{api/} & API接口 \\
+\quad sentiment.js & 舆情API \\
+\quad decision.js & 决策API \\
+\midrule
+\texttt{services/} & 服务层 \\
+\quad websocket.js & WebSocket服务 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{设计总结}
+
+本UX方案将抽象的"分析、预测、模拟"转化为具体可视化的操作步骤，核心理念如下：
+
+\begin{center}
+\fcolorbox{neoncyan}{white}{
+\parbox{0.85\textwidth}{
+\centering
+\vspace{0.5em}
+{\heiti\Large\color{neoncyan} 感知 $\rightarrow$ 分析 $\rightarrow$ 预测 $\rightarrow$ 决策}
+
+\vspace{0.3em}
+{\songti 让城市管理者在沉浸式指挥舱中完成舆情闭环处置}
+\vspace{0.5em}
+}
+}
+\end{center}
+
+\end{document}

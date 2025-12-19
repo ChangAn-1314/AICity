@@ -1,0 +1,46 @@
+/* Data Flow Animation */
+@keyframes flow-horizontal {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes flow-vertical {
+  0% {
+    background-position: 0 200%;
+  }
+  100% {
+    background-position: 0 -200%;
+  }
+}
+
+.animate-flow-x {
+  background: linear-gradient(90deg, transparent 0%, var(--flow-color, rgba(6, 182, 212, 0.8)) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: flow-horizontal 2s linear infinite;
+}
+
+.animate-flow-y {
+  background: linear-gradient(180deg, transparent 0%, var(--flow-color, rgba(6, 182, 212, 0.8)) 50%, transparent 100%);
+  background-size: 100% 200%;
+  animation: flow-vertical 2s linear infinite;
+}
+
+/* Pulse Animation for Data Nodes */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px var(--flow-color, rgba(6, 182, 212, 0.5));
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 20px var(--flow-color, rgba(6, 182, 212, 0.8));
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

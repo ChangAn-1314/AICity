@@ -1,0 +1,151 @@
+# ===============================
+# Dependencies
+# ===============================
+node_modules/
+.pnpm-store/
+bower_components/
+jspm_packages/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+.eggs/
+*.egg-info/
+*.egg
+.installed.cfg
+
+# ===============================
+# Build outputs
+# ===============================
+dist/
+build/
+out/
+.output/
+.nuxt/
+.next/
+*.local
+
+# ===============================
+# IDE / Editor
+# ===============================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# ===============================
+# OS generated files
+# ===============================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ===============================
+# Logs
+# ===============================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ===============================
+# Environment & Secrets
+# ===============================
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+*.pem
+*.key
+secrets/
+config/secrets.json
+
+# ===============================
+# Cache
+# ===============================
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+.npm/
+.yarn/
+
+# ===============================
+# Test & Coverage
+# ===============================
+coverage/
+.nyc_output/
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+
+# ===============================
+# Temporary files
+# ===============================
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+
+# ===============================
+# Project specific
+# ===============================
+# Crawled data (may contain sensitive info)
+data_collector/data/
+data_collector/cookies/
+data_collector/logs/
+
+# Model weights (too large for git)
+models/*.bin
+models/*.pt
+models/*.pth
+models/*.onnx
+models/*.safetensors
+adapters/
+
+# Media files (use Git LFS or external storage)
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.mp3
+*.wav
+
+# Large assets
+public/models/*.glb
+public/models/*.gltf
+!public/models/.gitkeep
+
+# API keys file (if exists)
+docs/keys.md
+
+# Backup folder
+bak/

@@ -1,0 +1,156 @@
+% !TEX program = xelatex
+% 智舆 Logo 设计理念文档
+\documentclass[12pt,a4paper,fontset=windows]{ctexart}
+
+% 宏包引入
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{float}
+
+% 页面设置
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+% 颜色定义（与Logo配色一致）
+\definecolor{neoncyan}{HTML}{06B6D4}
+\definecolor{deepblue}{HTML}{0F172A}
+\definecolor{neonpurple}{HTML}{A855F7}
+
+% 标题格式
+\titleformat{\section}{\heiti\Large\bfseries\color{neoncyan}}{}{0em}{}
+\titleformat{\subsection}{\heiti\large\bfseries}{}{0em}{}
+
+% 行间距
+\setstretch{1.5}
+
+\begin{document}
+
+% ==================== 标题页 ====================
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    % Logo图片
+    \includegraphics[width=0.8\textwidth]{logo-new.png}
+    
+    \vspace{1.5cm}
+    
+    % 标题
+    {\heiti\fontsize{28pt}{36pt}\selectfont\color{neoncyan} 智舆}
+    
+    \vspace{0.3cm}
+    
+    {\heiti\fontsize{18pt}{24pt}\selectfont AI城市舆情态势监测感知与决策推演系统}
+    
+    \vspace{1.5cm}
+    
+    {\heiti\fontsize{22pt}{28pt}\selectfont Logo 设计理念}
+    
+    \vfill
+    
+    {\songti\normalsize 2025年}
+    
+\end{titlepage}
+
+% ==================== 正文 ====================
+
+\section{设计概述}
+
+"智舆"系统的 Logo 设计旨在通过简洁而富有科技感的视觉语言，传达"\textbf{全域感知、智慧决策}"的核心品牌价值。设计融合了\textbf{人工智能 (AI)}、\textbf{城市 (City)} 与\textbf{舆情交流 (Public Opinion)} 三大核心元素，展现了系统作为城市智慧大脑的洞察力与决策力。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo-new.png}
+    \caption{智舆系统Logo}
+\end{figure}
+
+\section{图形寓意}
+
+\subsection{A. 六边形框架与城市天际线}
+
+Logo 整体呈现\textbf{立体六边形}结构，顶部延伸出\textbf{城市建筑剪影}。
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{寓意}：六边形象征稳定、高效与互联，是蜂巢结构的抽象，代表系统的模块化与协同能力。城市天际线则直观表达了"AI+城市"的应用场景。
+    \item \textbf{关联}：呼应项目中"智慧城市治理"与"3D城市地图"的核心功能。
+\end{itemize}
+
+\subsection{B. 负空间对话气泡}
+
+Logo 中心的负空间巧妙地形成了一个\textbf{六边形对话气泡}的轮廓。
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{寓意}：象征着舆情的核心——"公众的声音"与"社会交流"。同时也隐喻了系统具备的\textbf{自然语言交互}能力，用户可以通过对话与系统进行沟通。
+    \item \textbf{关联}：呼应项目中的"语音交互层"（讯飞TTS/ASR）与"舆情分析"本质。
+\end{itemize}
+
+\subsection{C. 流动的丝带与数据流}
+
+环绕六边形的\textbf{立体丝带}呈现出流动感，模拟数据在系统中的传输与处理。
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{寓意}：代表 AI 大模型（讯飞星火）对海量复杂数据的深度分析与逻辑推演，寓意打破信息孤岛，实现数据的智慧互联。
+    \item \textbf{关联}：呼应项目中"AI 分析层"与"多Agent协作"的技术架构。
+\end{itemize}
+
+\subsection{D. 莫比乌斯环式循环}
+
+丝带的交织形成类似\textbf{莫比乌斯环}的无限循环结构。
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{寓意}：象征系统对城市舆情态势 24 小时不间断的实时监测与持续迭代优化。
+    \item \textbf{关联}：呼应项目中"实时监听"与"走向预测"的技术特性。
+\end{itemize}
+
+\section{色彩哲学}
+
+Logo 采用了符合项目"赛博朋克"前端风格的渐变配色方案：
+
+\begin{table}[htbp]
+\centering
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|>{\centering\arraybackslash}p{3cm}|>{\centering\arraybackslash}p{3cm}|p{6cm}|}
+\hline
+\textbf{色彩} & \textbf{色值} & \textbf{象征意义} \\
+\hline
+\colorbox{neoncyan}{\textcolor{white}{荧光青}} & \#06B6D4 & 代表敏锐、创新与 AI 的活力，作为主色调传达科技感与未来感 \\
+\hline
+\colorbox{deepblue}{\textcolor{white}{深邃蓝}} & \#0F172A & 代表理智、大数据与底层算法的严谨，传达系统的可靠性与安全性 \\
+\hline
+\colorbox{neonpurple}{\textcolor{white}{霓虹紫}} & \#A855F7 & 代表智慧、神秘与 AI 的决策能力，体现完整的数据到决策链路 \\
+\hline
+\end{tabular}
+\end{table}
+
+渐变色从\textbf{青色}过渡到\textbf{蓝紫色}，形成强烈的科技感与未来感，与系统前端的赛博朋克 UI 风格保持高度一致。
+
+% \section{字体设计}
+
+% \begin{itemize}[leftmargin=2em]
+%     \item \textbf{中文字体}：采用简洁有力的现代黑体变体，笔画硬朗，体现科技产品的专业度与力量感。
+%     \item \textbf{英文字体}：使用无衬线字体 (Sans-serif)，字间距适中，与图形风格保持一致，展现国际化视野。
+% \end{itemize}
+
+\section{品牌愿景}
+
+"智舆" Logo 不仅是一个视觉符号，更是"AI+城市"创新精神的载体。它代表了我们致力于通过前沿人工智能技术，让城市舆情：
+
+\begin{center}
+\fcolorbox{neoncyan}{white}{
+\parbox{0.8\textwidth}{
+\centering
+\vspace{0.5em}
+{\heiti\Large\color{neoncyan} 看得见 · 读得懂 · 判得准}
+\vspace{0.5em}
+}
+}
+\end{center}
+
+辅助政府与企业实现科学决策，守护城市舆论安全。
+
+\end{document}
