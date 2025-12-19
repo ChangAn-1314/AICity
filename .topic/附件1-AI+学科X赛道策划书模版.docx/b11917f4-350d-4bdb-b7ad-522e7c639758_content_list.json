@@ -1,0 +1,486 @@
+[
+    {
+        "type": "text",
+        "text": "信阳学院",
+        "text_level": 1,
+        "bbox": [
+            421,
+            178,
+            578,
+            211
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "首届‘数智讯飞杯’AI+创新应用大赛",
+        "text_level": 1,
+        "bbox": [
+            188,
+            233,
+            811,
+            265
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "(项目名称)",
+        "text_level": 1,
+        "bbox": [
+            327,
+            300,
+            660,
+            354
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "策",
+        "text_level": 1,
+        "bbox": [
+            458,
+            373,
+            531,
+            426
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "划",
+        "text_level": 1,
+        "bbox": [
+            455,
+            512,
+            529,
+            565
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "书",
+        "text_level": 1,
+        "bbox": [
+            458,
+            653,
+            531,
+            706
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "附件1：",
+        "bbox": [
+            146,
+            99,
+            238,
+            122
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "项目名称：",
+        "text_level": 1,
+        "bbox": [
+            144,
+            137,
+            253,
+            156
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "团队名称：",
+        "text_level": 1,
+        "bbox": [
+            147,
+            174,
+            255,
+            193
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "团队成员：",
+        "text_level": 1,
+        "bbox": [
+            147,
+            211,
+            255,
+            231
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "目录",
+        "text_level": 1,
+        "bbox": [
+            149,
+            275,
+            223,
+            302
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "一、 项目概述",
+        "text_level": 1,
+        "bbox": [
+            147,
+            390,
+            847,
+            405
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "1.1项目简介",
+            "1.2项目背景 1",
+            "1.3 项目优势"
+        ],
+        "bbox": [
+            184,
+            409,
+            847,
+            461
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "二、项目内容 2",
+        "text_level": 1,
+        "bbox": [
+            147,
+            464,
+            847,
+            480
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "2.1 项目界面 2",
+            "2.2项目特色 2"
+        ],
+        "bbox": [
+            183,
+            483,
+            847,
+            517
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "三、 项目可行性",
+        "text_level": 1,
+        "bbox": [
+            147,
+            520,
+            847,
+            535
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "3.1技术可行性 3",
+            "3.2经济可行性 3"
+        ],
+        "bbox": [
+            183,
+            539,
+            847,
+            571
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "四、项目市场分析",
+        "text_level": 1,
+        "bbox": [
+            147,
+            575,
+            847,
+            590
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "4.1市场环境分析 4",
+            "4.2项目市场趋势 4",
+            "4.3 目标市场 4",
+            "4.4市场调查及分析 4"
+        ],
+        "bbox": [
+            183,
+            594,
+            847,
+            664
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "五、 项目营销策略",
+        "text_level": 1,
+        "bbox": [
+            147,
+            668,
+            847,
+            683
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "5.1 项目营销目标 5",
+            "5.2项目营销活动 5",
+            "5.3项目发展策略 5",
+            "5.4项目推广策略 5"
+        ],
+        "bbox": [
+            183,
+            687,
+            847,
+            757
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "一、项目概述",
+        "text_level": 1,
+        "bbox": [
+            144,
+            99,
+            315,
+            122
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "1.1 项目简介",
+        "text_level": 1,
+        "bbox": [
+            159,
+            196,
+            295,
+            215
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "(此部分针对项目进行简单介绍，字数尽量控制在五百字以内)",
+        "bbox": [
+            159,
+            266,
+            796,
+            287
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "1.2项目背景",
+        "text_level": 1,
+        "bbox": [
+            159,
+            319,
+            295,
+            338
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "(项目的提出原因，项目的环境背景)",
+        "bbox": [
+            159,
+            388,
+            537,
+            409
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "1.3 项目优势",
+        "text_level": 1,
+        "bbox": [
+            159,
+            441,
+            295,
+            461
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "二、项目内容",
+        "text_level": 1,
+        "bbox": [
+            144,
+            514,
+            315,
+            536
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2.1项目界面",
+        "text_level": 1,
+        "bbox": [
+            157,
+            611,
+            295,
+            631
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "(此为项目界面描述及设计图)",
+        "bbox": [
+            159,
+            680,
+            465,
+            701
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2.2项目特色",
+        "text_level": 1,
+        "bbox": [
+            157,
+            734,
+            295,
+            753
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "(项目优势分析，项目的独特与创新分析)",
+        "bbox": [
+            159,
+            803,
+            583,
+            822
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "三、项目可行性",
+        "text_level": 1,
+        "bbox": [
+            147,
+            99,
+            342,
+            122
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "3.1技术可行性",
+            "3.2经济可行性"
+        ],
+        "bbox": [
+            147,
+            195,
+            309,
+            286
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "四、项目市场分析",
+        "text_level": 1,
+        "bbox": [
+            147,
+            99,
+            369,
+            122
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "4.1 市场环境分析",
+            "4.2项目市场趋势",
+            "4.3 目标市场",
+            "4.4市场调查及分析"
+        ],
+        "bbox": [
+            157,
+            195,
+            366,
+            425
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "五、项目营销策略",
+        "text_level": 1,
+        "bbox": [
+            147,
+            479,
+            369,
+            501
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "5.1 项目营销目标",
+            "5.2 项目营销活动",
+            "5.3项目发展策略",
+            "5.4项目推广策略"
+        ],
+        "bbox": [
+            157,
+            576,
+            342,
+            804
+        ],
+        "page_idx": 4
+    }
+]

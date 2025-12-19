@@ -1,0 +1,14 @@
+{
+  "filePath": ".spec-workflow/steering/tech.md",
+  "currentVersion": 1,
+  "snapshots": [
+    {
+      "version": 1,
+      "filename": "snapshot-001.json",
+      "timestamp": "2025-12-03T10:03:00.807Z",
+      "trigger": "initial",
+      "approvalId": "approval_1764756180729_sdvl9smc1",
+      "approvalTitle": "Technology Stack - 智舆系统技术架构"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "filePath": ".spec-workflow/specs/aicity-frontend/requirements.md",
+  "currentVersion": 1,
+  "snapshots": [
+    {
+      "version": 1,
+      "filename": "snapshot-001.json",
+      "timestamp": "2025-12-03T13:28:25.079Z",
+      "trigger": "initial",
+      "approvalId": "approval_1764768505058_4ftylr0ri",
+      "approvalTitle": "Requirements - AI City 前端需求文档"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "filePath": ".spec-workflow/specs/backend-api/design.md",
+  "currentVersion": 1,
+  "snapshots": [
+    {
+      "version": 1,
+      "filename": "snapshot-001.json",
+      "timestamp": "2025-12-14T09:45:41.049Z",
+      "trigger": "initial",
+      "approvalId": "approval_1765705540964_jduthpe8l",
+      "approvalTitle": "Backend API Design - 后端设计文档"
+    }
+  ]
+}

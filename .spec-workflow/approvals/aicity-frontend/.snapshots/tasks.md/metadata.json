@@ -1,0 +1,14 @@
+{
+  "filePath": ".spec-workflow/specs/aicity-frontend/tasks.md",
+  "currentVersion": 1,
+  "snapshots": [
+    {
+      "version": 1,
+      "filename": "snapshot-001.json",
+      "timestamp": "2025-12-03T13:42:10.350Z",
+      "trigger": "initial",
+      "approvalId": "approval_1764769330324_fp11g19rg",
+      "approvalTitle": "Tasks - AI City 前端任务清单"
+    }
+  ]
+}

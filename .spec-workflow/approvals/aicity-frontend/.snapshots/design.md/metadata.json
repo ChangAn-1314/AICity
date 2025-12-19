@@ -1,0 +1,14 @@
+{
+  "filePath": ".spec-workflow/specs/aicity-frontend/design.md",
+  "currentVersion": 1,
+  "snapshots": [
+    {
+      "version": 1,
+      "filename": "snapshot-001.json",
+      "timestamp": "2025-12-03T13:38:39.040Z",
+      "trigger": "initial",
+      "approvalId": "approval_1764769119015_tssbq9x13",
+      "approvalTitle": "Design - AI City 前端设计文档"
+    }
+  ]
+}

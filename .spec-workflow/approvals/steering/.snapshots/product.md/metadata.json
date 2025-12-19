@@ -1,0 +1,14 @@
+{
+  "filePath": ".spec-workflow/steering/product.md",
+  "currentVersion": 1,
+  "snapshots": [
+    {
+      "version": 1,
+      "filename": "snapshot-001.json",
+      "timestamp": "2025-12-03T09:27:09.035Z",
+      "trigger": "initial",
+      "approvalId": "approval_1764754028987_t91qegl9i",
+      "approvalTitle": "Product Document - AI City 产品概述"
+    }
+  ]
+}
