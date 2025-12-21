@@ -4,11 +4,9 @@ import { useRoute, useRouter } from "vue-router";
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { useAuthStore } from "@/stores/auth";
 import { Fold, Expand, Monitor, DataAnalysis, Close } from "@element-plus/icons-vue";
-// 使用高德地图 3D 版本 (需要申请 Key)
+// 高德地图 3D 版本
 import CityMap3D from "@/components/features/Map/CityMap3D-AMap.vue";
 import MapControlIsland from "@/components/features/Map/MapControlIsland.vue";
-// 备选: Cesium 版本
-// import CityMap3D from "@/components/features/Map/CityMap3D.vue";
 import NewsTicker from "@/components/features/Monitor/NewsTicker.vue";
 import FilterPanel from "@/components/features/Monitor/FilterPanel.vue";
 // HotspotDetail 已集成到水滴标记中，不再单独使用

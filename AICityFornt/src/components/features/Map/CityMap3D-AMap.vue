@@ -8,6 +8,7 @@ import { Location, ArrowDown, Filter, Close, TrendCharts, Warning, Connection, O
 import { useSentimentStore } from '@/stores/sentiment'
 import { useMapStore } from '@/stores/map'
 import { useFocusMode } from '@/composables/useFocusMode'
+import { AMapOptimizer, FrustumCuller, RenderOnDemand, PerformanceMonitor, createAMapGltfLoader } from '@/utils/mapOptimization'
 
 const emit = defineEmits(['hotspot-click'])
 const sentimentStore = useSentimentStore()
@@ -36,6 +37,16 @@ const eventChainLines = shallowRef([]) // 事件链连接线引用
 let gltfLoaderInstance = null
 let dracoLoaderInstance = null
 let modelCache = new Map() // 模型缓存
+
+// 性能优化实例
+let mapOptimizer = null
+let frustumCuller = null
+let renderController = null
+let performanceMonitor = null
+let amapGltfLoader = null // 高德官方 GltfLoader（可选）
+
+// 模型加载方式：'threejs' 使用 Three.js GLTFLoader（支持自定义效果），'amap' 使用高德官方 GltfLoader（性能更优）
+const MODEL_LOADER_TYPE = 'threejs'
 
 const getGLTFLoader = () => {
   if (!gltfLoaderInstance) {
@@ -738,15 +749,29 @@ const initThreeLayer = (map, AMapModule) => {
   map.addLayer(glCustomLayer)
   glCustomLayerRef.value = glCustomLayer
   
-  // Animation loop - only if renderer initialized
+  // 初始化性能优化器
+  frustumCuller = new FrustumCuller()
+  renderController = new RenderOnDemand()
+  performanceMonitor = new PerformanceMonitor()
+  
+  // 绑定地图事件触发渲染
+  map.on('mapmove', () => renderController.requestRender())
+  map.on('zoomchange', () => renderController.requestRender())
+  map.on('rotatechange', () => renderController.requestRender())
+  
+  // Animation loop - 带性能优化
+  let hasAnimation = false
   const animate = () => {
     if (threeRenderer.value && mapInstance.value) {
+       hasAnimation = false
+       
        // Animate Hotspot Models
        if (sceneModels.value.length > 0) {
            sceneModels.value.forEach(mesh => {
               if (mesh.userData.animate) {
                  mesh.rotation.y += 0.02 
                  mesh.position.z = 40 + Math.sin(Date.now() * 0.002) * 5
+                 hasAnimation = true
               }
            })
        }
@@ -755,14 +780,32 @@ const initThreeLayer = (map, AMapModule) => {
        if (eventChainLines.value.length > 0) {
            eventChainLines.value.forEach(mesh => {
                if (mesh.userData.isFlowLine && mesh.material.uniforms) {
-                   // 根据流向决定动画方向：flowDirection=1 正向，-1 反向
                    const direction = mesh.userData.flowDirection || 1;
                    mesh.material.uniforms.flowOffset.value -= 0.01 * direction;
+                   hasAnimation = true
                }
            })
        }
 
-       mapInstance.value.render() 
+       // 视锥体剔除 - 只渲染可见模型
+       if (threeCamera.value && sceneModels.value.length > 0) {
+           frustumCuller.update(threeCamera.value)
+           sceneModels.value.forEach(model => {
+               if (mapStore.layers.models) {
+                   model.visible = frustumCuller.isVisible(model)
+               }
+           })
+       }
+
+       // 按需渲染：有动画时强制渲染，否则检查是否需要渲染
+       if (hasAnimation) {
+           renderController.forceRender()
+       }
+       
+       if (renderController.shouldRender() || hasAnimation) {
+           mapInstance.value.render()
+           performanceMonitor.update(threeRenderer.value)
+       }
     }
     requestAnimationFrame(animate)
   }
@@ -1100,7 +1143,9 @@ const initMap = async () => {
         'AMap.PlaceSearch', // POI 搜索，用于获取实际建筑类型位置
         'AMap.HeatMap',     // 热力图插件
         'AMap.DistrictSearch', // 行政区查询插件
-        'AMap.Geocoder',       // 地理编码插件 (新增)
+        'AMap.Geocoder',       // 地理编码插件
+        'AMap.GltfLoader',     // 高德官方 GLTF 加载器（性能优化）
+        'AMap.Object3DLayer',  // 3D 对象图层
       ]
     })
 
@@ -1161,6 +1206,16 @@ const initMap = async () => {
       updateHeatmapData()
     } else {
       heatmap.hide()
+    }
+
+    // 初始化高德官方 GltfLoader（可选，用于简单模型加载）
+    if (MODEL_LOADER_TYPE === 'amap') {
+      try {
+        amapGltfLoader = await createAMapGltfLoader(AMapModule, map)
+        console.log('[AMap] 官方 GltfLoader 初始化成功')
+      } catch (err) {
+        console.warn('[AMap] GltfLoader 初始化失败，回退到 Three.js:', err)
+      }
     }
 
     // 初始化行政区查询
@@ -2384,6 +2439,15 @@ onUnmounted(() => {
     threeRenderer.value.forceContextLoss()
     threeRenderer.value = null
   }
+  // 销毁高德官方 GltfLoader
+  if (amapGltfLoader) {
+    amapGltfLoader.dispose()
+    amapGltfLoader = null
+  }
+  // 清理性能优化实例
+  frustumCuller = null
+  renderController = null
+  performanceMonitor = null
 });
 </script>
 
