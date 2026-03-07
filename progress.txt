@@ -1,0 +1,6 @@
+2026-03-07
+- 完成任务：在市场章节补写 TAM/SAM/SOM 三级市场空间测算，新增口径说明、公式和结果表。
+- 修改文件：docs/paper/chapters/chapter4.tex。
+- 新增测试：docs/paper/tests/test_market_tam_sam_som.py，用于校验 TAM/SAM/SOM 小节、定义与关键公式存在。
+- 已执行测试：python -m unittest docs.paper.tests.test_market_tam_sam_som。
+- 已执行 lint：chktex -q -n 1 -n 8 -n 18 -n 36 docs/paper/chapters/chapter4.tex。
