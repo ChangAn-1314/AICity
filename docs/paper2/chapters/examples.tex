@@ -1,0 +1,293 @@
+% ==================== C 品牌应用规范 ====================
+
+\newpage
+\section{品牌应用规范}
+
+\subsection{名片设计}
+
+\visid{C-01} 名片采用深色主题，正面展示品牌标志与个人信息，背面展示辅助图形。
+
+\begin{center}
+\begin{tikzpicture}[scale=0.88]
+  % ---- 正面 ----
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (4.25,5.6) {正面};
+  \fill[DeepBlue,rounded corners=1pt] (0,0) rectangle (8.5,5.4);
+  
+  % 左侧青色装饰条
+  \fill[CyberCyan] (0,0) rectangle (0.15,5.4);
+  
+  % Logo
+  \node[anchor=north west] at (0.6,4.9) {\includegraphics[height=1.2cm]{picture/logo.png}};
+  
+  % 品牌名
+  \node[anchor=west,text=white,font=\heiti\sihao] at (0.6,3) {智舆 ZhiYu};
+  \node[anchor=west,text=TextSecondary,font=\songti\tiny] at (0.6,2.5) {AI城市舆情态势监测感知与决策推演系统};
+  
+  % 个人信息
+  \draw[CyberCyan,line width=0.3pt,opacity=0.4] (0.6,2) -- (7.9,2);
+  \node[anchor=west,text=CyberCyanLight,font=\heiti\scriptsize] at (0.6,1.5) {张\quad 三};
+  \node[anchor=west,text=TextSecondary,font=\songti\tiny] at (0.6,1.0) {产品总监 / Product Director};
+  \node[anchor=west,text=TextSecondary,font=\ttfamily\tiny] at (0.6,0.5) {zhangsan@zhiyu.ai | +86 138-0000-0000};
+  
+  % 右下角六边形装饰
+  \node[regular polygon,regular polygon sides=6,minimum size=1.2cm,
+        draw=CyberCyan,opacity=0.1,line width=0.5pt,rotate=30] at (7.2,1.2) {};
+  
+  % ---- 背面 ----
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (13.25,5.6) {背面};
+  \fill[DeepBlue,rounded corners=1pt] (9,0) rectangle (17.5,5.4);
+  
+  % 中心大Logo
+  \node at (13.25,2.7) {\includegraphics[height=2.5cm]{picture/logo.png}};
+  
+  % 六边形网格装饰
+  \foreach \x/\y in {10/4.5, 11.2/4.5, 10.6/3.6, 15.2/0.8, 16/1.5, 15.6/0.3} {
+    \node[regular polygon,regular polygon sides=6,minimum size=0.6cm,
+          draw=CyberCyan,opacity=0.08,line width=0.3pt,rotate=30] at (\x,\y) {};
+  }
+  
+  % 底部网址
+  \node[text=TextSecondary,font=\ttfamily\tiny] at (13.25,0.4) {www.zhiyu.ai};
+\end{tikzpicture}
+\end{center}
+
+\subsection{文档页眉页脚}
+
+\visid{C-02} 正式文档页眉统一展示品牌标志与文档类型，页脚标注版权信息。
+
+\begin{center}
+\begin{tikzpicture}
+  % 页眉示例
+  \fill[white,rounded corners=1pt,draw=MidGray,line width=0.3pt] (0,0) rectangle (15,1.5);
+  \node[anchor=west] at (0.3,0.75) {\includegraphics[height=0.7cm]{picture/logo.png}};
+  \node[anchor=west,text=DeepBlue,font=\heiti\scriptsize] at (2.2,0.95) {智舆};
+  \node[anchor=west,text=TextSecondary,font=\songti\tiny] at (2.2,0.5) {Visual Identity System};
+  \draw[CyberCyan,line width=1pt] (0,0) -- (15,0);
+  
+  % 页脚示例
+  \fill[white,rounded corners=1pt,draw=MidGray,line width=0.3pt] (0,-2) rectangle (15,-0.8);
+  \draw[CyberCyan,line width=0.5pt] (0,-0.8) -- (15,-0.8);
+  \node[text=TextSecondary,font=\songti\tiny] at (4,-1.4) {\textcopyright\ 2025 智舆 ZhiYu | Confidential};
+  \node[text=SlateGray,font=\ttfamily\tiny] at (13,-1.4) {Page 01};
+\end{tikzpicture}
+\end{center}
+
+\subsection{PPT演示模板}
+
+\visid{C-03} 演示文稿遵循深色主题，16:9比例，标题页与内容页分别定义。
+
+\begin{center}
+\begin{tikzpicture}[scale=0.44]
+  % ---- 标题页 ----
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (8,9.5) {标题页};
+  \fill[DeepBlue,rounded corners=1pt] (0,0) rectangle (16,9);
+  
+  % 网格背景
+  \foreach \x in {0,0.8,...,16} {
+    \draw[white,opacity=0.02,line width=0.2pt] (\x,0) -- (\x,9);
+  }
+  \foreach \y in {0,0.8,...,9} {
+    \draw[white,opacity=0.02,line width=0.2pt] (0,\y) -- (16,\y);
+  }
+  
+  % 顶部渐变
+  \shade[top color=CyberCyan!15,bottom color=DeepBlue,opacity=0.5] (0,6) rectangle (16,9);
+  
+  % Logo
+  \node at (2.5,7.5) {\includegraphics[height=1.2cm]{picture/logo.png}};
+  
+  % 标题
+  \node[text=white,font=\heiti\fontsize{18pt}{22pt}\selectfont,anchor=west] at (1,4.5) {演示标题在此};
+  \node[text=TextSecondary,font=\songti\scriptsize,anchor=west] at (1,3.5) {副标题 / Subtitle};
+  
+  % 底部信息
+  \draw[CyberCyan,line width=0.5pt,opacity=0.4] (1,1.5) -- (15,1.5);
+  \node[text=TextSecondary,font=\songti\tiny,anchor=west] at (1,0.8) {2025 | 智舆团队};
+  
+  % 右下角装饰
+  \node[regular polygon,regular polygon sides=6,minimum size=2cm,
+        draw=CyberCyan,opacity=0.08,line width=0.5pt,rotate=30] at (14,2) {};
+
+  % ---- 内容页 ----
+  \begin{scope}[shift={(18,0)}]
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (8,9.5) {内容页};
+  \fill[DeepBlue,rounded corners=1pt] (0,0) rectangle (16,9);
+  
+  % 网格
+  \foreach \x in {0,0.8,...,16} {
+    \draw[white,opacity=0.02,line width=0.2pt] (\x,0) -- (\x,9);
+  }
+  
+  % 顶部栏
+  \fill[SlateGray,opacity=0.3] (0,7.8) rectangle (16,9);
+  \node[text=CyberCyanLight,font=\heiti\scriptsize,anchor=west] at (0.5,8.4) {章节标题};
+  \draw[CyberCyan,line width=1pt] (0,7.8) -- (16,7.8);
+  
+  % 内容区域
+  \fill[SlateGray,opacity=0.2,rounded corners=1pt] (0.8,1) rectangle (7.2,7.4);
+  \node[text=TextSecondary,font=\songti\tiny] at (4,4.2) {内容区域 A};
+  
+  \fill[SlateGray,opacity=0.2,rounded corners=1pt] (7.6,1) rectangle (15.2,7.4);
+  \node[text=TextSecondary,font=\songti\tiny] at (11.4,4.2) {内容区域 B};
+  
+  % 页码
+  \node[text=TextSecondary,font=\ttfamily\tiny] at (15,0.4) {02};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\subsection{系统界面截图规范}
+
+\visid{C-04} 系统截图用于对外宣传时，须遵循以下规范。
+
+\begin{specbox}[截图输出规范]
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item \textbf{分辨率}：最低 1920$\times$1080 (Full HD)，推荐 2560$\times$1440 (2K)
+  \item \textbf{格式}：PNG 无损格式（演示用途），WebP 压缩格式（网页用途）
+  \item \textbf{圆角}：外部展示截图添加 16px 圆角 + 4px 阴影
+  \item \textbf{背景}：截图外围使用 \texttt{\#0F172A}（Deep Blue）填充
+  \item \textbf{水印}：右下角添加半透明品牌标志（20\% 透明度）
+  \item \textbf{设备框}：可选添加 MacBook / iPad 设备 Mockup 框架
+\end{itemize}
+\end{specbox}
+
+\subsection{四级区域可视化配色}
+
+\visid{C-05} 地图四级穿透视图中，各层级使用差异化配色以区分信息层次。
+
+\begin{center}
+\begin{tikzpicture}
+  % 四级色带
+  \foreach \level/\elabel/\zoom/\clr/\y/\desc in {
+    全国视图/National/Zoom 4--6/CyberCyan/3/{国境线霓虹描边，省份色块填充},
+    省份视图/Province/Zoom 6--8/NeonPurple/2/{省界高亮，地市热力渐变},
+    地市视图/City/Zoom 8--12/WarningAmber/1/{城区建筑3D高亮，事件脉冲标记},
+    县区视图/District/Zoom 12+/SuccessGreen/0/{街道级舆情详情，原文链接标注}} {
+    \fill[\clr,opacity=0.8,rounded corners=1pt] (0,\y) rectangle (3.5,\y+0.8);
+    \node[text=white,font=\heiti\scriptsize] at (1.75,\y+0.4) {\level};
+    \node[text=SlateGray,font=\songti\tiny,anchor=west] at (3.8,\y+0.55) {\elabel};
+    \node[text=TextSecondary,font=\ttfamily\tiny,anchor=west] at (3.8,\y+0.2) {\zoom};
+    \node[text=SlateGray,font=\songti\tiny,anchor=west,text width=6cm] at (7,\y+0.4) {\desc};
+  }
+\end{tikzpicture}
+\end{center}
+
+\subsection{网络社交媒体系统}
+
+\visid{C-06} 品牌在社交媒体平台上的视觉标识应用规范。
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % 微信公众号头像
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (2,4.5) {公众号头像};
+  \fill[DeepBlue,rounded corners=1pt] (0,0) rectangle (4,4);
+  \node at (2,2.3) {\includegraphics[height=2cm]{picture/logo.png}};
+  \node[text=CyberCyanLight,font=\ttfamily\tiny] at (2,0.6) {240 $\times$ 240 px};
+  \node[text=TextSecondary,font=\tiny] at (2,0.2) {PNG / 深色背景};
+  
+  % 微博Banner
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (9.5,4.5) {社交平台 Banner};
+  \fill[DeepBlue,rounded corners=1pt] (5,1.2) rectangle (14,4);
+  \shade[left color=CyberCyan!20,right color=NeonPurple!15,opacity=0.5] (5,1.2) rectangle (14,4);
+  \node[anchor=west] at (5.5,2.6) {\includegraphics[height=1.5cm]{picture/logo.png}};
+  \node[anchor=west,text=white,font=\heiti\sihao] at (7.8,3) {智舆 ZhiYu};
+  \node[anchor=west,text=TextSecondary,font=\songti\tiny] at (7.8,2.2) {AI城市舆情态势监测感知与决策推演系统};
+  \draw[CyberCyan,line width=0.3pt,opacity=0.4] (7.5,1.8) -- (13.5,1.8);
+  \node[text=TextSecondary,font=\ttfamily\tiny] at (9.5,0.6) {1500 $\times$ 500 px};
+  \node[text=TextSecondary,font=\tiny] at (9.5,0.2) {JPG / 72dpi};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % 二维码样式
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (2,4.5) {品牌二维码};
+  \fill[white,rounded corners=1pt,draw=MidGray,line width=0.3pt] (0,0) rectangle (4,4);
+  \fill[DeepBlue,rounded corners=1pt] (0.8,0.8) rectangle (3.2,3.2);
+  \node[text=white,font=\ttfamily\tiny] at (2,2.2) {QR Code};
+  \node[text=white,font=\tiny] at (2,1.6) {中心嵌Logo};
+  \node at (2,2.8) {\includegraphics[height=0.6cm]{picture/logo.png}};
+  \node[text=SlateGray,font=\tiny] at (2,0.4) {前景: Deep Blue / 背景: White};
+
+  % 微信文章页脚
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (9.5,4.5) {文章页脚图};
+  \fill[LightGray,rounded corners=1pt] (5,0.5) rectangle (14,4);
+  \draw[CyberCyan,line width=0.5pt] (5.5,2.8) -- (13.5,2.8);
+  \node[anchor=west] at (5.5,2) {\includegraphics[height=0.8cm]{picture/logo.png}};
+  \node[anchor=west,text=DeepBlue,font=\heiti\scriptsize] at (7.2,2.2) {智舆 ZhiYu};
+  \node[anchor=west,text=SlateGray,font=\songti\tiny] at (7.2,1.6) {关注我们，获取最新舆情洞察};
+  \node[text=CyberCyanDark,font=\ttfamily\tiny] at (12,1.2) {扫码关注};
+  \fill[DeepBlue,rounded corners=1pt] (11.2,1.6) rectangle (12.8,3.2);
+  \node[text=white,font=\tiny] at (12,2.4) {QR};
+  \node[text=TextSecondary,font=\ttfamily\tiny] at (9.5,0.15) {900 $\times$ 500 px / PNG};
+\end{tikzpicture}
+\end{center}
+
+\begin{specbox}[社交媒体视觉规范]
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item 头像统一使用\textbf{深色背景 + 标准Logo}，禁止裁剪或变形
+  \item Banner 背景使用品牌渐变（Cyan $\to$ Purple），左侧放置Logo，右侧留白
+  \item 二维码前景色固定为 \textbf{Deep Blue}，中心嵌入品牌Logo，尺寸不小于二维码面积的 15\%
+  \item 文章页脚图统一版式，底部包含公众号二维码与关注引导语
+  \item 所有社交头像须在圆形裁剪后仍保证Logo完整可辨
+\end{itemize}
+\end{specbox}
+
+% ===========================================================
+\newpage
+\section{品牌资产清单}
+
+\visid{C-07} 以下为智舆品牌完整资产清单，所有文件按规范命名并归档管理。
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{1cm} >{\heiti}p{3.5cm} p{3cm} X}
+\toprule
+\textbf{编号} & \textbf{资产名称} & \textbf{格式} & \textbf{用途说明} \\
+\midrule
+\multicolumn{4}{l}{\textbf{\color{CyberCyan}A 标志文件}} \\
+A-01 & Logo 标准版 & PNG / SVG & 深色背景标准使用 \\
+A-02 & Logo 反白版 & PNG / SVG & 浅色背景使用 \\
+A-03 & Logo 单色版 & PNG / SVG & 印刷受限场景 \\
+A-04 & Favicon & ICO / PNG 48px & 浏览器标签图标 \\
+\midrule
+\multicolumn{4}{l}{\textbf{\color{CyberCyan}B 色彩文件}} \\
+B-01 & 品牌色板 & ASE / JSON & 设计软件导入 \\
+B-02 & Tailwind 配置 & JS & 前端开发直接引用 \\
+B-03 & CSS 变量表 & CSS & 全局主题变量 \\
+\midrule
+\multicolumn{4}{l}{\textbf{\color{CyberCyan}C 字体文件}} \\
+C-01 & Alibaba PuHuiTi 2.0 & TTF / WOFF2 & 中文正文 \\
+C-02 & Inter & TTF / WOFF2 & 英文正文 \\
+C-03 & Orbitron & TTF / WOFF2 & 科技标题/数字 \\
+C-04 & JetBrains Mono & TTF / WOFF2 & 代码/数据 \\
+\midrule
+\multicolumn{4}{l}{\textbf{\color{CyberCyan}D 模板文件}} \\
+D-01 & PPT 演示模板 & PPTX & 对外演示汇报 \\
+D-02 & 文档模板 & LaTeX / DOCX & 项目文档撰写 \\
+D-03 & 名片模板 & AI / PDF & 印刷输出 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{12pt}
+
+\begin{center}
+\begin{tcolorbox}[
+  enhanced,
+  colback=CyberCyan!5,
+  colframe=CyberCyan,
+  boxrule=1pt,
+  arc=1pt,
+  width=0.85\textwidth,
+  halign=center
+]
+{\heiti\sihao\color{CyberCyanDark} 智舆 ZhiYu}\\[4pt]
+{\songti\wuhao\color{SlateGray} AI城市舆情态势监测感知与决策推演系统}\\[8pt]
+{\songti\wuhao\color{SlateGray} Visual Identity System v1.0}\\[2pt]
+{\songti\wuhao\color{SlateGray} 2025}\\[8pt]
+\textcolor{MidGray}{\rule{6cm}{0.3pt}}\\[4pt]
+{\songti\tiny\color{TextSecondary} 本手册内容为智舆品牌机密资料，未经授权不得外传复制。}\\
+{\songti\tiny\color{TextSecondary} 如需使用品牌素材，请联系品牌管理团队获取授权。}
+\end{tcolorbox}
+\end{center}

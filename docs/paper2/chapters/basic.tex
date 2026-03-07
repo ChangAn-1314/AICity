@@ -1,0 +1,724 @@
+% ==================== A 基础识别系统 ====================
+
+\section{品牌概述}
+
+\subsection{品牌定位}
+
+\textbf{智舆（ZhiYu）}是一款面向城市治理的AI智慧舆情态势监测感知与决策推演系统。品牌视觉以\textbf{赛博朋克（Cyberpunk）}美学为基底，融合\textbf{毛玻璃拟态（Glassmorphism）}与\textbf{数据可视化（Data Visualization）}设计语言，构建"沉浸式、高科技、可信赖"的品牌形象。
+
+\begin{specbox}[品牌核心价值]
+\centering
+\vspace{4pt}
+{\heiti\sanhao\color{CyberCyan} 看得见\quad\textcolor{NeonPurple}{\textbullet}\quad 读得懂\quad\textcolor{NeonPurple}{\textbullet}\quad 判得准\quad\textcolor{NeonPurple}{\textbullet}\quad 做得好}
+\vspace{4pt}
+\end{specbox}
+
+\subsection{视觉关键词}
+
+\begin{center}
+\begin{tikzpicture}
+  \foreach \word/\x in {沉浸式/0, 半透明/3.2, 霓虹光效/6.4, 全息投影/9.6, 流动感/12.8} {
+    \node[fill=CyberCyan!10,text=CyberCyanDark,rounded corners=1pt,
+          inner sep=8pt,font=\heiti\xiaosi,draw=CyberCyan,line width=0.3pt] at (\x,0) {\word};
+  }
+\end{tikzpicture}
+\end{center}
+
+\subsection{品牌架构}
+
+\begin{center}
+\begin{tikzpicture}[
+  block/.style={rectangle,rounded corners=1pt,draw=CyberCyan,line width=0.8pt,
+                fill=CyberCyan!8,text=DeepBlue,minimum width=3.8cm,minimum height=1.2cm,
+                font=\heiti\xiaosi,align=center},
+  subblock/.style={rectangle,rounded corners=1pt,draw=MidGray,line width=0.5pt,
+                   fill=LightGray,text=DeepBlue,minimum width=2.6cm,minimum height=0.9cm,
+                   font=\songti\wuhao,align=center},
+  arr/.style={-{Stealth[length=5pt]},CyberCyan,line width=0.8pt}
+]
+  % 顶层
+  \node[block,fill=CyberCyan,text=white,line width=1pt] (brand) at (0,0) {智舆 ZhiYu\\品牌标识};
+  
+  % 二级
+  \node[block] (basic) at (-5,-2.5) {A 基础识别\\系统};
+  \node[block] (app) at (0,-2.5) {B 应用识别\\系统};
+  \node[block] (rule) at (5,-2.5) {C 品牌应用\\规范};
+  
+  % 三级 - 基础
+  \node[subblock] (b1) at (-7,-4.5) {标志规范};
+  \node[subblock] (b2) at (-5,-4.5) {色彩系统};
+  \node[subblock] (b3) at (-3,-4.5) {字体系统};
+  
+  % 三级 - 应用
+  \node[subblock] (a1) at (-1,-4.5) {界面规范};
+  \node[subblock] (a2) at (1,-4.5) {组件设计};
+  
+  % 三级 - 规范
+  \node[subblock] (r1) at (3.5,-4.5) {布局系统};
+  \node[subblock] (r2) at (5.5,-4.5) {动效交互};
+  \node[subblock] (r3) at (7.5,-4.5) {输出规范};
+  
+  % 连线
+  \draw[arr] (brand) -- (basic);
+  \draw[arr] (brand) -- (app);
+  \draw[arr] (brand) -- (rule);
+  \draw[arr] (basic) -- (b1);
+  \draw[arr] (basic) -- (b2);
+  \draw[arr] (basic) -- (b3);
+  \draw[arr] (app) -- (a1);
+  \draw[arr] (app) -- (a2);
+  \draw[arr] (rule) -- (r1);
+  \draw[arr] (rule) -- (r2);
+  \draw[arr] (rule) -- (r3);
+\end{tikzpicture}
+\end{center}
+
+% ===========================================================
+\newpage
+\section{标志规范}
+
+\subsection{标志释义}
+
+\visid{A-01} "智舆"Logo以\textbf{立体六边形}为主体框架，顶部延伸\textbf{城市天际线剪影}，中心负空间形成\textbf{对话气泡}，环绕\textbf{莫比乌斯环式数据丝带}。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.35\textwidth]{picture/logo.png}
+\caption{智舆系统标志（标准版）}
+\end{figure}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash\heiti}p{3.5cm} X}
+\toprule
+\textbf{图形元素} & \textbf{设计寓意} \\
+\midrule
+六边形框架 & 稳定、高效、互联，象征蜂巢结构的模块化协同能力 \\
+城市天际线 & 直观表达"AI+城市"应用场景，呼应3D城市地图核心功能 \\
+负空间对话气泡 & 象征舆情核心——公众声音与社会交流，隐喻自然语言交互能力 \\
+流动数据丝带 & 代表AI大模型对海量数据的深度分析与逻辑推演 \\
+莫比乌斯环 & 象征24小时不间断实时监测与持续迭代优化 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{标志网格制图}
+
+\visid{A-02} 标志依据标准化网格系统绘制，确保在任何尺寸下的精确还原。网格基准单位 \textbf{a} 等于六边形外接圆直径的 \textbf{1/8}。
+
+\begin{center}
+\begin{tikzpicture}
+  % 网格
+  \foreach \x in {-4,-3.5,...,4} {
+    \draw[MidGray,opacity=0.2,line width=0.15pt] (\x,-3.5) -- (\x,3.5);
+  }
+  \foreach \y in {-3.5,-3,...,3.5} {
+    \draw[MidGray,opacity=0.2,line width=0.15pt] (-4,\y) -- (4,\y);
+  }
+  
+  % 主网格（粗线）
+  \foreach \x in {-4,-2,0,2,4} {
+    \draw[CyberCyan,opacity=0.15,line width=0.3pt] (\x,-3.5) -- (\x,3.5);
+  }
+  \foreach \y in {-3.5,-1.5,0.5,2.5} {
+    \draw[CyberCyan,opacity=0.15,line width=0.3pt] (-4,\y) -- (4,\y);
+  }
+  
+  % Logo（居中）
+  \node at (0,0) {\includegraphics[height=5cm]{picture/logo.png}};
+  
+  % 中心十字辅助线
+  \draw[AlertRed,opacity=0.3,line width=0.3pt,dashed] (0,-3.5) -- (0,3.5);
+  \draw[AlertRed,opacity=0.3,line width=0.3pt,dashed] (-4,0) -- (4,0);
+  
+  % 外接矩形
+  \draw[CyberCyan,line width=0.6pt,dashed] (-2.5,-2.8) rectangle (2.5,2.8);
+  
+  % 标注：基准单位 a
+  \draw[{Stealth}-{Stealth},DeepBlue,line width=0.5pt] (-2.5,3.2) -- (-2,3.2);
+  \node[above,font=\ttfamily\scriptsize,DeepBlue] at (-2.25,3.2) {a};
+  
+  % 说明文字区
+  \node[anchor=north west,font=\songti\scriptsize,text=SlateGray,text width=5cm] at (5,3) {%
+    \textbf{网格参数}\\[4pt]
+    基准单位：a = D/8\\
+    D = 六边形外接圆直径\\[4pt]
+    整体宽高比：约 1:1.12\\
+    城市天际线高度：2a\\
+    丝带厚度：0.5a\\
+    六边形内角：120\textdegree\\[4pt]
+    \textcolor{CyberCyan}{---} 定位网格\\
+    \textcolor{AlertRed}{- - -} 中轴线\\
+    \textcolor{CyberCyan!60}{[~]} 外接边界
+  };
+\end{tikzpicture}
+\end{center}
+
+\begin{specbox}[网格制图使用说明]
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item 网格制图用于标志的精确复制与大幅面输出校准
+  \item 所有曲线控制点须对齐至最近的 0.5a 网格交叉点
+  \item 数字化输出时，优先使用矢量格式（SVG/AI），确保无损缩放
+  \item 印刷输出时，须以网格制图校验标志比例是否失真
+\end{itemize}
+\end{specbox}
+
+\subsection{标志安全空间}
+
+\visid{A-03} 标志周围须保留最小安全空间，确保在任何场景下的视觉独立性。安全空间以标志中六边形高度的 \textbf{1/4} 为基准单位 \textbf{X}。
+
+\begin{center}
+\begin{tikzpicture}
+  % 安全空间示意
+  \draw[dashed,CyberCyan,line width=0.5pt] (-3,-2.5) rectangle (3,2.5);
+  \draw[dashed,AlertRed,line width=0.3pt] (-2.2,-1.7) rectangle (2.2,1.7);
+  \node at (0,0) {\includegraphics[height=2.8cm]{picture/logo.png}};
+  
+  % 标注
+  \draw[{Stealth}-{Stealth},CyberCyan,line width=0.5pt] (-3,2.7) -- (-2.2,2.7);
+  \node[above,font=\ttfamily\scriptsize,CyberCyan] at (-2.6,2.7) {X};
+  \draw[{Stealth}-{Stealth},CyberCyan,line width=0.5pt] (3.2,-2.5) -- (3.2,-1.7);
+  \node[right,font=\ttfamily\scriptsize,CyberCyan] at (3.2,-2.1) {X};
+\end{tikzpicture}
+\end{center}
+
+\subsection{标志最小尺寸}
+
+\visid{A-04} 为确保标志清晰可辨，规定以下最小使用尺寸：
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{lll}
+\toprule
+\textbf{应用场景} & \textbf{最小宽度} & \textbf{说明} \\
+\midrule
+印刷媒介 & 20mm & 名片、信封、文档页眉 \\
+屏幕显示 & 48px & 网页Favicon、移动端图标 \\
+大幅面 & 无上限 & 展板、户外广告 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{标志使用规范}
+
+\visid{A-05} 标志的标准使用场景与禁止操作：
+
+\begin{forbidbox}
+\textbf{\color{AlertRed}禁止操作：}
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item 禁止改变标志比例（拉伸、压缩）
+  \item 禁止旋转标志（除设计规范明确允许的角度）
+  \item 禁止更改标志配色（须使用标准色或反白版）
+  \item 禁止在标志上叠加文字或其他图形元素
+  \item 禁止将标志置于杂乱背景上导致辨识度下降
+  \item 禁止使用低分辨率标志素材（最低 300dpi 印刷 / 72dpi 屏幕）
+\end{itemize}
+\end{forbidbox}
+
+\subsection{标志与文字组合规范}
+
+\visid{A-06} 标志与品牌名称的标准组合形式，确保品牌表达的一致性。
+
+\begin{center}
+\begin{tikzpicture}
+  % 横向组合
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (3.5,4.5) {横向组合（首选）};
+  \fill[LightGray,rounded corners=1pt] (0,0.5) rectangle (7,4.3);
+  \node[anchor=west] at (0.5,2.4) {\includegraphics[height=2cm]{picture/logo.png}};
+  \node[anchor=west,text=DeepBlue,font=\heiti\fontsize{22pt}{26pt}\selectfont] at (3.2,2.9) {智舆};
+  \node[anchor=west,text=CyberCyanDark,font=\ttfamily\fontsize{10pt}{12pt}\selectfont] at (3.2,1.8) {ZhiYu};
+  
+  % 纵向组合
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (11.5,4.5) {纵向组合};
+  \fill[LightGray,rounded corners=1pt] (8.5,0.5) rectangle (14.5,4.3);
+  \node at (11.5,3) {\includegraphics[height=1.5cm]{picture/logo.png}};
+  \node[text=DeepBlue,font=\heiti\sihao] at (11.5,1.5) {智舆};
+  \node[text=CyberCyanDark,font=\ttfamily\wuhao] at (11.5,0.9) {ZhiYu};
+\end{tikzpicture}
+\end{center}
+
+\begin{specbox}[组合规范要求]
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item 标志与文字间距不得小于标志宽度的 \textbf{15\%}
+  \item 中文品牌名使用\textbf{黑体}，英文品牌名使用 \textbf{Orbitron} 或等宽字体
+  \item 横向组合为首选方案，空间不足时使用纵向组合
+  \item 禁止更改标志与文字的相对位置或比例
+\end{itemize}
+\end{specbox}
+
+\subsection{标志色彩应用版本}
+
+\visid{A-07} 标志在不同背景下的标准色彩应用方案。
+
+\begin{center}
+\begin{tikzpicture}
+  % 标准版（深色背景）
+  \fill[DeepBlue,rounded corners=1pt] (0,0) rectangle (4.5,4);
+  \node at (2.25,2.3) {\includegraphics[height=2cm]{picture/logo.png}};
+  \node[text=white,font=\heiti\scriptsize] at (2.25,0.6) {标准版};
+  \node[text=TextSecondary,font=\tiny] at (2.25,0.2) {深色背景};
+  
+  % 反白版（浅色背景）
+  \fill[white,rounded corners=1pt,draw=MidGray,line width=0.5pt] (5,0) rectangle (9.5,4);
+  \node at (7.25,2.3) {\includegraphics[height=2cm]{picture/logo.png}};
+  \node[text=DeepBlue,font=\heiti\scriptsize] at (7.25,0.6) {浅色背景版};
+  \node[text=SlateGray,font=\tiny] at (7.25,0.2) {白色/浅灰背景};
+  
+  % 单色版
+  \fill[LightGray,rounded corners=1pt,draw=MidGray,line width=0.3pt] (10,0) rectangle (14.5,4);
+  \node[opacity=0.6] at (12.25,2.3) {\includegraphics[height=2cm]{picture/logo.png}};
+  \node[text=DeepBlue,font=\heiti\scriptsize] at (12.25,0.6) {单色灰度版};
+  \node[text=SlateGray,font=\tiny] at (12.25,0.2) {印刷受限场景};
+\end{tikzpicture}
+\end{center}
+
+\subsection{标志墨稿与反白稿}
+
+\visid{A-08} 标志在特殊印刷条件下的黑白版本规范。
+
+\begin{center}
+\begin{tikzpicture}
+  % 墨稿（纯黑版）
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (2.25,4.3) {墨稿（纯黑版）};
+  \fill[white,rounded corners=1pt,draw=MidGray,line width=0.5pt] (0,0) rectangle (4.5,4);
+  \node[opacity=0.15] at (2.25,2.3) {\includegraphics[height=2cm]{picture/logo.png}};
+  \draw[DeepBlue,line width=0.6pt,dashed] (0.8,0.8) rectangle (3.7,3.5);
+  \node[text=DeepBlue,font=\ttfamily\tiny] at (2.25,0.4) {K: 100\%};
+
+  % 反白稿
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (7.25,4.3) {反白稿};
+  \fill[DeepBlue,rounded corners=1pt] (5,0) rectangle (9.5,4);
+  \node at (7.25,2.3) {\includegraphics[height=2cm]{picture/logo.png}};
+  \node[text=TextSecondary,font=\ttfamily\tiny] at (7.25,0.4) {K: 0\% (White)};
+  
+  % 灰度稿
+  \node[font=\heiti\wuhao,text=SlateGray,anchor=south] at (12.25,4.3) {灰度稿};
+  \fill[LightGray,rounded corners=1pt,draw=MidGray,line width=0.3pt] (10,0) rectangle (14.5,4);
+  \node[opacity=0.5] at (12.25,2.3) {\includegraphics[height=2cm]{picture/logo.png}};
+  \node[text=SlateGray,font=\ttfamily\tiny] at (12.25,0.4) {K: 60\%};
+\end{tikzpicture}
+\end{center}
+
+\begin{specbox}[墨稿使用场景]
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item 单色印刷（传真、黑白复印、报纸广告）
+  \item 烫金/烫银/压印等特殊工艺
+  \item 刻章、钢印、水印等物理载体
+\end{itemize}
+\end{specbox}
+
+\subsection{标志与Slogan组合}
+
+\visid{A-09} 标志与品牌口号的标准组合形式。
+
+\begin{center}
+\begin{tikzpicture}
+  % 组合形式1：Logo + Slogan 横向
+  \fill[LightGray,rounded corners=1pt] (0,0) rectangle (15,3.5);
+  \node[anchor=west] at (0.5,1.8) {\includegraphics[height=2cm]{picture/logo.png}};
+  \node[anchor=west,text=DeepBlue,font=\heiti\fontsize{18pt}{22pt}\selectfont] at (3.2,2.2) {智舆};
+  \node[anchor=west,text=CyberCyanDark,font=\ttfamily\wuhao] at (3.2,1.4) {ZhiYu};
+  \draw[CyberCyan,line width=0.5pt] (6.5,0.8) -- (6.5,2.8);
+  \node[anchor=west,text=SlateGray,font=\songti\xiaosi] at (7,1.8) {看得见 \textbullet\ 读得懂 \textbullet\ 判得准 \textbullet\ 做得好};
+\end{tikzpicture}
+\end{center}
+
+\begin{specbox}[Slogan组合规范]
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item Slogan 与标志之间以竖线分隔，间距不小于标志宽度的 \textbf{20\%}
+  \item Slogan 字体使用\textbf{宋体/思源宋体}，字号不超过品牌名称的 \textbf{50\%}
+  \item 仅在品牌推广场景使用，内部办公文档不附带 Slogan
+\end{itemize}
+\end{specbox}
+
+\subsection{标志使用错误预演}
+
+\visid{A-10} 以下为常见的标志误用形式，须严格避免。
+
+\begin{center}
+\begin{tikzpicture}
+  % 错误1：拉伸变形
+  \fill[AlertRed!5,rounded corners=1pt] (0,0) rectangle (4.5,3.5);
+  \draw[AlertRed,line width=0.5pt,rounded corners=1pt] (0,0) rectangle (4.5,3.5);
+  \node[xscale=1.5] at (2.25,2) {\includegraphics[height=1.2cm]{picture/logo.png}};
+  \node[text=AlertRed,font=\heiti\scriptsize] at (2.25,0.5) {拉伸变形};
+  \draw[AlertRed,line width=1.5pt] (0.3,0.3) -- (4.2,3.2);
+  \draw[AlertRed,line width=1.5pt] (4.2,0.3) -- (0.3,3.2);
+  
+  % 错误2：旋转
+  \fill[AlertRed!5,rounded corners=1pt] (5,0) rectangle (9.5,3.5);
+  \draw[AlertRed,line width=0.5pt,rounded corners=1pt] (5,0) rectangle (9.5,3.5);
+  \node[rotate=25] at (7.25,2) {\includegraphics[height=1.2cm]{picture/logo.png}};
+  \node[text=AlertRed,font=\heiti\scriptsize] at (7.25,0.5) {任意旋转};
+  \draw[AlertRed,line width=1.5pt] (5.3,0.3) -- (9.2,3.2);
+  \draw[AlertRed,line width=1.5pt] (9.2,0.3) -- (5.3,3.2);
+  
+  % 错误3：添加描边/阴影
+  \fill[AlertRed!5,rounded corners=1pt] (10,0) rectangle (14.5,3.5);
+  \draw[AlertRed,line width=0.5pt,rounded corners=1pt] (10,0) rectangle (14.5,3.5);
+  \node[opacity=0.5] at (12.25,2) {\includegraphics[height=1.2cm]{picture/logo.png}};
+  \draw[NeonPurple,line width=2pt,opacity=0.3] (11.2,1.2) rectangle (13.3,2.8);
+  \node[text=AlertRed,font=\heiti\scriptsize] at (12.25,0.5) {添加描边/阴影};
+  \draw[AlertRed,line width=1.5pt] (10.3,0.3) -- (14.2,3.2);
+  \draw[AlertRed,line width=1.5pt] (14.2,0.3) -- (10.3,3.2);
+\end{tikzpicture}
+\end{center}
+
+\vspace{4pt}
+
+\begin{center}
+\begin{tikzpicture}
+  % 错误4：更改配色
+  \fill[AlertRed!5,rounded corners=1pt] (0,0) rectangle (4.5,3.5);
+  \draw[AlertRed,line width=0.5pt,rounded corners=1pt] (0,0) rectangle (4.5,3.5);
+  \fill[WarningAmber,opacity=0.3,rounded corners=1pt] (0.5,0.8) rectangle (4,3);
+  \node at (2.25,2) {\includegraphics[height=1.2cm]{picture/logo.png}};
+  \node[text=AlertRed,font=\heiti\scriptsize] at (2.25,0.5) {更改配色};
+  \draw[AlertRed,line width=1.5pt] (0.3,0.3) -- (4.2,3.2);
+  \draw[AlertRed,line width=1.5pt] (4.2,0.3) -- (0.3,3.2);
+  
+  % 错误5：杂乱背景
+  \fill[AlertRed!5,rounded corners=1pt] (5,0) rectangle (9.5,3.5);
+  \draw[AlertRed,line width=0.5pt,rounded corners=1pt] (5,0) rectangle (9.5,3.5);
+  \foreach \i in {5.2,5.6,...,9.3} {
+    \foreach \j in {0.8,1.2,...,3.3} {
+      \fill[MidGray,opacity=0.3] (\i,\j) circle (2pt);
+    }
+  }
+  \node at (7.25,2) {\includegraphics[height=1.2cm]{picture/logo.png}};
+  \node[text=AlertRed,font=\heiti\scriptsize] at (7.25,0.5) {杂乱背景};
+  \draw[AlertRed,line width=1.5pt] (5.3,0.3) -- (9.2,3.2);
+  \draw[AlertRed,line width=1.5pt] (9.2,0.3) -- (5.3,3.2);
+  
+  % 错误6：低分辨率
+  \fill[AlertRed!5,rounded corners=1pt] (10,0) rectangle (14.5,3.5);
+  \draw[AlertRed,line width=0.5pt,rounded corners=1pt] (10,0) rectangle (14.5,3.5);
+  \node[opacity=0.25] at (12.25,2) {\includegraphics[height=0.6cm]{picture/logo.png}};
+  \node[text=AlertRed,font=\heiti\scriptsize] at (12.25,0.5) {低分辨率};
+  \draw[AlertRed,line width=1.5pt] (10.3,0.3) -- (14.2,3.2);
+  \draw[AlertRed,line width=1.5pt] (14.2,0.3) -- (10.3,3.2);
+\end{tikzpicture}
+\end{center}
+
+% ===========================================================
+\newpage
+\section{色彩系统}
+
+\subsection{主色调}
+
+\visid{A-11} 品牌主色\textbf{Cyber Cyan（赛博青）}代表敏锐、创新与AI的活力，是智舆视觉体系的核心色彩。
+
+\begin{center}
+\begin{tikzpicture}
+  % 主色大色块
+  \fill[CyberCyan,rounded corners=1pt] (0,0) rectangle (6,4);
+  \node[text=white,font=\heiti\xiaoer] at (3,2.8) {Cyber Cyan};
+  \node[text=white,font=\heiti\xiaosi] at (3,2) {赛博青};
+  \node[text=white,font=\ttfamily\wuhao,opacity=0.9] at (3,1.2) {\#06B6D4};
+  \node[text=white,font=\ttfamily\scriptsize,opacity=0.7] at (3,0.6) {RGB(6, 182, 212) / Cyan-500};
+  
+  % 色阶
+  \fill[CyberCyanDark,rounded corners=1pt] (7,3) rectangle (9,4);
+  \node[text=white,font=\ttfamily\scriptsize] at (8,3.5) {\#0891B2};
+  \node[text=white,font=\scriptsize,below] at (8,3) {Dark};
+  
+  \fill[CyberCyan,rounded corners=1pt] (9.3,3) rectangle (11.3,4);
+  \node[text=white,font=\ttfamily\scriptsize] at (10.3,3.5) {\#06B6D4};
+  \node[text=white,font=\scriptsize,below] at (10.3,3) {Standard};
+  
+  \fill[CyberCyanLight,rounded corners=1pt] (11.6,3) rectangle (13.6,4);
+  \node[text=DeepBlue,font=\ttfamily\scriptsize] at (12.6,3.5) {\#22D3EE};
+  \node[text=DeepBlue,font=\scriptsize,below] at (12.6,3) {Light};
+  
+  % 使用场景
+  \node[anchor=west,font=\heiti\xiaosi,text=DeepBlue] at (7,1.8) {使用场景};
+  \node[anchor=west,font=\songti\wuhao,text=SlateGray,text width=7cm] at (7,0.8) {
+    核心数据高亮 / 选中状态 / 科技线条 / \\
+    按钮主色 / 图表主色 / 链接文字
+  };
+\end{tikzpicture}
+\end{center}
+
+\subsection{强调色}
+
+\visid{A-12} 强调色用于丰富视觉层次，与主色形成互补关系。
+
+\begin{center}
+\begin{tikzpicture}
+  % Neon Purple
+  \fill[NeonPurple,rounded corners=1pt] (0,0) rectangle (4.2,3);
+  \node[text=white,font=\heiti\sihao] at (2.1,2.2) {Neon Purple};
+  \node[text=white,font=\heiti\wuhao] at (2.1,1.5) {霓虹紫};
+  \node[text=white,font=\ttfamily\scriptsize] at (2.1,0.8) {\#A855F7 / Purple-500};
+  \node[text=white,font=\scriptsize,opacity=0.8] at (2.1,0.3) {辅助图形 / 渐变光晕};
+  
+  % Neon Fuchsia
+  \fill[NeonFuchsia,rounded corners=1pt] (4.6,0) rectangle (8.8,3);
+  \node[text=white,font=\heiti\sihao] at (6.7,2.2) {Neon Fuchsia};
+  \node[text=white,font=\heiti\wuhao] at (6.7,1.5) {霓虹品红};
+  \node[text=white,font=\ttfamily\scriptsize] at (6.7,0.8) {\#D946EF / Fuchsia-500};
+  \node[text=white,font=\scriptsize,opacity=0.8] at (6.7,0.3) {次要强调 / 悬停高亮};
+  
+  % Alert Red
+  \fill[AlertRed,rounded corners=1pt] (9.2,0) rectangle (13.4,3);
+  \node[text=white,font=\heiti\sihao] at (11.3,2.2) {Alert Red};
+  \node[text=white,font=\heiti\wuhao] at (11.3,1.5) {警报红};
+  \node[text=white,font=\ttfamily\scriptsize] at (11.3,0.8) {\#EF4444 / Red-500};
+  \node[text=white,font=\scriptsize,opacity=0.8] at (11.3,0.3) {警报 / 异常 / 删除};
+\end{tikzpicture}
+\end{center}
+
+\subsection{功能色}
+
+\visid{A-13} 功能色用于传达系统状态信息，具有明确的语义。
+
+\begin{center}
+\begin{tikzpicture}
+  % Success
+  \fill[SuccessGreen,rounded corners=1pt] (0,0) rectangle (3.6,2.2);
+  \node[text=white,font=\heiti\xiaosi] at (1.8,1.5) {Success Green};
+  \node[text=white,font=\ttfamily\scriptsize] at (1.8,0.8) {\#10B981};
+  \node[text=white,font=\scriptsize,opacity=0.8] at (1.8,0.3) {成功 / 正常 / 正面};
+  
+  % Warning
+  \fill[WarningAmber,rounded corners=1pt] (4,0) rectangle (7.6,2.2);
+  \node[text=white,font=\heiti\xiaosi] at (5.8,1.5) {Warning Amber};
+  \node[text=white,font=\ttfamily\scriptsize] at (5.8,0.8) {\#F59E0B};
+  \node[text=white,font=\scriptsize,opacity=0.8] at (5.8,0.3) {警告 / 待处理};
+  
+  % Alert
+  \fill[AlertRed,rounded corners=1pt] (8,0) rectangle (11.6,2.2);
+  \node[text=white,font=\heiti\xiaosi] at (9.8,1.5) {Alert Red};
+  \node[text=white,font=\ttfamily\scriptsize] at (9.8,0.8) {\#EF4444};
+  \node[text=white,font=\scriptsize,opacity=0.8] at (9.8,0.3) {危险 / 错误 / 负面};
+\end{tikzpicture}
+\end{center}
+
+\subsection{背景与中性色}
+
+\visid{A-14} 背景色系采用深色模式（Dark Mode）为基底，突显光效与数据图表。
+
+\begin{center}
+\begin{tikzpicture}
+  % 深色背景序列
+  \fill[DeeperBlue,rounded corners=1pt] (0,0) rectangle (2.8,2.8);
+  \node[text=white,font=\heiti\scriptsize] at (1.4,2) {Deeper Blue};
+  \node[text=TextSecondary,font=\ttfamily\tiny] at (1.4,1.4) {\#020617};
+  \node[text=TextSecondary,font=\tiny] at (1.4,0.8) {Slate-950};
+  \node[text=TextSecondary,font=\tiny] at (1.4,0.3) {最深背景};
+  
+  \fill[DeepBlue,rounded corners=1pt] (3.1,0) rectangle (5.9,2.8);
+  \node[text=white,font=\heiti\scriptsize] at (4.5,2) {Deep Blue};
+  \node[text=TextSecondary,font=\ttfamily\tiny] at (4.5,1.4) {\#0F172A};
+  \node[text=TextSecondary,font=\tiny] at (4.5,0.8) {Slate-900};
+  \node[text=TextSecondary,font=\tiny] at (4.5,0.3) {主背景};
+  
+  \fill[SlateGray,rounded corners=1pt] (6.2,0) rectangle (9,2.8);
+  \node[text=white,font=\heiti\scriptsize] at (7.6,2) {Slate Gray};
+  \node[text=TextSecondary,font=\ttfamily\tiny] at (7.6,1.4) {\#334155};
+  \node[text=TextSecondary,font=\tiny] at (7.6,0.8) {Slate-700};
+  \node[text=TextSecondary,font=\tiny] at (7.6,0.3) {卡片/分割};
+  
+  % 文字色
+  \fill[white,rounded corners=1pt,draw=MidGray,line width=0.3pt] (9.3,0) rectangle (12.1,2.8);
+  \node[text=DeepBlue,font=\heiti\scriptsize] at (10.7,2) {Text Primary};
+  \node[text=SlateGray,font=\ttfamily\tiny] at (10.7,1.4) {\#F8FAFC};
+  \node[text=SlateGray,font=\tiny] at (10.7,0.8) {Slate-50};
+  \node[text=SlateGray,font=\tiny] at (10.7,0.3) {主要文字};
+  
+  \fill[TextSecondary,rounded corners=1pt] (12.4,0) rectangle (15.2,2.8);
+  \node[text=white,font=\heiti\scriptsize] at (13.8,2) {Text Secondary};
+  \node[text=white,font=\ttfamily\tiny] at (13.8,1.4) {\#94A3B8};
+  \node[text=white,font=\tiny] at (13.8,0.8) {Slate-400};
+  \node[text=white,font=\tiny] at (13.8,0.3) {次要文字};
+\end{tikzpicture}
+\end{center}
+
+\subsection{色彩组合规范}
+
+\visid{A-15} 以下为标准色彩搭配方案，确保对比度与可读性。
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} X}
+\toprule
+\textbf{场景} & \textbf{背景色} & \textbf{前景色} & \textbf{说明} \\
+\midrule
+深色界面主文字 & \colorbox{DeepBlue}{\textcolor{white}{\footnotesize\#0F172A}} & \colorbox{white}{\footnotesize\#F8FAFC} & WCAG AAA \\
+深色界面次要文字 & \colorbox{DeepBlue}{\textcolor{white}{\footnotesize\#0F172A}} & \colorbox{TextSecondary}{\textcolor{white}{\footnotesize\#94A3B8}} & WCAG AA \\
+青色高亮文字 & \colorbox{DeepBlue}{\textcolor{white}{\footnotesize\#0F172A}} & \colorbox{CyberCyanLight}{\footnotesize\#22D3EE} & 数据标注 \\
+印刷正文 & 白色纸张 & \colorbox{DeepBlue}{\textcolor{white}{\footnotesize\#0F172A}} & 最高对比度 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{forbidbox}
+\textbf{\color{AlertRed}色彩禁止操作：}
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item 禁止在浅色背景上使用 Cyber Cyan 作为正文文字色（对比度不足）
+  \item 禁止将 Alert Red 与 Success Green 直接相邻使用
+  \item 禁止修改标准色值（色差 $\Delta E < 3$ 方可视为一致）
+  \item 禁止在非深色背景上使用霓虹光效（Neon Glow）
+\end{itemize}
+\end{forbidbox}
+
+\subsection{印刷色值对照表}
+
+\visid{A-16} 印刷输出时须使用 CMYK 色值，确保跨媒介色彩一致性。
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\textwidth}{>{\heiti\centering\arraybackslash}p{2.8cm} >{\centering\arraybackslash}p{2.4cm} >{\centering\arraybackslash}p{2.8cm} >{\centering\arraybackslash}p{2.8cm} X}
+\toprule
+\textbf{色彩名称} & \textbf{HEX} & \textbf{RGB} & \textbf{CMYK} & \textbf{Pantone (近似)} \\
+\midrule
+\colorbox{CyberCyan}{\textcolor{white}{\small Cyber Cyan}} & \#06B6D4 & 6, 182, 212 & C78 M0 Y15 K0 & 3125 C \\
+\colorbox{CyberCyanLight}{\small Cyan Light} & \#22D3EE & 34, 211, 238 & C65 M0 Y8 K0 & 305 C \\
+\colorbox{NeonPurple}{\textcolor{white}{\small Neon Purple}} & \#A855F7 & 168, 85, 247 & C45 M70 Y0 K0 & 2655 C \\
+\colorbox{NeonFuchsia}{\textcolor{white}{\small Neon Fuchsia}} & \#D946EF & 217, 70, 239 & C25 M75 Y0 K0 & 253 C \\
+\colorbox{AlertRed}{\textcolor{white}{\small Alert Red}} & \#EF4444 & 239, 68, 68 & C0 M82 Y70 K0 & 185 C \\
+\colorbox{SuccessGreen}{\textcolor{white}{\small Success Green}} & \#10B981 & 16, 185, 129 & C70 M0 Y50 K0 & 3405 C \\
+\colorbox{WarningAmber}{\textcolor{white}{\small Warning Amber}} & \#F59E0B & 245, 158, 11 & C0 M40 Y95 K0 & 137 C \\
+\colorbox{DeepBlue}{\textcolor{white}{\small Deep Blue}} & \#0F172A & 15, 23, 42 & C90 M80 Y40 K60 & 5395 C \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{specbox}[印刷注意事项]
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item CMYK 色值在不同印刷设备上可能存在偏差，打样确认后方可批量印刷
+  \item 霓虹色系（Cyan / Purple / Fuchsia）在 CMYK 下饱和度会降低，重要物料建议使用专色（Pantone）
+  \item 大面积深色印刷建议总墨量控制在 280\% 以内，避免背印透色
+\end{itemize}
+\end{specbox}
+
+% ===========================================================
+\newpage
+\section{字体系统}
+
+\subsection{品牌字体}
+
+\visid{A-17} 智舆品牌采用以下字体体系，兼顾科技感与中文可读性。
+
+\begin{center}
+\begin{tikzpicture}
+  % 主字体卡片
+  \fill[LightGray,rounded corners=1pt] (0,0) rectangle (7.5,5.5);
+  \draw[CyberCyan,rounded corners=1pt,line width=0.5pt] (0,0) rectangle (7.5,5.5);
+  \node[text=CyberCyanDark,font=\heiti\sihao,anchor=north west] at (0.5,5) {主字体 / Primary};
+  \draw[CyberCyan,line width=0.5pt] (0.5,4.3) -- (7,4.3);
+  \node[text=DeepBlue,font=\fontsize{24pt}{28pt}\selectfont,anchor=west] at (0.5,3.4) {Alibaba PuHuiTi 2.0};
+  \node[text=SlateGray,font=\xiaosi,anchor=west] at (0.5,2.3) {阿里巴巴普惠体 2.0};
+  \node[text=SlateGray,font=\wuhao,anchor=west,text width=6.5cm] at (0.5,1.3) {
+    用途：正文、界面文字、数据标签\\
+    特性：免费商用、清晰易读、多字重
+  };
+  
+  % 标题/科技字体
+  \fill[LightGray,rounded corners=1pt] (8,0) rectangle (15.5,5.5);
+  \draw[CyberCyan,rounded corners=1pt,line width=0.5pt] (8,0) rectangle (15.5,5.5);
+  \node[text=CyberCyanDark,font=\heiti\sihao,anchor=north west] at (8.5,5) {科技字体 / Tech};
+  \draw[CyberCyan,line width=0.5pt] (8.5,4.3) -- (15,4.3);
+  \node[text=DeepBlue,font=\fontsize{24pt}{28pt}\selectfont,anchor=west] at (8.5,3.4) {Orbitron};
+  \node[text=SlateGray,font=\xiaosi,anchor=west] at (8.5,2.3) {轨道字体};
+  \node[text=SlateGray,font=\wuhao,anchor=west,text width=6.5cm] at (8.5,1.3) {
+    用途：标题数字、仪表盘、KPI指标\\
+    特性：几何感、未来风、等宽数字
+  };
+\end{tikzpicture}
+\end{center}
+
+\vspace{8pt}
+
+\begin{center}
+\begin{tikzpicture}
+  % 西文字体
+  \fill[LightGray,rounded corners=1pt,draw=MidGray,line width=0.3pt] (0,0) rectangle (7.5,4);
+  \node[text=DeepBlue,font=\heiti\sihao,anchor=north west] at (0.5,3.6) {西文正文 / Sans-serif};
+  \draw[MidGray,line width=0.3pt] (0.5,2.9) -- (7,2.9);
+  \node[text=DeepBlue,font=\fontsize{20pt}{24pt}\selectfont,anchor=west] at (0.5,2) {Inter};
+  \node[text=SlateGray,font=\wuhao,anchor=west,text width=6.5cm] at (0.5,0.8) {
+    用途：英文正文、按钮文字、导航\\
+    备选：Segoe UI / system-ui
+  };
+  
+  % 等宽字体
+  \fill[LightGray,rounded corners=1pt,draw=MidGray,line width=0.3pt] (8,0) rectangle (15.5,4);
+  \node[text=DeepBlue,font=\heiti\sihao,anchor=north west] at (8.5,3.6) {等宽字体 / Monospace};
+  \draw[MidGray,line width=0.3pt] (8.5,2.9) -- (15,2.9);
+  \node[text=DeepBlue,font=\fontsize{20pt}{24pt}\selectfont\ttfamily,anchor=west] at (8.5,2) {JetBrains Mono};
+  \node[text=SlateGray,font=\wuhao,anchor=west,text width=6.5cm] at (8.5,0.8) {
+    用途：代码片段、数据编号、技术标注\\
+    备选：Fira Code / Consolas
+  };
+\end{tikzpicture}
+\end{center}
+
+\subsection{字体层级}
+
+\visid{A-18} 字体层级遵循以下规范，确保信息的视觉优先级清晰。
+
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{2.5cm} >{\centering\arraybackslash}p{2cm} >{\centering\arraybackslash}p{2cm} >{\centering\arraybackslash}p{2cm} X}
+\toprule
+\textbf{层级} & \textbf{字号} & \textbf{字重} & \textbf{行高} & \textbf{用途} \\
+\midrule
+H1 大标题 & 32px & Bold & 1.2 & 页面主标题 \\
+H2 章标题 & 24px & Bold & 1.3 & 模块标题 \\
+H3 节标题 & 18px & SemiBold & 1.4 & 卡片标题 \\
+Body 正文 & 14px & Regular & 1.6 & 正文内容 \\
+Caption 标注 & 12px & Regular & 1.5 & 辅助说明 \\
+Data 数据 & 28--48px & Bold & 1.1 & KPI/仪表盘数字 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{辅助图形系统}
+
+\visid{A-19} 品牌辅助图形源自Logo中的核心元素，用于丰富视觉层次。
+
+\begin{center}
+\begin{tikzpicture}
+  % 六边形网格
+  \begin{scope}[shift={(0,0)}]
+    \node[font=\heiti\xiaosi,text=DeepBlue,anchor=south] at (2,3.5) {六边形网格};
+    \foreach \i/\j in {0/0,1.5/0,0.75/1.3,2.25/1.3,0/2.6,1.5/2.6} {
+      \node[regular polygon,regular polygon sides=6,minimum size=1.3cm,
+            draw=CyberCyan,line width=0.5pt,opacity=0.6,rotate=30] at (\i,\j) {};
+    }
+  \end{scope}
+  
+  % 数据流线
+  \begin{scope}[shift={(5.5,0)}]
+    \node[font=\heiti\xiaosi,text=DeepBlue,anchor=south] at (2,3.5) {数据流线};
+    \draw[CyberCyan,line width=1.5pt,opacity=0.8,
+          decoration={markings,mark=at position 0.3 with {\arrow{Stealth}},
+                      mark=at position 0.7 with {\arrow{Stealth}}},
+          postaction={decorate}]
+      (0,0.5) .. controls (1,2.5) and (3,1) .. (4,3);
+    \draw[NeonPurple,line width=1pt,opacity=0.5]
+      (0,1.5) .. controls (1.5,3) and (2.5,0) .. (4,2);
+    \draw[CyberCyanLight,line width=0.5pt,opacity=0.3]
+      (0.5,0) .. controls (2,2) and (3,1.5) .. (3.5,3.2);
+  \end{scope}
+  
+  % 光晕圆环
+  \begin{scope}[shift={(11.5,0)}]
+    \node[font=\heiti\xiaosi,text=DeepBlue,anchor=south] at (1.8,3.5) {光晕圆环};
+    \draw[CyberCyan,line width=1.5pt,opacity=0.6] (1.8,1.5) circle (1.2cm);
+    \draw[NeonPurple,line width=1pt,opacity=0.3] (1.8,1.5) circle (1.5cm);
+    \draw[CyberCyanLight,line width=0.5pt,opacity=0.2] (1.8,1.5) circle (1.8cm);
+    \fill[CyberCyan,opacity=0.15] (1.8,1.5) circle (0.6cm);
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{specbox}[辅助图形使用原则]
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item 辅助图形须始终保持\textbf{低透明度}（10\%--30\%），避免喧宾夺主
+  \item 深色背景使用青色/紫色光效，印刷场景使用灰度线条版本
+  \item 六边形网格可用于文档背景、PPT底纹、名片装饰等
+  \item 数据流线可用于分割线、过渡区域、页面装饰
+\end{itemize}
+\end{specbox}

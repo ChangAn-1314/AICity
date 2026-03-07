@@ -1,0 +1,95 @@
+% ==================== 封面页 ====================
+\begin{titlepage}
+\newgeometry{left=0cm,right=0cm,top=0cm,bottom=0cm}
+
+\begin{tikzpicture}[remember picture,overlay]
+  % 白色背景
+  \fill[white] (current page.south west) rectangle (current page.north east);
+  
+  % 浅灰装饰网格
+  \foreach \x in {0,1,...,20} {
+    \draw[MidGray,opacity=0.08,line width=0.2pt] (\x,0) -- (\x,29.7);
+  }
+  \foreach \y in {0,1,...,29} {
+    \draw[MidGray,opacity=0.08,line width=0.2pt] (0,\y) -- (21,\y);
+  }
+  
+  % 左侧青色装饰条
+  \fill[CyberCyan] (0,0) rectangle (0.35,29.7);
+  \fill[CyberCyan,opacity=0.15] (0.35,0) rectangle (0.55,29.7);
+  
+  % 顶部浅色渐变
+  \shade[top color=CyberCyan!8,bottom color=white,opacity=0.8] 
+    (0,24) rectangle (21,29.7);
+  
+  % 底部浅色渐变
+  \shade[bottom color=LightGray,top color=white,opacity=0.5] 
+    (0,0) rectangle (21,5);
+  
+  % 装饰圆环
+  \draw[CyberCyan,opacity=0.08,line width=1pt] (16,24) circle (3cm);
+  \draw[NeonPurple,opacity=0.05,line width=0.5pt] (16,24) circle (3.5cm);
+  \draw[CyberCyan,opacity=0.05,line width=0.5pt] (5,4) circle (2cm);
+  
+  % 装饰六边形
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm, 
+        draw=CyberCyan, opacity=0.06, line width=1pt, rotate=30] at (18,8) {};
+  \node[regular polygon, regular polygon sides=6, minimum size=1.5cm, 
+        draw=NeonPurple, opacity=0.05, line width=0.5pt, rotate=0] at (3,22) {};
+
+  % ---- 内容区域 ----
+  
+  % 顶部标签
+  \node[anchor=north west,font=\fontsize{9pt}{11pt}\selectfont\ttfamily,text=TextSecondary] 
+    at (2,28.5) {VISUAL IDENTITY SYSTEM \textbar\ v1.0 \textbar\ 2025};
+  
+  % 分隔线
+  \draw[CyberCyan,line width=0.5pt] (2,27.8) -- (12,27.8);
+  
+  % Logo
+  \node[anchor=west] at (2,23) {%
+    \includegraphics[height=4.5cm]{picture/logo.png}%
+  };
+  
+  % 品牌名称
+  \node[anchor=west,font=\heiti\fontsize{48pt}{56pt}\selectfont,text=DeepBlue] 
+    at (2,18) {智舆};
+  
+  % 英文名
+  \node[anchor=west,font=\fontsize{20pt}{24pt}\selectfont\ttfamily,text=CyberCyan] 
+    at (2.2,16.2) {ZhiYu};
+  
+  % 副标题
+  \node[anchor=west,font=\heiti\fontsize{13pt}{17pt}\selectfont,text=SlateGray] 
+    at (2,14.5) {AI城市舆情态势监测感知与决策推演系统};
+  
+  % 主标题：VIS
+  \draw[CyberCyan,line width=1pt] (2,13) -- (19,13);
+  
+  \node[anchor=west,font=\fontsize{32pt}{38pt}\selectfont\bfseries,text=DeepBlue] 
+    at (2,11) {Visual Identity System};
+  
+  \node[anchor=west,font=\heiti\fontsize{18pt}{24pt}\selectfont,text=SlateGray] 
+    at (2,9.2) {视觉识别系统规范手册};
+  
+  % 底部信息
+  \draw[CyberCyan,line width=0.5pt,opacity=0.4] (2,4.5) -- (19,4.5);
+  
+  \node[anchor=west,font=\songti\fontsize{10pt}{14pt}\selectfont,text=SlateGray] 
+    at (2,3.5) {信阳学院 \textbar\ 首届"数智讯飞杯"AI+创新应用大赛};
+  
+  \node[anchor=west,font=\ttfamily\fontsize{9pt}{12pt}\selectfont,text=MidGray] 
+    at (2,2.5) {CONFIDENTIAL \textbar\ FOR INTERNAL USE ONLY};
+  
+  % 底部装饰点阵
+  \foreach \x in {0,0.3,...,3} {
+    \foreach \y in {0,0.3,...,0.9} {
+      \fill[CyberCyan,opacity=0.1] (16+\x,1.2+\y) circle (1pt);
+    }
+  }
+
+\end{tikzpicture}
+
+\restoregeometry
+\end{titlepage}
+\thispagestyle{empty}

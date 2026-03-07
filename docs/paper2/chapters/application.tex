@@ -1,0 +1,347 @@
+% ==================== B 应用识别系统 ====================
+
+\newpage
+\section{界面设计规范}
+
+\subsection{设计风格定义}
+
+\visid{B-01} 智舆系统界面采用 \textbf{Cyberpunk + Glassmorphism + Data Vis} 三位一体的设计风格。
+
+\begin{center}
+\begin{tikzpicture}
+  % 三圆交集示意
+  \begin{scope}[opacity=0.15]
+    \fill[CyberCyan] (0,0) circle (2.2cm);
+    \fill[NeonPurple] (2.5,0) circle (2.2cm);
+    \fill[SuccessGreen] (1.25,2) circle (2.2cm);
+  \end{scope}
+  % 标签
+  \node[font=\heiti\sihao,text=CyberCyanDark] at (-0.8,-0.5) {Cyberpunk};
+  \node[font=\songti\wuhao,text=SlateGray] at (-0.8,-1.1) {赛博朋克};
+  
+  \node[font=\heiti\sihao,text=NeonPurple] at (3.3,-0.5) {Glassmorphism};
+  \node[font=\songti\wuhao,text=SlateGray] at (3.3,-1.1) {毛玻璃拟态};
+  
+  \node[font=\heiti\sihao,text=SuccessGreen!80!black] at (1.25,2.8) {Data Vis};
+  \node[font=\songti\wuhao,text=SlateGray] at (1.25,2.2) {数据可视化};
+  
+  % 交集中心
+  \node[font=\heiti\xiaosan,text=DeepBlue] at (1.25,0.7) {智舆};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash\heiti}p{3cm} X X}
+\toprule
+\textbf{风格维度} & \textbf{视觉特征} & \textbf{技术实现} \\
+\midrule
+Cyberpunk & 深色基底、霓虹发光、扫描线纹理、角落装饰 & CSS box-shadow / text-shadow / linear-gradient \\
+Glassmorphism & 半透明卡片、背景模糊、微透光边框 & backdrop-filter: blur / bg-opacity / border-white/10 \\
+Data Vis & 动态图表、脉冲标记、实时数据流、热力渲染 & ECharts / Three.js / 高德地图 GLCustomLayer \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{界面布局结构}
+
+\visid{B-02} 系统主界面采用\textbf{仪表盘布局（Dashboard Layout）}，以3D地图为核心视图。
+
+\begin{center}
+\begin{tikzpicture}[
+  panel/.style={rounded corners=1pt,draw=CyberCyan,line width=0.6pt,fill=DeepBlue,fill opacity=0.9,text opacity=1},
+  label/.style={font=\scriptsize\heiti,text=CyberCyanLight}
+]
+  % 整体框架
+  \fill[DeeperBlue,rounded corners=1pt] (-0.3,-0.3) rectangle (15.3,9.3);
+  
+  % 顶部导航 - Dynamic Island
+  \draw[panel] (0,8.2) rectangle (15,9) node[pos=0.5,label] {Header / Dynamic Island -- 时间 | 城市选择 | 功能入口 | 用户};
+  
+  % 左侧边栏
+  \draw[panel] (0,0) rectangle (3.5,8) node[pos=0.5,label,text width=3cm,align=center] {Left Sidebar\\舆情列表\\筛选条件\\统计概览};
+  
+  % 中央主视图
+  \fill[DeepBlue,rounded corners=1pt,opacity=0.5] (3.7,0) rectangle (11,8);
+  \draw[CyberCyan,line width=0.6pt,rounded corners=1pt] (3.7,0) rectangle (11,8);
+  \node[label,font=\heiti\xiaosi\color{CyberCyanLight}] at (7.35,4) {3D Map View};
+  \node[label,font=\songti\scriptsize\color{TextSecondary}] at (7.35,3.2) {高德地图3D + Three.js GLCustomLayer};
+  % 装饰：脉冲点
+  \fill[CyberCyan,opacity=0.6] (5.5,5.5) circle (3pt);
+  \fill[CyberCyan,opacity=0.3] (5.5,5.5) circle (6pt);
+  \fill[AlertRed,opacity=0.6] (8.2,6.2) circle (3pt);
+  \fill[AlertRed,opacity=0.3] (8.2,6.2) circle (6pt);
+  \fill[WarningAmber,opacity=0.6] (9.5,2.8) circle (3pt);
+  \fill[WarningAmber,opacity=0.3] (9.5,2.8) circle (6pt);
+  
+  % 右侧边栏
+  \draw[panel] (11.2,4.2) rectangle (15,8) node[pos=0.5,label,text width=3.2cm,align=center] {Right Panel\\舆情详情\\分析报告\\AI助手};
+  
+  \draw[panel] (11.2,0) rectangle (15,4) node[pos=0.5,label,text width=3.2cm,align=center] {Widgets\\图表面板\\趋势分析\\KPI指标};
+  
+  % 底部工具栏
+  \draw[panel,fill opacity=0.7] (3.7,-0.2) -- (3.7,0) -- (11,0) -- (11,-0.2) -- cycle;
+  
+  % 层级标注
+  \node[anchor=west,font=\tiny\ttfamily,text=NeonPurple] at (0,9.5) {Layer 1: Overlay Panels};
+  \node[anchor=west,font=\tiny\ttfamily,text=CyberCyan] at (5,9.5) {Layer 0: 3D Map Background};
+\end{tikzpicture}
+\end{center}
+
+\subsection{响应式断点}
+
+\visid{B-03} 系统支持多终端自适应布局。
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash\heiti}p{2.5cm} >{\centering\arraybackslash}p{2cm} X}
+\toprule
+\textbf{断点} & \textbf{宽度} & \textbf{布局策略} \\
+\midrule
+Desktop XL & $\geq$1440px & 完整三栏布局（侧边栏 + 地图 + 右面板） \\
+Desktop LG & $\geq$1024px & 三栏布局，右面板可折叠 \\
+Tablet MD & $\geq$768px & 双栏布局，侧边栏收起为图标模式 \\
+Mobile SM & $<$768px & 单列布局，地图全屏背景，功能面板底部抽屉唤起 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% ===========================================================
+\newpage
+\section{核心组件设计}
+
+\subsection{玻璃面板 GlassPanel}
+
+\visid{B-04} 所有信息面板采用统一的毛玻璃效果，确保背景可见并增强空间层次感。
+
+\begin{center}
+\begin{tikzpicture}
+  % 模拟深色背景
+  \fill[DeepBlue,rounded corners=1pt] (-0.5,-0.5) rectangle (15.5,5.5);
+  
+  % 背景装饰
+  \fill[CyberCyan,opacity=0.08] (3,1) circle (2cm);
+  \fill[NeonPurple,opacity=0.06] (10,3) circle (1.5cm);
+  
+  % GlassPanel 示例
+  \fill[SlateGray,opacity=0.4,rounded corners=1pt] (1,0.5) rectangle (7,4.5);
+  \draw[white,opacity=0.1,rounded corners=1pt,line width=0.5pt] (1,0.5) rectangle (7,4.5);
+  
+  % 角落装饰
+  \draw[CyberCyan,line width=0.8pt] (1,4.5) -- (1,4) (1,4.5) -- (1.5,4.5);
+  \draw[CyberCyan,line width=0.8pt] (7,0.5) -- (7,1) (7,0.5) -- (6.5,0.5);
+  
+  % 扫描线效果提示
+  \foreach \y in {0.7,0.9,...,4.3} {
+    \draw[white,opacity=0.03,line width=0.3pt] (1.1,\y) -- (6.9,\y);
+  }
+  
+  \node[text=CyberCyanLight,font=\heiti\xiaosi,anchor=north west] at (1.4,4.2) {GlassPanel};
+  \node[text=TextSecondary,font=\songti\scriptsize,anchor=north west,text width=5cm] at (1.4,3.5) {
+    背景: bg-slate-900/40\\
+    模糊: backdrop-blur-xl (12px)\\
+    边框: border-white/10\\
+    圆角: rounded-2xl (16px)\\
+    阴影: shadow-cyan-500/10
+  };
+  
+  % CSS代码示例
+  \node[anchor=north west,font=\ttfamily\tiny,text=CyberCyanLight,text width=6.5cm] at (8.5,4.8) {%
+    .cyber-card \{\\
+    \quad background: rgba(15,23,42,0.6);\\
+    \quad backdrop-filter: blur(12px);\\
+    \quad border: 1px solid rgba(255,255,255,0.1);\\
+    \quad border-radius: 16px;\\
+    \quad transition: all 0.3s ease;\\
+    \}\\[4pt]
+    .cyber-card:hover \{\\
+    \quad border-color: rgba(6,182,212,0.5);\\
+    \quad box-shadow: 0 0 10px rgba(6,182,212,0.5);\\
+    \}
+  };
+\end{tikzpicture}
+\end{center}
+
+\subsection{霓虹按钮 NeonButton}
+
+\visid{B-05} 按钮组件遵循三种语义变体，对应不同操作类型。
+
+\begin{center}
+\begin{tikzpicture}
+  % \u6d45\u8272\u80cc\u666f
+  \fill[LightGray,rounded corners=1pt] (-0.3,-0.3) rectangle (15.3,2.8);
+  
+  % Primary
+  \fill[CyberCyan,opacity=0.12,rounded corners=1pt] (0.5,0.5) rectangle (4.5,2);
+  \draw[CyberCyan,rounded corners=1pt,line width=0.8pt] (0.5,0.5) rectangle (4.5,2);
+  \node[text=CyberCyanDark,font=\heiti\xiaosi] at (2.5,1.25) {PRIMARY};
+  \node[text=SlateGray,font=\tiny] at (2.5,0.1) {\u786e\u8ba4 / \u63d0\u4ea4 / \u4e3b\u64cd\u4f5c};
+  
+  % Alert
+  \fill[AlertRed,opacity=0.12,rounded corners=1pt] (5.5,0.5) rectangle (9.5,2);
+  \draw[AlertRed,rounded corners=1pt,line width=0.8pt] (5.5,0.5) rectangle (9.5,2);
+  \node[text=AlertRed,font=\heiti\xiaosi] at (7.5,1.25) {ALERT};
+  \node[text=SlateGray,font=\tiny] at (7.5,0.1) {\u9884\u8b66 / \u5220\u9664 / \u5371\u9669\u64cd\u4f5c};
+  
+  % Success
+  \fill[SuccessGreen,opacity=0.12,rounded corners=1pt] (10.5,0.5) rectangle (14.5,2);
+  \draw[SuccessGreen,rounded corners=1pt,line width=0.8pt] (10.5,0.5) rectangle (14.5,2);
+  \node[text=SuccessGreen!80!black,font=\heiti\xiaosi] at (12.5,1.25) {SUCCESS};
+  \node[text=SlateGray,font=\tiny] at (12.5,0.1) {\u5b8c\u6210 / \u901a\u8fc7 / \u6b63\u9762\u64cd\u4f5c};
+\end{tikzpicture}
+\end{center}
+
+\begin{specbox}[按钮交互规范]
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item \textbf{Hover}: 背景透明度 20\% $\to$ 40\%，增加霓虹光晕 box-shadow
+  \item \textbf{Active}: 背景透明度降至 30\%，轻微缩放 scale(0.98)
+  \item \textbf{Disabled}: 整体透明度降至 40\%，禁用指针事件
+  \item 字体统一使用 \texttt{font-mono uppercase tracking-wider text-sm}
+\end{itemize}
+\end{specbox}
+
+\subsection{导航栏 Dynamic Island}
+
+\visid{B-06} 顶部导航采用\textbf{灵动岛（Dynamic Island）}风格，整合状态与菜单，节省空间。
+
+\begin{center}
+\begin{tikzpicture}
+  % \u6d45\u8272\u80cc\u666f
+  \fill[LightGray,rounded corners=1pt] (-0.3,-0.3) rectangle (15.3,2.3);
+  
+  % \u5bfc\u822a\u680f\u4e3b\u4f53
+  \fill[white,rounded corners=2pt] (1,0.3) rectangle (14,1.7);
+  \draw[MidGray,rounded corners=2pt,line width=0.5pt] (1,0.3) rectangle (14,1.7);
+  
+  % \u5185\u5bb9\u5143\u7d20
+  \node[text=CyberCyanDark,font=\ttfamily\scriptsize] at (2.3,1) {09:15:30};
+  \draw[MidGray,line width=0.3pt] (3.5,0.5) -- (3.5,1.5);
+  \node[text=DeepBlue,font=\heiti\scriptsize] at (5,1) {\u4fe1\u9633\u5e02};
+  \node[text=SlateGray,font=\tiny] at (5,0.55) {Xinyang};
+  \draw[MidGray,line width=0.3pt] (6.5,0.5) -- (6.5,1.5);
+  
+  % \u529f\u80fd\u56fe\u6807\u533a
+  \foreach \i/\t in {8/\#,9.2/\$,10.4/\%,11.6/\&} {
+    \fill[CyberCyan,opacity=0.1,rounded corners=1pt] (\i-0.35,0.55) rectangle (\i+0.35,1.45);
+    \node[text=CyberCyanDark,font=\scriptsize] at (\i,1) {\t};
+  }
+  
+  % \u7528\u6237\u5934\u50cf
+  \fill[NeonPurple,opacity=0.2,circle] (13,1) circle (0.4cm);
+  \node[text=NeonPurple,font=\tiny\bfseries] at (13,1) {U};
+\end{tikzpicture}
+\end{center}
+
+\subsection{数据可视化组件}
+
+\visid{B-07} 图表组件基于ECharts，遵循品牌色彩体系。
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash\heiti}p{3cm} >{\centering\arraybackslash}p{3.5cm} X}
+\toprule
+\textbf{图表类型} & \textbf{主色映射} & \textbf{应用场景} \\
+\midrule
+环形进度条 & Cyan $\to$ Purple 渐变 & 舆情热度指数、任务完成率 \\
+波形图 & Cyan 填充 + 半透明 & 实时数据流量、舆情波动趋势 \\
+热力图 & Cyan $\to$ Red 色阶 & 舆情地理分布密度 \\
+柱状/折线图 & 品牌色序列 & 统计对比、时间序列 \\
+词云 & 多色映射（青-紫-白） & 热点话题关键词 \\
+3D地图标记 & 脉冲光点 animate-ping & 舆情事件地理定位 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{specbox}[图表配色序列]
+ECharts 图表默认配色序列（按优先级排列）：\\[4pt]
+\begin{tikzpicture}
+  \foreach \c/\h/\i in {CyberCyan/\#06B6D4/0, NeonPurple/\#A855F7/1, NeonFuchsia/\#D946EF/2, SuccessGreen/\#10B981/3, WarningAmber/\#F59E0B/4, AlertRed/\#EF4444/5, CyberCyanLight/\#22D3EE/6} {
+    \fill[\c,rounded corners=2pt] (\i*2.2,0) rectangle (\i*2.2+1.8,0.8);
+    \node[text=white,font=\ttfamily\tiny] at (\i*2.2+0.9,0.4) {\h};
+  }
+\end{tikzpicture}
+\end{specbox}
+
+% ===========================================================
+\newpage
+\section{动效与交互规范}
+
+\subsection{动效原则}
+
+\visid{B-08} 所有动效遵循"有目的、有克制、有反馈"的设计原则。
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash\heiti}p{3cm} >{\centering\arraybackslash}p{3cm} X}
+\toprule
+\textbf{动效类型} & \textbf{时长/缓动} & \textbf{触发场景} \\
+\midrule
+Hover 发光 & 300ms / ease & 鼠标悬停卡片，边框亮度增加 \\
+页面进入 & 400ms / ease-out & 卡片错落上浮 staggered fade-in-up \\
+数据更新 & 600ms / ease-in-out & 数字滚动计数器 Counter Up \\
+地图飞行 & 1500ms / cubic-bezier & 城市间跳跃平滑过渡 \\
+脉冲标记 & 1500ms / infinite & 地图事件点 animate-ping \\
+扫描线 & 持续 / linear & 面板扫描线纹理 15\% 透明度 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{CSS 变量系统}
+
+\visid{B-09} 系统通过 CSS 自定义属性实现主题统一管理。
+
+\begin{center}
+\begin{tikzpicture}
+  \fill[LightGray,rounded corners=1pt] (0,0) rectangle (15,7.5);
+  \draw[CyberCyan,rounded corners=1pt,line width=0.3pt] (0,0) rectangle (15,7.5);
+  \node[anchor=north west,text=DeepBlue,font=\ttfamily\tiny,text width=14cm] at (0.5,7.2) {%
+    :root \{\\
+    \quad /* Primary Brand Colors */\\
+    \quad --color-primary: \textcolor{CyberCyanDark}{\#06b6d4};\\
+    \quad --color-primary-hover: \textcolor{CyberCyan}{\#22d3ee};\\[2pt]
+    \quad /* Secondary Brand Colors */\\
+    \quad --color-secondary: \textcolor{NeonPurple}{\#d946ef};\\
+    \quad --color-secondary-hover: \textcolor{NeonFuchsia}{\#e879f9};\\[2pt]
+    \quad /* Alert Colors */\\
+    \quad --color-danger: \textcolor{AlertRed!80!black}{\#ef4444};\\
+    \quad --color-warning: \textcolor{WarningAmber!80!black}{\#f59e0b};\\
+    \quad --color-success: \textcolor{SuccessGreen!80!black}{\#10b981};\\[2pt]
+    \quad /* Backgrounds */\\
+    \quad --bg-dark: \textcolor{TextSecondary}{\#0f172a};\\
+    \quad --bg-darker: \textcolor{TextSecondary}{\#020617};\\
+    \quad --bg-glass: \textcolor{TextSecondary}{rgba(15, 23, 42, 0.6)};\\[2pt]
+    \quad /* Neon Glow Effects */\\
+    \quad --neon-glow-cyan: \textcolor{TextSecondary}{0 0 10px rgba(6,182,212,0.5), 0 0 20px rgba(6,182,212,0.3)};\\
+    \quad --neon-glow-purple: \textcolor{TextSecondary}{0 0 10px rgba(217,70,239,0.5), 0 0 20px rgba(217,70,239,0.3)};\\
+    \}
+  };
+\end{tikzpicture}
+\end{center}
+
+\subsection{Tailwind 扩展配置}
+
+\visid{B-10} 项目 Tailwind CSS 扩展配置与品牌色彩/字体保持同步。
+
+\begin{center}
+\begin{tikzpicture}
+  \fill[LightGray,rounded corners=1pt] (0,0) rectangle (15,5.5);
+  \draw[CyberCyan,rounded corners=1pt,line width=0.3pt] (0,0) rectangle (15,5.5);
+  \node[anchor=north west,text=DeepBlue,font=\ttfamily\tiny,text width=14cm] at (0.5,5.2) {%
+    // tailwind.config.js\\
+    theme: \{\\
+    \quad extend: \{\\
+    \quad\quad colors: \{\\
+    \quad\quad\quad primary: '\textcolor{CyberCyan}{\#06B6D4}',\quad\textcolor{TextSecondary}{// Cyber Blue}\\
+    \quad\quad\quad accent:\;\,' '\textcolor{NeonPurple}{\#A855F7}',\quad\textcolor{TextSecondary}{// Neon Purple}\\
+    \quad\quad\quad alert:\;\;\, '\textcolor{AlertRed}{\#EF4444}',\quad\textcolor{TextSecondary}{// Alert Red}\\
+    \quad\quad\quad success: '\textcolor{SuccessGreen}{\#10B981}',\quad\textcolor{TextSecondary}{// Success Green}\\
+    \quad\quad \},\\
+    \quad\quad fontFamily: \{\\
+    \quad\quad\quad sans: ['Alibaba PuHuiTi 2.0', 'Inter', 'sans-serif'],\\
+    \quad\quad\quad mono: ['Orbitron', 'monospace'],\\
+    \quad\quad \},\\
+    \quad \}\\
+    \}
+  };
+\end{tikzpicture}
+\end{center}

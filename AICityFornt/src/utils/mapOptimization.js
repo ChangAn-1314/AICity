@@ -56,11 +56,15 @@ export class LODManager {
 
 /**
  * 视锥体剔除管理器 - 只渲染可见区域的模型
+ * 优化：复用临时对象避免每帧 GC
  */
 export class FrustumCuller {
   constructor() {
     this.frustum = new THREE.Frustum()
     this.projScreenMatrix = new THREE.Matrix4()
+    // 复用临时对象，避免每帧创建新对象导致 GC 压力
+    this._tempBox = new THREE.Box3()
+    this._tempSphere = new THREE.Sphere()
   }
 
   /**
@@ -82,20 +86,20 @@ export class FrustumCuller {
    */
   isVisible(object) {
     if (!object.geometry) {
-      // 对于 Group，检查边界球
-      const sphere = new THREE.Sphere()
-      const box = new THREE.Box3().setFromObject(object)
-      box.getBoundingSphere(sphere)
-      return this.frustum.intersectsSphere(sphere)
+      // 对于 Group，检查边界球 - 复用临时对象
+      this._tempBox.setFromObject(object)
+      this._tempBox.getBoundingSphere(this._tempSphere)
+      return this.frustum.intersectsSphere(this._tempSphere)
     }
     
     // 对于 Mesh，使用几何体边界球
     if (!object.geometry.boundingSphere) {
       object.geometry.computeBoundingSphere()
     }
-    const sphere = object.geometry.boundingSphere.clone()
-    sphere.applyMatrix4(object.matrixWorld)
-    return this.frustum.intersectsSphere(sphere)
+    // 复用临时球体对象
+    this._tempSphere.copy(object.geometry.boundingSphere)
+    this._tempSphere.applyMatrix4(object.matrixWorld)
+    return this.frustum.intersectsSphere(this._tempSphere)
   }
 
   /**

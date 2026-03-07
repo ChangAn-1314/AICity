@@ -1,0 +1,439 @@
+tasks:
+  - title: 约束 paper3 写作目标与边界
+    completed: false
+    parallel_group: 1
+    description: >-
+      在 docs/paper3 下建立完整 LaTeX 商业计划书工程。主题固定为智舆——AI城市舆情态势监测感知与决策推演系统。
+      最终目标是形成 50-100 页的正式商业计划书。写作时只修改 docs/paper3 下内容，不回写 docs/paper 和 docs/paper2。
+
+  - title: 设计 paper3 LaTeX 工程目录结构
+    completed: false
+    parallel_group: 1
+    description: >-
+      规划 main.tex、chapters、picture、appendix 或其他必要目录结构。要求结构清晰，便于后续 Ralphy 持续迭代写作。
+
+  - title: 创建 paper3 main.tex 主入口
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/main.tex，配置中文 LaTeX 文档、目录、页眉页脚、图表环境、章节引入与基础版式，保证可后续扩展为 50-100 页全文。
+
+  - title: 创建 paper3 README 编译说明
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/README.md，写明编译命令、目录结构、图片放置规则、待补证据规范和页数目标。
+
+  - title: 创建 cover 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/cover.tex，包含赛事、项目名、团队、学校、日期等封面信息占位。
+
+  - title: 创建 abstract 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/abstract.tex，预留执行摘要、一句话愿景、项目亮点和真实性提示位。
+
+  - title: 创建 background 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/chapter1_background.tex，用于政策背景、行业背景、项目痛点与机会分析。
+
+  - title: 创建 product 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/chapter2_product.tex，用于产品定位、功能模块、客户价值和应用场景。
+
+  - title: 创建 technology 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/chapter3_technology.tex，用于技术架构、AI+ 能力、多Agent、3D可视化和壁垒分析。
+
+  - title: 创建 market 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/chapter4_market.tex，用于市场空间、用户画像、一手调研与竞品分析。
+
+  - title: 创建 business 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/chapter5_business.tex，用于商业模式、定价、渠道、获客和推广路径。
+
+  - title: 创建 execution 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/chapter6_execution.tex，用于试点落地、实施路径、阶段成果和真实性证据。
+
+  - title: 创建 finance 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/chapter7_finance.tex，用于财务预测、成本结构、盈亏平衡和融资规划。
+
+  - title: 创建 team 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/chapter8_team.tex，用于团队介绍、组织机制、资源协同和股权治理建议。
+
+  - title: 创建 social_value 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/chapter9_social_value.tex，用于社会价值、政策价值、就业和可持续性。
+
+  - title: 创建 risk 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/chapter10_risk.tex，用于技术、市场、合规和组织风险及应对方案。
+
+  - title: 创建 appendix 章节骨架
+    completed: false
+    parallel_group: 2
+    description: >-
+      创建 docs/paper3/chapters/appendix.tex，用于附录索引、调研、合同、截图、测试报告、访谈与其他证据材料。
+
+  - title: 完成 main.tex 对章节的统一引入
+    completed: false
+    parallel_group: 3
+    description: >-
+      在 main.tex 中正确引入全部章节，确保编译链路完整，目录与页码逻辑正确。
+
+  - title: 撰写封面页正式内容
+    completed: false
+    parallel_group: 4
+    description: >-
+      完成 cover.tex 的正式封面文案和版式，让整本书看起来专业、正式、适合国赛评审。
+
+  - title: 撰写执行摘要全文
+    completed: false
+    parallel_group: 4
+    description: >-
+      在 abstract.tex 中写 2-4 页执行摘要，概括项目愿景、痛点、方案、技术优势、市场空间、商业模式、落地成果与财务前景。
+
+  - title: 提炼一句话愿景与评委记忆点
+    completed: false
+    parallel_group: 4
+    description: >-
+      提炼一句让评委 5 秒记住智舆的愿景语，并嵌入摘要和封面附近合适位置。
+
+  - title: 补写国家省市政策背景
+    completed: false
+    parallel_group: 5
+    description: >-
+      重点连接数字政府、智慧城市、人工智能+、社会治理现代化、新质生产力等政策，落点到河南与信阳场景。
+
+  - title: 补写行业背景与市场趋势
+    completed: false
+    parallel_group: 5
+    description: >-
+      写清舆情监测行业的发展现状、技术变化和市场增长趋势，但避免堆砌空泛宏观数据。
+
+  - title: 补写传统舆情行业核心痛点
+    completed: false
+    parallel_group: 5
+    description: >-
+      聚焦数据覆盖不足、多模态处理弱、分析依赖人工、缺少决策模拟、下沉市场成本高等问题。
+
+  - title: 补写信阳本地落地场景合理性
+    completed: false
+    parallel_group: 5
+    description: >-
+      从人口、产业、文旅、政务基础、12345 场景和基层治理需求论证信阳作为试点的合理性。
+
+  - title: 绘制背景章节逻辑图与对比图
+    completed: false
+    parallel_group: 5
+    description: >-
+      为背景章节补图，包括政策-行业-城市需求-项目机会逻辑图，以及传统链路 vs 智舆闭环链路对比图。
+
+  - title: 撰写产品定位与客户价值主张
+    completed: false
+    parallel_group: 6
+    description: >-
+      明确智舆的产品定位、目标客户、核心价值、差异化卖点，强调其是 AI 城市治理辅助决策系统。
+
+  - title: 撰写核心功能模块说明
+    completed: false
+    parallel_group: 6
+    description: >-
+      梳理数据采集、语义分析、情绪识别、事件聚类、趋势预测、3D 可视化、决策推演、语音播报、城市模型矩阵等模块。
+
+  - title: 撰写多场景应用方案
+    completed: false
+    parallel_group: 6
+    description: >-
+      按政府端、企业端、校园端、景区文旅端等场景写应用方式，强调不同客户如何使用智舆。
+
+  - title: 绘制产品架构图与用户旅程图
+    completed: false
+    parallel_group: 6
+    description: >-
+      为产品章节补系统总体功能架构图、核心用户旅程图和典型场景流程图。
+
+  - title: 撰写总体技术架构与实现基础
+    completed: false
+    parallel_group: 7
+    description: >-
+      结合现有 AICity 项目技术栈，写清前端、后端、数据层、模型层、可视化层和推演层的总体架构。
+
+  - title: 撰写讯飞星火与 AI 分析链路
+    completed: false
+    parallel_group: 7
+    description: >-
+      说明讯飞星火大模型在项目中的具体作用，明确其如何提升采集效率、分析质量、预测能力和应急决策速度。
+
+  - title: 撰写多Agent 协作与决策推演机制
+    completed: false
+    parallel_group: 7
+    description: >-
+      写清分析 Agent、预测 Agent、决策 Agent、模拟 Agent 的分工和协作闭环，突出其业务意义。
+
+  - title: 撰写 3D 可视化与城市模型矩阵壁垒
+    completed: false
+    parallel_group: 7
+    description: >-
+      说明地图底座、3D 展示、城市模型矩阵、LoRA 城市适配器的设计与本地化壁垒价值。
+
+  - title: 撰写 AI+ 效率提升与卡脖子壁垒
+    completed: false
+    parallel_group: 7
+    description: >-
+      单独写 AI+ 如何提升效率，以及项目解决的关键卡点和持续竞争优势，不要只停留在技术名词堆砌。
+
+  - title: 补写可信 AI 与数据安全机制
+    completed: false
+    parallel_group: 7
+    description: >-
+      增加数据安全、政务合规、模型幻觉控制、人工复核机制、权限隔离和日志审计等内容。
+
+  - title: 绘制技术架构图与数据流图
+    completed: false
+    parallel_group: 7
+    description: >-
+      为技术章节补系统技术架构图、数据流图、模型协作图和能力对比表。
+
+  - title: 撰写市场分层与目标市场空间
+    completed: false
+    parallel_group: 8
+    description: >-
+      按政府治理、国企园区、文旅场景、教育场景和中小企业品牌舆情等分层分析市场，并写 TAM/SAM/SOM。
+
+  - title: 撰写一手调研方法与样本说明
+    completed: false
+    parallel_group: 8
+    description: >-
+      为商业计划书补充问卷、访谈、实地走访、体验反馈等一手调研设计，说明样本来源、规模、结论和局限性。
+
+  - title: 撰写用户画像与付费意愿分析
+    completed: false
+    parallel_group: 8
+    description: >-
+      补写政府管理者、热线人员、企业公关、景区运营等用户画像，以及关键购买因素与付费意愿。
+
+  - title: 撰写竞品参数对比分析
+    completed: false
+    parallel_group: 8
+    description: >-
+      必须与主流舆情系统和替代方案做参数对比，维度包括价格、覆盖范围、多模态、3D 可视化、决策模拟、部署模式等。
+
+  - title: 绘制市场章节图表
+    completed: false
+    parallel_group: 8
+    description: >-
+      为市场章节补市场分层图、用户画像图、调研结果图、竞品雷达图和参数对比表。
+
+  - title: 撰写商业模式与收入路径
+    completed: false
+    parallel_group: 9
+    description: >-
+      设计 SaaS 订阅、轻量私有化、项目制交付和增值服务等收入路径，说明对应客户和收费方式。
+
+  - title: 撰写产品定价与版本分层
+    completed: false
+    parallel_group: 9
+    description: >-
+      设计基础版、专业版、政务版、定制版的价格带与功能层级，保持合理且符合下沉市场定位。
+
+  - title: 撰写获客渠道与销售转化路径
+    completed: false
+    parallel_group: 9
+    description: >-
+      说明校园资源、地方试点、政务合作、行业路演、校友资源与合作伙伴转介绍等获客方式及转化流程。
+
+  - title: 撰写产教融合与三年推广路线
+    completed: false
+    parallel_group: 9
+    description: >-
+      写清学校、实验室、导师和比赛平台如何支撑项目落地，并写从信阳到河南再到全国的推广路径。
+
+  - title: 绘制商业模式与推广路线图
+    completed: false
+    parallel_group: 9
+    description: >-
+      为商业章节补商业模式图、客户漏斗、定价表、渠道策略图和三年推广路线图。
+
+  - title: 汇总当前已具备的真实成果
+    completed: false
+    parallel_group: 10
+    description: >-
+      梳理已有原型、前端页面、后端能力、可视化界面、算法演示、比赛材料和测试截图，明确哪些已完成、哪些开发中、哪些待验证。
+
+  - title: 撰写试点落地方案与实施路径
+    completed: false
+    parallel_group: 10
+    description: >-
+      说明如何在信阳或类似城市场景中开展试点，写需求调研、数据接入、模型调优、联调、培训、上线和评估流程。
+
+  - title: 撰写真实性证据与补证计划
+    completed: false
+    parallel_group: 10
+    description: >-
+      单独增加真实性证据小节，列明合同、意向书、截图、测试报告、用户反馈、视频演示、代码仓库截图等，并对缺失项给出待补计划。
+
+  - title: 绘制实施流程图与成果里程碑图
+    completed: false
+    parallel_group: 10
+    description: >-
+      为执行章节补实施流程图、阶段成果里程碑图、试点部署图和证据材料总览图。
+
+  - title: 搭建三年财务预测结构
+    completed: false
+    parallel_group: 11
+    description: >-
+      在 finance 章节中建立收入、成本、毛利、净利润、现金流、客户数与续费率等预测结构。
+
+  - title: 撰写收入假设与成本结构
+    completed: false
+    parallel_group: 11
+    description: >-
+      说明客单价、客户数、续费率、实施项目数、增值服务渗透率、服务器成本、模型调用成本、销售与研发成本等假设。
+
+  - title: 撰写盈亏平衡与敏感性分析
+    completed: false
+    parallel_group: 11
+    description: >-
+      必须明确盈亏平衡点预测，并对关键参数如客单价、增速、算力成本变化进行敏感性分析。
+
+  - title: 撰写融资需求与资金用途
+    completed: false
+    parallel_group: 11
+    description: >-
+      谨慎撰写融资需求和资金用途，避免空泛大额叙事，强调保守测算和项目阶段性需求。
+
+  - title: 绘制财务趋势图与成本表
+    completed: false
+    parallel_group: 11
+    description: >-
+      为财务章节补年度收入预测表、成本结构表、资金使用节奏图和三年财务趋势图。
+
+  - title: 撰写团队介绍与互补性分析
+    completed: false
+    parallel_group: 12
+    description: >-
+      写清团队成员分工、专业背景、已承担工作和能力互补性，突出既懂技术又懂本地场景的优势。
+
+  - title: 撰写组织机制与资源协同
+    completed: false
+    parallel_group: 12
+    description: >-
+      写项目管理、开发协同、用户反馈闭环、决策机制，以及学校平台、实验室、导师、赛事资源的支撑作用。
+
+  - title: 撰写股权治理与创业稳定性建议
+    completed: false
+    parallel_group: 12
+    description: >-
+      以拟定方案形式补充股权结构和治理建议，强调创始人控股合理性、核心成员激励与长期稳定性。
+
+  - title: 绘制团队能力矩阵与组织图
+    completed: false
+    parallel_group: 12
+    description: >-
+      为团队章节补团队能力矩阵图、组织架构图和资源协同关系图。
+
+  - title: 撰写社会价值与政策价值分析
+    completed: false
+    parallel_group: 13
+    description: >-
+      写项目对社会治理、政府服务、企业品牌治理、公众满意度和治理现代化的综合价值。
+
+  - title: 撰写就业人才培养与可持续发展分析
+    completed: false
+    parallel_group: 13
+    description: >-
+      补写就业带动、人才培养、产教融合和长期可持续性，避免空泛公益表达。
+
+  - title: 绘制社会价值图与利益相关方图
+    completed: false
+    parallel_group: 13
+    description: >-
+      为社会价值章节补社会价值图、利益相关方影响图和可持续发展路径图。
+
+  - title: 撰写技术市场合规组织风险分析
+    completed: false
+    parallel_group: 14
+    description: >-
+      分别写技术、市场、政策合规、组织层面的风险，避免只列问题，要形成完整风险矩阵。
+
+  - title: 撰写风险应对机制与可信防线
+    completed: false
+    parallel_group: 14
+    description: >-
+      补写人工复核、模型治理、权限隔离、日志审计、数据安全与组织保障等应对机制。
+
+  - title: 绘制风险矩阵图与应对闭环图
+    completed: false
+    parallel_group: 14
+    description: >-
+      为风险章节补风险矩阵图和风险应对闭环图。
+
+  - title: 设计附录索引与真实性材料目录
+    completed: false
+    parallel_group: 15
+    description: >-
+      在 appendix 中建立附录索引表，列出调研问卷、访谈、测试报告、截图、专利软著、合作材料等证据目录。
+
+  - title: 创建待补证据与调研模板
+    completed: false
+    parallel_group: 15
+    description: >-
+      在附录中补问卷统计表、访谈对象摘要表、测试指标定义表、试点评估表和真实性待补材料清单模板。
+
+  - title: 整理图表清单与图片命名规则
+    completed: false
+    parallel_group: 15
+    description: >-
+      统计整本书所需图表，统一命名、编号、标题和引用方式，并规划 docs/paper3/picture 资源。
+
+  - title: 搬运并统一复用现有图片资源
+    completed: false
+    parallel_group: 15
+    description: >-
+      优先复用 docs/paper 和现有项目中的界面截图、分析图，但要搬运到 docs/paper3/picture 并统一命名。
+
+  - title: 统一全文页数交叉引用与风格
+    completed: false
+    parallel_group: 16
+    description: >-
+      全文初稿完成后检查页数是否位于 50-100 页，修正目录、章节编号、图表编号、交叉引用、术语和语气统一性。
+
+  - title: 执行国赛评委视角终审
+    completed: false
+    parallel_group: 16
+    description: >-
+      以国赛评审视角检查 AI+、真实性、核心壁垒、财务、调研、社会价值是否足够突出，并修正文风和逻辑漏洞。
+
+  - title: 预留正文章节到 PPT 的映射清单
+    completed: false
+    parallel_group: 16
+    description: >-
+      在不正式写 PPT 的前提下，为后续 20-25 页答辩 PPT 提炼关键结论、核心图表和章节映射关系。

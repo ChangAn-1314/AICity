@@ -37,6 +37,8 @@ const eventChainLines = shallowRef([]) // 事件链连接线引用
 let gltfLoaderInstance = null
 let dracoLoaderInstance = null
 let modelCache = new Map() // 模型缓存
+let flowTextureCache = null // 流动纹理缓存
+let sharedFlowMaterial = null // 共享流动材质 - 避免每条线都编译 shader
 
 // 性能优化实例
 let mapOptimizer = null
@@ -46,7 +48,53 @@ let performanceMonitor = null
 let amapGltfLoader = null // 高德官方 GltfLoader（可选）
 
 // 模型加载方式：'threejs' 使用 Three.js GLTFLoader（支持自定义效果），'amap' 使用高德官方 GltfLoader（性能更优）
-const MODEL_LOADER_TYPE = 'threejs'
+const MODEL_LOADER_TYPE = 'amap'
+
+// ========== 性能调试工具 ==========
+const DEBUG_PERF = true // 开启性能调试
+const perfTimers = {}
+const perfStats = {}
+
+const perfStart = (label) => {
+  if (!DEBUG_PERF) return
+  perfTimers[label] = performance.now()
+}
+
+const perfEnd = (label, warnThreshold = 16) => {
+  if (!DEBUG_PERF || !perfTimers[label]) return
+  const duration = performance.now() - perfTimers[label]
+  
+  if (!perfStats[label]) {
+    perfStats[label] = { count: 0, total: 0, max: 0, samples: [] }
+  }
+  perfStats[label].count++
+  perfStats[label].total += duration
+  perfStats[label].max = Math.max(perfStats[label].max, duration)
+  perfStats[label].samples.push(duration)
+  if (perfStats[label].samples.length > 100) perfStats[label].samples.shift()
+  
+  if (duration > warnThreshold) {
+    console.warn(`[PERF] ${label}: ${duration.toFixed(2)}ms (超过 ${warnThreshold}ms 阈值)`)
+  }
+  
+  delete perfTimers[label]
+  return duration
+}
+
+// 每 5 秒输出一次性能报告
+setInterval(() => {
+  if (!DEBUG_PERF || Object.keys(perfStats).length === 0) return
+  console.group('[PERF] 性能报告')
+  Object.entries(perfStats).forEach(([label, stats]) => {
+    if (stats.count === 0) return
+    const avg = stats.total / stats.count
+    const recent = stats.samples.slice(-10)
+    const recentAvg = recent.reduce((a, b) => a + b, 0) / recent.length
+    console.log(`${label}: 平均=${avg.toFixed(2)}ms, 最近=${recentAvg.toFixed(2)}ms, 最大=${stats.max.toFixed(2)}ms, 次数=${stats.count}`)
+  })
+  console.groupEnd()
+}, 5000)
+// ========== 性能调试工具结束 ==========
 
 const getGLTFLoader = () => {
   if (!gltfLoaderInstance) {
@@ -91,6 +139,7 @@ const hotspotMarkers = shallowRef([])  // 存储标记引用
 const showDetailPanel = ref(false)     // 显示详情面板
 const filterLevels = ref(['high', 'medium', 'low'])  // 筛选等级
 const isNavigating = ref(false)        // 是否正在跳转动画中（防止提前展开）
+const focusedHotspotId = ref(null)     // 当前聚焦的热点ID（只有该热点才渲染 3D 模型）
 
 // 缓存行政区边界数据
 const boundaryCache = new Map()
@@ -336,6 +385,13 @@ const selectHotspot = (spot) => {
   sentimentStore.selectHotspot(spot)
   showDetailPanel.value = true
   emit('hotspot-click', spot)
+  
+  // 设置聚焦热点，只在热点变化时触发 3D 模型加载（避免重复点击卡顿）
+  const needUpdateModel = focusedHotspotId.value !== spot.id
+  focusedHotspotId.value = spot.id
+  if (needUpdateModel && mapInstance.value) {
+    updateSceneModels(mapInstance.value)
+  }
   
   // 跳转并放大到该点，完成后再展开
   if (mapInstance.value) {
@@ -759,13 +815,17 @@ const initThreeLayer = (map, AMapModule) => {
   map.on('zoomchange', () => renderController.requestRender())
   map.on('rotatechange', () => renderController.requestRender())
   
-  // Animation loop - 带性能优化
+  // Animation loop - 带性能优化和调试
   let hasAnimation = false
+  let frameCount = 0
   const animate = () => {
+    perfStart('animate-total')
     if (threeRenderer.value && mapInstance.value) {
        hasAnimation = false
+       frameCount++
        
        // Animate Hotspot Models
+       perfStart('animate-models')
        if (sceneModels.value.length > 0) {
            sceneModels.value.forEach(mesh => {
               if (mesh.userData.animate) {
@@ -775,19 +835,23 @@ const initThreeLayer = (map, AMapModule) => {
               }
            })
        }
+       perfEnd('animate-models', 5)
        
-       // Animate Event Chain Lines (Flow Effect)
-       if (eventChainLines.value.length > 0) {
+       // Animate Event Chain Lines (Flow Effect) - 只在图层可见时更新
+       perfStart('animate-lines')
+       if (mapStore.layers.lines && eventChainLines.value.length > 0) {
            eventChainLines.value.forEach(mesh => {
-               if (mesh.userData.isFlowLine && mesh.material.uniforms) {
+               if (mesh.visible && mesh.userData.isFlowLine && mesh.material.uniforms) {
                    const direction = mesh.userData.flowDirection || 1;
                    mesh.material.uniforms.flowOffset.value -= 0.01 * direction;
                    hasAnimation = true
                }
            })
        }
+       perfEnd('animate-lines', 5)
 
        // 视锥体剔除 - 只渲染可见模型
+       perfStart('frustum-cull')
        if (threeCamera.value && sceneModels.value.length > 0) {
            frustumCuller.update(threeCamera.value)
            sceneModels.value.forEach(model => {
@@ -796,17 +860,21 @@ const initThreeLayer = (map, AMapModule) => {
                }
            })
        }
+       perfEnd('frustum-cull', 5)
 
        // 按需渲染：有动画时强制渲染，否则检查是否需要渲染
        if (hasAnimation) {
            renderController.forceRender()
        }
        
+       perfStart('map-render')
        if (renderController.shouldRender() || hasAnimation) {
            mapInstance.value.render()
            performanceMonitor.update(threeRenderer.value)
        }
+       perfEnd('map-render', 16)
     }
+    perfEnd('animate-total', 16)
     requestAnimationFrame(animate)
   }
   animate()
@@ -852,6 +920,22 @@ const addModelToScene = (model, position, spotId, holoMaterial, wireframeMateria
   container.visible = mapStore.layers.models
 }
 
+// Three.js 加载模型辅助函数
+const loadModelWithThreeJS = (spot, position, loader, sharedHoloMaterial, sharedWireframeMaterial) => {
+  const cached = modelCache.get(spot.modelUrl)
+  if (cached) {
+    addModelToScene(cached.clone(), position, spot.id, sharedHoloMaterial, sharedWireframeMaterial)
+  } else {
+    loader.load(spot.modelUrl, (gltf) => {
+      const originalModel = gltf.scene
+      modelCache.set(spot.modelUrl, originalModel)
+      addModelToScene(originalModel.clone(), position, spot.id, sharedHoloMaterial, sharedWireframeMaterial)
+    }, undefined, (error) => {
+      console.error('Error loading model:', error)
+    })
+  }
+}
+
 // 更新 3D 模型 (Holographic Effect) - 带缓存优化
 const updateSceneModels = (map) => {
   if (!threeScene.value || !map.customCoords) return
@@ -891,24 +975,26 @@ const updateSceneModels = (map) => {
     const center = spot.position
     const position = map.customCoords.lngLatToCoord(center)
     
-    // Check if custom GLB model exists
-    if (spot.modelUrl) {
-       // 检查缓存
-       const cached = modelCache.get(spot.modelUrl)
-       if (cached) {
-         // 使用缓存的模型克隆
-         addModelToScene(cached.clone(), position, spot.id, sharedHoloMaterial, sharedWireframeMaterial)
-       } else {
-         // 首次加载，存入缓存
-         loader.load(spot.modelUrl, (gltf) => {
-           const originalModel = gltf.scene
-           // 存入缓存
-           modelCache.set(spot.modelUrl, originalModel)
-           // 使用克隆添加到场景
-           addModelToScene(originalModel.clone(), position, spot.id, sharedHoloMaterial, sharedWireframeMaterial)
-         }, undefined, (error) => {
-           console.error('Error loading model:', error)
+    // Check if custom GLB model exists - 只有聚焦的热点才加载 3D 模型
+    if (spot.modelUrl && focusedHotspotId.value === spot.id) {
+       // 使用高德官方 GltfLoader（性能更优）
+       if (MODEL_LOADER_TYPE === 'amap' && amapGltfLoader) {
+         amapGltfLoader.load(spot.modelUrl, {
+           position: center,
+           scale: 5,
+           height: 40,
+           rotation: { x: Math.PI / 2, y: Math.PI * 1.2, z: 0 }
+         }).then(({ model, id }) => {
+           // 高德官方加载器直接管理模型，无需手动添加到场景
+           console.log('[AMap] 模型加载成功:', id)
+         }).catch(err => {
+           console.error('[AMap] 模型加载失败，回退到 Three.js:', err)
+           // 回退到 Three.js 加载
+           loadModelWithThreeJS(spot, position, loader, sharedHoloMaterial, sharedWireframeMaterial)
          })
+       } else {
+         // 使用 Three.js GLTFLoader
+         loadModelWithThreeJS(spot, position, loader, sharedHoloMaterial, sharedWireframeMaterial)
        }
     } else {
         // Default Cone
@@ -949,9 +1035,14 @@ const updateSceneModels = (map) => {
 
 // 更新事件链连接线
 const updateEventChainLines = (map) => {
-  if (!threeScene.value || !map.customCoords) return
+  perfStart('updateEventChainLines')
+  if (!threeScene.value || !map.customCoords) {
+    perfEnd('updateEventChainLines', 16)
+    return
+  }
   
   // Clear old lines
+  perfStart('chainLines-cleanup')
   eventChainLines.value.forEach(line => {
       if (line.geometry) line.geometry.dispose();
       if (line.material) {
@@ -968,8 +1059,8 @@ const updateEventChainLines = (map) => {
   // 用于去重：确保每对事件之间只有一条单向线
   const createdLinks = new Set()
   
-  // Create gradient texture for flow effect
-  const flowTexture = createFlowTexture();
+  // 使用缓存的流动纹理
+  const flowTexture = getFlowTexture();
   const zoom = map.getZoom();
   
   hotspots.forEach(spot => {
@@ -1031,53 +1122,22 @@ const updateEventChainLines = (map) => {
             new THREE.Vector3(endPos[0], endPos[1], 20)
           )
           
-          // Tube Geometry - 固定分段数以保证无缝变换
-          const tubularSegments = 64; 
-          const radialSegments = 8;
+          // Tube Geometry - 降低分段数以提高性能
+          const tubularSegments = 16; // 从 24 降低到 16
+          const radialSegments = 3;   // 从 4 降低到 3
           const tubeGeometry = new THREE.TubeGeometry(curve, tubularSegments, radius, radialSegments, false);
           
-          // Flow Material - 使用 ShaderMaterial 支持进度动画和流动效果
-          const material = new THREE.ShaderMaterial({
-            uniforms: {
-              flowMap: { value: flowTexture },
-              color: { value: new THREE.Color(0x06b6d4) },
-              emissiveIntensity: { value: 3.0 },
-              progress: { value: 1.0 }, // 0-1 控制显示进度
-              flowOffset: { value: 0.0 }, // 流动动画偏移
-              opacity: { value: 1.0 }
-            },
-            vertexShader: `
-              varying vec2 vUv;
-              void main() {
-                vUv = uv;
-                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-              }
-            `,
-            fragmentShader: `
-              uniform sampler2D flowMap;
-              uniform vec3 color;
-              uniform float emissiveIntensity;
-              uniform float progress;
-              uniform float flowOffset;
-              uniform float opacity;
-              varying vec2 vUv;
-              
-              void main() {
-                // 进度裁剪：uv.x > progress 的部分完全透明
-                if (vUv.x > progress) discard;
-                
-                // 应用流动偏移和纹理重复
-                vec2 flowUv = vec2(vUv.x * 2.0 + flowOffset, vUv.y);
-                vec4 texColor = texture2D(flowMap, flowUv);
-                vec3 finalColor = color * (1.0 + emissiveIntensity) * texColor.rgb;
-                gl_FragColor = vec4(finalColor, texColor.a * opacity);
-              }
-            `,
-            transparent: true,
-            side: THREE.DoubleSide,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending
-          })
+          // 使用共享材质的克隆（避免重复编译 shader）
+          const material = getSharedFlowMaterial(flowTexture).clone()
+          // 每条线需要独立的 uniforms
+          material.uniforms = {
+            flowMap: { value: flowTexture },
+            color: { value: new THREE.Color(0x06b6d4) },
+            emissiveIntensity: { value: 3.0 },
+            progress: { value: 1.0 },
+            flowOffset: { value: 0.0 },
+            opacity: { value: 1.0 }
+          }
           
           const mesh = new THREE.Mesh(tubeGeometry, material)
           mesh.userData = { isFlowLine: true, flowDirection: flowDirection }
@@ -1091,33 +1151,80 @@ const updateEventChainLines = (map) => {
       })
     }
   })
+  perfEnd('chainLines-cleanup', 50)
+  perfEnd('updateEventChainLines', 100)
 }
 
-// Helper for flow texture (Gradient with alpha)
-const createFlowTexture = () => {
+// 获取共享流动材质（避免重复编译 shader）
+const getSharedFlowMaterial = (flowTexture) => {
+  if (sharedFlowMaterial) return sharedFlowMaterial
+  
+  sharedFlowMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      flowMap: { value: flowTexture },
+      color: { value: new THREE.Color(0x06b6d4) },
+      emissiveIntensity: { value: 3.0 },
+      progress: { value: 1.0 },
+      flowOffset: { value: 0.0 },
+      opacity: { value: 1.0 }
+    },
+    vertexShader: `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform sampler2D flowMap;
+      uniform vec3 color;
+      uniform float emissiveIntensity;
+      uniform float progress;
+      uniform float flowOffset;
+      uniform float opacity;
+      varying vec2 vUv;
+      
+      void main() {
+        if (vUv.x > progress) discard;
+        vec2 flowUv = vec2(vUv.x * 2.0 + flowOffset, vUv.y);
+        vec4 texColor = texture2D(flowMap, flowUv);
+        vec3 finalColor = color * (1.0 + emissiveIntensity) * texColor.rgb;
+        gl_FragColor = vec4(finalColor, texColor.a * opacity);
+      }
+    `,
+    transparent: true,
+    side: THREE.DoubleSide,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending
+  })
+  return sharedFlowMaterial
+}
+
+// Helper for flow texture (Gradient with alpha) - 使用缓存避免重复创建
+const getFlowTexture = () => {
+    if (flowTextureCache) return flowTextureCache;
+    
     const canvas = document.createElement('canvas');
-    canvas.width = 128; // Longer for flow
+    canvas.width = 128;
     canvas.height = 32;
     const context = canvas.getContext('2d');
     
-    // Gradient: Transparent -> Opaque (Bright) -> Transparent
-    // Represents a pulse of energy moving through the tube
     const gradient = context.createLinearGradient(0, 0, 128, 0);
     gradient.addColorStop(0, 'rgba(6, 182, 212, 0)');
     gradient.addColorStop(0.3, 'rgba(6, 182, 212, 0.1)');
-    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 1)'); // Core Brightness
+    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 1)');
     gradient.addColorStop(0.7, 'rgba(6, 182, 212, 0.1)');
     gradient.addColorStop(1, 'rgba(6, 182, 212, 0)');
     
     context.fillStyle = gradient;
     context.fillRect(0, 0, 128, 32);
     
-    const texture = new THREE.Texture(canvas);
-    texture.wrapS = THREE.RepeatWrapping; // Allow looping
-    texture.wrapT = THREE.ClampToEdgeWrapping;
-    texture.repeat.set(2, 1); // Repeat twice along length
-    texture.needsUpdate = true;
-    return texture;
+    flowTextureCache = new THREE.Texture(canvas);
+    flowTextureCache.wrapS = THREE.RepeatWrapping;
+    flowTextureCache.wrapT = THREE.ClampToEdgeWrapping;
+    flowTextureCache.repeat.set(2, 1);
+    flowTextureCache.needsUpdate = true;
+    return flowTextureCache;
 }
 
 // 初始化地图
@@ -1565,24 +1672,14 @@ const addHotspotBuildingEffects = (map, AMapModule) => {
 
   // 监听缩放变化，重新计算聚合
   if (!window.zoomChangeHandler) {
-    // 缩放结束：更新聚合状态（较重）
+    // 缩放结束：更新聚合状态
     window.zoomChangeHandler = () => {
       addHotspotBuildingEffects(map, AMapModule);
       updateEventChainLines(map); 
     };
     
-    // 缩放过程中：使用节流优化，避免频繁重计算导致卡顿
-    let zoomThrottleTimer = null;
-    window.zoomLiveHandler = () => {
-       if (zoomThrottleTimer) return; // 节流中
-       zoomThrottleTimer = setTimeout(() => {
-         zoomThrottleTimer = null;
-         updateEventChainLines(map);
-       }, 100); // 100ms 节流
-    };
-    
+    // 只在缩放结束时更新，避免缩放过程中频繁重建几何体导致卡顿
     map.on("zoomend", window.zoomChangeHandler);
-    map.on("zoomchange", window.zoomLiveHandler);
   }
 };
 

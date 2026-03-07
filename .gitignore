@@ -116,8 +116,48 @@ temp/
 *.bak
 
 # ===============================
+# LaTeX
+# ===============================
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.xdv
+*.ilg
+*.ind
+*.idx
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+_minted*/
+latexmkrc
+
+# Keep source PDFs only if intentionally committed.
+# Generated LaTeX PDFs are ignored by default.
+*.pdf
+
+# ===============================
 # Project specific
 # ===============================
+# Ralphy
+.ralphy/
+.ralphy-worktrees/
+.ralphy-sandboxes/
+
 # Crawled data (may contain sensitive info)
 data_collector/data/
 data_collector/cookies/
@@ -149,3 +189,6 @@ docs/keys.md
 
 # Backup folder
 bak/
+*.rar
+*.zip
+

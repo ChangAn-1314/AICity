@@ -1,0 +1,161 @@
+% !TEX program = xelatex
+% 智舆 Visual Identity System (VIS) 视觉识别系统手册
+\documentclass[12pt,a4paper,fontset=windows]{ctexart}
+
+% ==================== 宏包 ====================
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{fontspec}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{eso-pic}
+\usepackage{transparent}
+\usepackage{pdfpages}
+\usepackage{tocloft}
+
+\usetikzlibrary{calc,positioning,shadows,patterns,decorations.markings,arrows.meta,shapes.geometric,fit,backgrounds}
+\tcbuselibrary{skins,breakable}
+
+% ==================== 页面设置 ====================
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2cm,headheight=14pt}
+
+% ==================== 品牌色彩定义 ====================
+% 主色调
+\definecolor{CyberCyan}{HTML}{06B6D4}
+\definecolor{CyberCyanLight}{HTML}{22D3EE}
+\definecolor{CyberCyanDark}{HTML}{0891B2}
+% 强调色
+\definecolor{NeonPurple}{HTML}{A855F7}
+\definecolor{NeonFuchsia}{HTML}{D946EF}
+\definecolor{FuchsiaLight}{HTML}{E879F9}
+% 功能色
+\definecolor{AlertRed}{HTML}{EF4444}
+\definecolor{SuccessGreen}{HTML}{10B981}
+\definecolor{WarningAmber}{HTML}{F59E0B}
+% 背景色
+\definecolor{DeepBlue}{HTML}{0F172A}
+\definecolor{DeeperBlue}{HTML}{020617}
+\definecolor{SlateGray}{HTML}{334155}
+% 中性色
+\definecolor{TextPrimary}{HTML}{F8FAFC}
+\definecolor{TextSecondary}{HTML}{94A3B8}
+\definecolor{GlassBorder}{HTML}{1E293B}
+% 辅助
+\definecolor{PageBg}{HTML}{FAFBFC}
+\definecolor{LightGray}{HTML}{F1F5F9}
+\definecolor{MidGray}{HTML}{CBD5E1}
+
+% ==================== 字号 ====================
+\newcommand{\chuhao}{\fontsize{42pt}{50pt}\selectfont}
+\newcommand{\xiaochu}{\fontsize{36pt}{44pt}\selectfont}
+\newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}
+\newcommand{\xiaoer}{\fontsize{18pt}{24pt}\selectfont}
+\newcommand{\sanhao}{\fontsize{16pt}{20pt}\selectfont}
+\newcommand{\xiaosan}{\fontsize{15pt}{20pt}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{18pt}\selectfont}
+\newcommand{\xiaosi}{\fontsize{12pt}{16pt}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5pt}{14pt}\selectfont}
+
+% ==================== 超链接 ====================
+\hypersetup{
+  colorlinks=true,
+  linkcolor=CyberCyan,
+  urlcolor=CyberCyanDark,
+  pdfborder={0 0 0}
+}
+
+% ==================== 标题格式 ====================
+\titleformat{\section}{\heiti\erhao\color{DeepBlue}}{}{0em}{}[\vspace{2pt}\textcolor{CyberCyan}{\rule{\textwidth}{2pt}}]
+\titleformat{\subsection}{\heiti\sanhao\color{DeepBlue}}{\textcolor{CyberCyan}{\thesubsection}}{0.8em}{}
+\titleformat{\subsubsection}{\heiti\sihao\color{SlateGray}}{\textcolor{NeonPurple}{\thesubsubsection}}{0.6em}{}
+\titlespacing*{\section}{0pt}{24pt}{12pt}
+\titlespacing*{\subsection}{0pt}{16pt}{8pt}
+\titlespacing*{\subsubsection}{0pt}{12pt}{6pt}
+
+% ==================== 页眉页脚 ====================
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\small\color{TextSecondary}\textbf{智舆} \textbar\ Visual Identity System}
+\fancyhead[R]{\small\color{TextSecondary}\thepage}
+\fancyfoot[C]{\footnotesize\color{MidGray}\textcopyright\ 2025 智舆 ZhiYu \textbar\ Confidential}
+
+% ==================== 自定义 tcolorbox ====================
+% 规范说明框
+\newtcolorbox{specbox}[1][]{
+  enhanced,
+  colback=LightGray,
+  colframe=CyberCyan,
+  boxrule=0.5pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  arc=1pt,
+  fonttitle=\heiti\sihao\color{DeepBlue},
+  title={#1},
+  coltitle=DeepBlue,
+  attach boxed title to top left={xshift=12pt,yshift=-8pt},
+  boxed title style={colback=white,colframe=CyberCyan,boxrule=0.5pt,arc=1pt}
+}
+
+% 禁止事项框
+\newtcolorbox{forbidbox}{
+  enhanced,
+  colback=AlertRed!5,
+  colframe=AlertRed,
+  boxrule=0.5pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  arc=1pt,
+  fontupper=\xiaosi
+}
+
+% 编号标签
+\newcommand{\visid}[1]{%
+  \tikz[baseline=(char.base)]{
+    \node[fill=CyberCyan,text=white,rounded corners=2pt,inner sep=3pt,font=\footnotesize\bfseries\ttfamily] (char) {#1};
+  }%
+}
+
+% ==================== 目录样式 ====================
+\renewcommand{\cfttoctitlefont}{\heiti\erhao\color{DeepBlue}}
+\renewcommand{\cftaftertoctitle}{\par\vspace{4pt}\textcolor{CyberCyan}{\rule{\textwidth}{2pt}}}
+\renewcommand{\cftsecfont}{\heiti\sihao}
+\renewcommand{\cftsubsecfont}{\songti\xiaosi}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% ==================== 行间距 ====================
+\setstretch{1.4}
+
+% ==================== 正文字体 ====================
+\AtBeginDocument{\songti\xiaosi}
+
+\begin{document}
+
+% 封面
+\input{chapters/cover}
+
+% 目录
+\newpage
+\tableofcontents
+\newpage
+
+% A 基础识别系统
+\input{chapters/basic}
+
+% B 应用识别系统
+\input{chapters/application}
+
+% C 品牌应用规范
+\input{chapters/examples}
+
+\end{document}
