@@ -1,0 +1,32 @@
+{
+  "name": "promo-video",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render AICity out/aicity-promo.mp4",
+    "build:enhanced": "remotion render AICityEnhanced out/aicity-promo-enhanced.mp4",
+    "build:final": "remotion render AICityFinal out/aicity-promo-final.mp4",
+    "build:bgm": "remotion render AICityWithBGM out/aicity-promo-with-bgm.mp4",
+    "build:beat": "remotion render AICityBeatSync out/aicity-promo-beat-sync.mp4",
+    "build:climax": "remotion render AICityClimaxRedesign out/aicity-promo-climax.mp4",
+    "upgrade": "remotion upgrade"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.24.0",
+  "dependencies": {
+    "@remotion/cli": "^4.0.434",
+    "@remotion/transitions": "^4.0.434",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "remotion": "^4.0.434"
+  },
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "@types/react": "^19.2.14",
+    "typescript": "^5.9.3"
+  }
+}
