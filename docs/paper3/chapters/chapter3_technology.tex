@@ -1,0 +1,54 @@
+\chapter{技术研发与 AI+ 核心壁垒}
+
+\section{总体架构}
+智舆以现有 AICity 项目为工程基础，形成数据层、分析层、知识层、可视化层与推演层协同的总体架构。数据层负责多源采集与清洗；分析层完成分类、情绪识别、事件抽取与风险识别；知识层沉淀城市主题词典、治理规则与场景标签；可视化层负责地图与态势表达；推演层基于多 Agent 机制输出策略建议。
+
+图\ref{fig:chapter3-system-architecture}展示了系统各层之间的衔接关系，给出了技术架构总览。该图重点说明智舆不是单点模型调用，而是围绕数据流、分析流和决策流形成统一的工程底座。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.88\textwidth]{chapter3-system-architecture.png}
+	\caption{智舆系统总体技术架构图}
+	\label{fig:chapter3-system-architecture}
+\end{figure}
+
+从总体架构来看，智舆的关键并不只是模块齐全，而是把采集、理解、空间表达和辅助决策组织成闭环流程。这种闭环结构决定了系统既能支撑日常监测，也能延伸到应急场景中的联动推演。
+
+\section{讯飞星火与多 Agent 协作价值}
+
+项目中的大模型作用不是简单生成文字，而是承担摘要压缩、舆情解释、策略建议、场景问答与推演辅助等任务。分析 Agent 负责问题识别与结构化提取，预测 Agent 负责判断风险演化方向，决策 Agent 负责生成处置建议，模拟 Agent 负责对备选方案进行影响评估。多 Agent 的意义在于把复杂问题拆分为可协同执行的小任务，从而提升输出稳定性与业务可解释性。
+
+从实际工作流看，大模型能力需要和三维空间表达一起落到业务链路中。图\ref{fig:chapter3-ai-3d-workflow}展示了 AI 分析与 3D 场景联动的流程，说明系统如何把语义理解结果进一步转化为可用于指挥研判的空间化输出。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.9\textwidth]{chapter3-ai-3d-workflow.png}
+	\caption{AI 分析与三维场景联动工作流}
+	\label{fig:chapter3-ai-3d-workflow}
+\end{figure}
+
+在此基础上，多 Agent 机制承担的是任务拆解、角色协同和结果校验的职责。图\ref{fig:chapter3-multi-agent}进一步把分析、预测、决策与模拟等角色放到同一协作框架中，便于说明讯飞星火在项目里承担的是中枢协调能力，而非单一问答接口。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.84\textwidth]{chapter3-multi-agent.png}
+	\caption{智舆多 Agent 协同机制示意图}
+	\label{fig:chapter3-multi-agent}
+\end{figure}
+
+这组图共同说明，智舆的 AI 能力不是孤立存在，而是嵌入从信息理解到空间呈现、再到处置推演的完整链路中。也正因为如此，系统输出更容易被业务人员理解和采纳。
+
+\section{核心壁垒与可信机制}
+
+智舆的壁垒主要体现在三个方面：一是围绕信阳及类似城市的本地化场景知识沉淀，二是城市模型矩阵与 LoRA 城市适配器带来的区域迁移能力，三是从发现风险到辅助处置的闭环能力，而不是停留在监测层。与此同时，系统通过人工复核、权限隔离、日志审计、模型输出标注和敏感信息处理等机制控制模型幻觉和合规风险，确保项目能够在真实治理场景中使用。
+
+除技术架构本身外，项目推进节奏也体现出研发能力的工程化程度。图\ref{fig:chapter3-gantt}用甘特图形式呈现了从底层能力建设、场景验证到系统优化的阶段安排，有助于说明技术路线并非概念拼接，而是按里程碑逐步收敛成可交付产品。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.92\textwidth]{chapter3-gantt.png}
+	\caption{智舆技术研发实施甘特图}
+	\label{fig:chapter3-gantt}
+\end{figure}
+
+因此，本章所强调的核心壁垒既包括模型、数据与知识机制的积累，也包括把这些能力持续产品化、可验证化的研发组织方式。这样的技术组织结构，正是智舆能够形成长期竞争力的重要原因。
