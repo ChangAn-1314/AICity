@@ -1,0 +1,209 @@
+\chapter{财务预测与盈亏平衡分析}
+
+\section{三年测算框架}
+
+本章采用保守测算口径构建三年财务模型，目的不是制造夸张估值，而是验证智舆从项目孵化走向可持续经营是否存在现实路径。全部数字均作为测算值使用，需在真实试点、签约和运营数据形成后滚动校正。
+
+\begin{table}[H]
+	\centering
+	\caption{三年经营测算边界条件}
+	\begin{tabularx}{\textwidth}{L{3.2cm}YL{3.1cm}}
+		\toprule
+		\tblhead{测算维度} & \tblhead{口径说明}                       & \tblhead{数据属性} \\
+		\midrule
+		\rowcolors{2}{tablealt}{white}
+		测算周期           & 以项目启动后的连续 3 个完整经营年度为周期               & 测算值            \\
+		客户结构           & 以基础版/专业版订阅、政务版交付、轻量私有化项目和增值服务为主要收入来源 & 测算值            \\
+		区域范围           & 第 1 年以信阳样板为主，第 2 年拓展省内复制，第 3 年尝试跨省复制 & 保守估计           \\
+		续费假设           & 续费率随着产品成熟和服务标准化逐步提升，不按一次性爆发增长处理      & 保守估计           \\
+		成本假设           & 重点覆盖研发人力、服务器与算力、模型调用、实施交付、销售拓展和管理费用  & 测算值            \\
+		风险校正           & 对客单价下滑、客户增长放缓、算力上涨等情景单独做敏感性分析        & 测算值            \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section{核心假设}
+
+收入端重点关注客单价、签约客户数、续费率、私有化项目数量和增值服务渗透率；成本端重点关注研发人力、服务器、模型调用、部署实施、销售拓展与管理费用。所有假设均按“先拿下小样板，再靠标准化复制”的路径设置，不假设短期内获得大额集中订单。
+
+\begin{table}[H]
+	\centering
+	\caption{关键经营假设}
+	\begin{tabularx}{\textwidth}{L{3.4cm}C{2.1cm}C{2.1cm}C{2.1cm}Y}
+		\toprule
+		\tblhead{指标} & \tblhead{第 1 年} & \tblhead{第 2 年} & \tblhead{第 3 年} & \tblhead{说明}            \\
+		\midrule
+		\rowcolors{2}{tablealt}{white}
+		新增付费客户数      & 12              & 24              & 40              & 以订阅客户和轻量交付客户合并口径统计      \\
+		续费率          & 0               & 65\%            & 75\%            & 第 1 年不统计续费，第 2 年起逐步体现留存 \\
+		平均综合客单价      & 6.7 万元          & 7.8 万元          & 8.6 万元          & 由订阅、交付和增值服务加权形成         \\
+		私有化/项目制交付数   & 2 个             & 4 个             & 6 个             & 控制在团队可交付范围内，避免虚高        \\
+		增值服务渗透率      & 25\%            & 35\%            & 45\%            & 指购买专题报告、培训、调优等客户占比      \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{收入测算结构表（单位：万元）}
+	\begin{tabularx}{\textwidth}{L{3.4cm}C{2cm}C{2cm}C{2cm}Y}
+		\toprule
+		\tblhead{收入项目} & \tblhead{第 1 年} & \tblhead{第 2 年} & \tblhead{第 3 年} & \tblhead{说明}       \\
+		\midrule
+		\rowcolors{2}{tablealt}{white}
+		标准订阅收入         & 18              & 52              & 96              & 主要来自基础版和专业版标准化订阅   \\
+		政务版与专题交付       & 24              & 68              & 118             & 主要来自地市单位、园区与专题治理场景 \\
+		轻量私有化项目        & 30              & 66              & 120             & 含部署实施、接口适配和陪跑服务    \\
+		增值服务收入         & 8               & 24              & 42              & 含培训、调优、专题报告和顾问支持   \\
+		\midrule
+		\rowcolors{2}{tablealt}{white}
+		营业收入合计         & 80              & 210             & 376             & 作为后续利润测算基础         \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+上述收入结构体现了项目的现实经营逻辑：前期依靠低门槛试点和轻量交付打开市场，中期用标准化产品提高续费与复购，后期通过本地化模板和合作伙伴渠道扩大复制效率。
+
+\section{成本结构与利润测算}
+
+智舆作为 AI 驱动产品，其成本结构区别于传统纯软件项目，除研发人力外，模型调用、算力资源、数据整理和交付实施都是必须长期控制的关键成本项。
+
+\begin{table}[H]
+	\centering
+	\caption{成本结构测算（单位：万元）}
+	\begin{tabularx}{\textwidth}{L{3.4cm}C{2cm}C{2cm}C{2cm}Y}
+		\toprule
+		\tblhead{成本项目} & \tblhead{第 1 年} & \tblhead{第 2 年} & \tblhead{第 3 年} & \tblhead{说明}     \\
+		\midrule
+		\rowcolors{2}{tablealt}{white}
+		研发人力成本         & 42              & 58              & 76              & 含核心研发、产品和测试投入    \\
+		服务器与算力成本       & 10              & 18              & 28              & 含云资源、存储、可视化部署与带宽 \\
+		模型调用与数据处理成本    & 8               & 14              & 22              & 含大模型调用、数据清洗和标注辅助 \\
+		实施交付成本         & 12              & 22              & 34              & 含驻场、培训、部署和接口适配   \\
+		销售与市场拓展成本      & 14              & 24              & 34              & 含差旅、路演、试点拓展与合作拓展 \\
+		管理与合规成本        & 8               & 12              & 18              & 含办公、审计、合规与行政管理   \\
+		\midrule
+		\rowcolors{2}{tablealt}{white}
+		成本合计           & 94              & 148             & 212             & 作为净利润和现金流测算基础    \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{三年利润与现金流测算（单位：万元）}
+	\begin{tabularx}{\textwidth}{L{4cm}C{2cm}C{2cm}C{2cm}}
+		\toprule
+		\tblhead{指标} & \tblhead{第 1 年} & \tblhead{第 2 年} & \tblhead{第 3 年} \\
+		\midrule
+		\rowcolors{2}{tablealt}{white}
+		营业收入         & 80              & 210             & 376             \\
+		营业成本与费用合计    & 94              & 148             & 212             \\
+		净利润          & -14             & 62              & 164             \\
+		经营性现金流       & -18             & 48              & 136             \\
+		期末累计客户数      & 12              & 32              & 58              \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+从测算结果看，项目第 1 年仍处于样板验证和能力沉淀阶段，亏损主要来自研发与试点投入；第 2 年在客户数量、续费率和标准化交付效率提升后可实现扭亏；第 3 年若复制路径成立，利润与现金流将进入相对健康区间。
+
+为了让收入、成本与利润变化关系更易被快速感知，下图将营业收入、营业成本与费用合计、净利润和经营性现金流放在同一坐标系中展示，重点突出第 2 年扭亏和第 3 年经营改善的拐点。
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+				width=0.92\textwidth,
+				height=7.6cm,
+				ymin=-30,
+				ymax=400,
+				ytick={0,100,200,300,400},
+				xtick=data,
+				symbolic x coords={第1年,第2年,第3年},
+				xlabel={经营年度},
+				ylabel={金额（万元）},
+				grid=major,
+				grid style={dashed,gray!30},
+				axis line style={draw=primaryblue!70},
+				tick style={draw=primaryblue!70},
+				label style={font=\small},
+				tick label style={font=\small},
+				legend style={
+						font=\small,
+						at={(0.5,-0.22)},
+						anchor=north,
+						legend columns=2,
+						draw=none,
+						fill=none
+					},
+				every axis plot/.append style={thick,mark size=2.6pt}
+			]
+			\addplot[color=primaryblue,mark=*] coordinates {(第1年,80) (第2年,210) (第3年,376)};
+			\addlegendentry{营业收入}
+			\addplot[color=red!75!black,mark=square*] coordinates {(第1年,94) (第2年,148) (第3年,212)};
+			\addlegendentry{营业成本与费用合计}
+			\addplot[color=accentgold!90!black,mark=triangle*] coordinates {(第1年,-14) (第2年,62) (第3年,164)};
+			\addlegendentry{净利润}
+			\addplot[color=green!45!black,mark=diamond*] coordinates {(第1年,-18) (第2年,48) (第3年,136)};
+			\addlegendentry{经营性现金流}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{三年财务趋势图}
+\end{figure}
+
+图形化表达能够和前述测算表形成互证，减少评委在多张数字表之间来回比对的阅读负担。同时也更清晰地呈现项目从投入期走向复制期的财务拐点。
+
+为进一步展示成本与收益的结构性关系，图\ref{fig:chapter7-cost-benefit}从成本构成、收入来源与利润贡献三个维度提供了更全面的财务分析视角，帮助评委理解项目的盈利逻辑与成本控制重点。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.88\textwidth]{chapter7-cost-benefit.png}
+	\caption{成本收益结构分析图}
+	\label{fig:chapter7-cost-benefit}
+\end{figure}
+
+\section{盈亏平衡与敏感性分析}
+
+根据上述测算，智舆的盈亏平衡点大致出现在“累计付费客户 18--20 家，或形成 1 个中型私有化项目加 12 家持续订阅客户”的区间。其关键前提不是单笔大单，而是标准化交付后单位客户边际服务成本下降，以及试点成功后带来的续费与转介绍。
+
+\begin{table}[H]
+	\centering
+	\caption{敏感性分析结果}
+	\begin{tabularx}{\textwidth}{L{3.8cm}L{2.2cm}Y}
+		\toprule
+		\tblhead{情景}   & \tblhead{对净利润的影响} & \tblhead{判断}          \\
+		\midrule
+		\rowcolors{2}{tablealt}{white}
+		基准情景           & 第 2 年实现扭亏         & 说明当前定价和成本结构具备可行性      \\
+		客单价下降 15\%     & 第 2 年净利润明显收窄      & 需要通过增值服务和续费提升弥补毛利下滑   \\
+		客户增长低于预期 30\%  & 盈亏平衡延后至第 3 年      & 表明样板复制速度是核心经营变量       \\
+		算力与模型成本上升 50\% & 利润率下降但不改变长期可行性    & 需要加强模型路由、缓存和本地化部署策略   \\
+		叠加不利情景         & 第 3 年仍可能承压        & 需收缩扩张节奏，优先保留高复购和高毛利客户 \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section{融资需求与资金使用建议}
+
+若项目进入试点扩张阶段，建议以“支撑 12--18 个月经营安全边界”为目标，设置 150 万元左右的阶段性融资需求，主要用于产品打磨、试点实施、数据与模型能力优化以及市场样板拓展。该融资建议仅作为经营测算参考，并不等同于既定融资事实。
+
+\begin{table}[H]
+	\centering
+	\caption{阶段性资金使用建议}
+	\begin{tabularx}{\textwidth}{L{3.5cm}C{2.5cm}Y}
+		\toprule
+		\tblhead{资金用途} & \tblhead{占比建议} & \tblhead{使用说明}              \\
+		\midrule
+		\rowcolors{2}{tablealt}{white}
+		产品研发与体验打磨      & 35\%           & 用于前后端完善、模型协同、可视化优化和测试体系建设   \\
+		试点部署与实施陪跑      & 25\%           & 用于需求确认、驻场联调、培训材料和复盘评估       \\
+		数据与模型能力建设      & 20\%           & 用于数据清洗、标签体系完善、模型调用和路由优化     \\
+		市场拓展与品牌背书      & 20\%           & 用于样板案例传播、行业路演、合作渠道拓展与重点客户跟进 \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\begin{infobox}{本章可提炼为 PPT 的核心结论}
+	智舆的财务逻辑不是依赖单笔大单，而是依赖“试点成样板、交付变标准、订阅带续费、增值拉客单”的渐进式盈利路径。
+\end{infobox}
