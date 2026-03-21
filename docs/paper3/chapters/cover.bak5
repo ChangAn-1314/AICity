@@ -1,0 +1,46 @@
+\begin{titlepage}
+	\thispagestyle{empty}
+	\centering
+
+	\vspace*{1.6cm}
+
+	\begin{tcolorbox}[
+			width=0.84\textwidth,
+			colback=white,
+			colframe=primaryblue,
+			boxrule=1pt,
+			arc=3pt,
+			left=14pt,
+			right=14pt,
+			top=12pt,
+			bottom=12pt
+		]
+		{\heiti\erhao\color{headercharcoal} 信阳学院}\par
+		\vspace{0.4cm}
+		{\heiti\sanhao\color{headercharcoal} 2025 年中国国际大学生创新大赛商业计划书}\par
+		\vspace{0.9cm}
+
+		{\heiti\yihao\color{primaryblue} 智舆}\par
+		\vspace{0.2cm}
+		{\heiti\sihao\color{headercharcoal} AI城市舆情态势监测感知与决策推演系统}\par
+		\vspace{0.8cm}
+
+		\begin{infobox}{项目定位}
+			智舆不是单一的舆情抓取工具，而是面向地级市、县域、园区、学校、景区及中小企业场景的 AI 城市治理辅助决策系统。项目围绕“发现风险、理解态势、推演方案、辅助处置”四个环节构建完整闭环。
+		\end{infobox}
+
+		\vspace{0.8cm}
+		\begin{tabularx}{\linewidth}{@{}L{3.2cm}Y@{}}
+			项目名称：  & 智舆——AI城市舆情态势监测感知与决策推演系统      \\
+			团队名称：  & 待补充                          \\
+			学校信息：  & 信阳学院                         \\
+			指导教师：  & 待补充                          \\
+			完成日期：  & \today                       \\
+			一句话愿景： & 让城市治理从“被动应对舆情”升级为“主动感知并推演决策” \\
+		\end{tabularx}
+
+		\vspace{0.9cm}
+		{\heiti\sihao\color{accentgold} 面向信阳、立足河南、服务下沉市场的 AI 城市治理创新方案}\par
+	\end{tcolorbox}
+
+\end{titlepage}
