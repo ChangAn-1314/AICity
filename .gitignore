@@ -57,6 +57,7 @@ out/
 ehthumbs.db
 Thumbs.db
 desktop.ini
+NUL
 
 # ===============================
 # Logs
@@ -157,6 +158,7 @@ latexmkrc
 .ralphy/
 .ralphy-worktrees/
 .ralphy-sandboxes/
+.worktrees/
 
 # Crawled data (may contain sensitive info)
 data_collector/data/
