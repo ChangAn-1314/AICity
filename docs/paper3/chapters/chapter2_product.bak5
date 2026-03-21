@@ -1,0 +1,161 @@
+\chapter{产品定义与场景方案}
+
+\section{产品定位}
+
+智舆定位为面向城市治理与区域服务场景的 AI 辅助决策系统，核心不是“多抓一点数据”，而是把分散的信息转化为可执行的治理洞察。产品目标客户包括政府治理部门、热线协同中心、景区与文旅运营方、高校管理单位、园区与国企，以及有品牌舆情管理需求的中小企业。
+
+图\ref{fig:chapter2-main-interface}展示了智舆主界面的总览效果。界面以风险列表、热点分析、地图视图和决策入口为主轴，体现出“监测一研判一处置”的一体化工作台设计。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.92\textwidth]{chapter2-main-interface.png}
+	\caption{智舆主界面总览图}
+	\label{fig:chapter2-main-interface}
+\end{figure}
+
+从主界面可以看出，智舆并不是单一分析工具，而是将监测入口、分析结果、地图表达与决策动作整合到统一产品框架中。基于这一总体形态，下一节进一步拆解其核心功能模块与协同逻辑。
+
+\section{核心功能模块}
+
+\begin{table}[H]
+	\centering
+	\caption{智舆核心功能模块}
+	\label{tab:chapter2-modules}
+	\begin{tabularx}{\textwidth}{L{2.8cm}YY}
+		\toprule
+		\tblhead{模块} & \tblhead{输入与处理}             & \tblhead{输出与业务价值}  \\
+		\midrule
+		\rowcolors{2}{tablealt}{white}
+		数据采集         & 汇聚公开网络文本、评论、图片、视频线索及可接入业务数据 & 提高风险发现覆盖率，减少信息孤岛   \\
+		语义分析         & 完成分类、情绪识别、事件抽取、主题聚类与热度研判    & 帮助管理者快速理解问题性质与影响范围 \\
+		趋势预测         & 基于事件演化特征给出热度变化与扩散风险判断       & 提前介入高风险事件，争取处置窗口   \\
+		3D 可视化       & 将风险分布、重点区域、处置进度映射到城市空间表达中   & 支撑指挥调度与多部门共识形成     \\
+		决策推演         & 由多 Agent 生成处置建议、备选策略与影响评估   & 缩短从监测到决策的时间差       \\
+		语音播报与快报      & 对重点风险生成快报、摘要与语音播报结果         & 满足应急场景下的快速汇报需求     \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+表\ref{tab:chapter2-modules}从业务语言概括了智舆的能力边界，而图\ref{fig:chapter2-modules}进一步展示了各模块之间的协同关系。产品并非若干孤立功能的堆叠，而是围绕数据采集、智能分析、空间表达和辅助决策构成可闭环的产品架构。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.88\textwidth]{chapter2-modules.png}
+	\caption{智舆核心模块关系图}
+	\label{fig:chapter2-modules}
+\end{figure}
+
+由此可见，智舆的产品能力并非停留在模块罗列层面，而是围绕真实业务流程形成前后衔接的能力链条。
+
+为展示更直观地理解产品界面的组织逻辑与交互细节，图\ref{fig:chapter2-ui-elements-guide}对主界面的核心元素进行了详细标注，包括数据筛选区、风险列表区、地图视图区、分析工具区和决策入口区的布局与功能说明。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.92\textwidth]{chapter2-ui-elements-guide.png}
+	\caption{智舆界面元素详解}
+	\label{fig:chapter2-ui-elements-guide}
+\end{figure}
+
+基于这一界面组织方式，下面结合不同用户场景说明系统的落地使用方式。
+
+\section{典型应用场景}
+
+\subsection{政府治理场景}
+围绕民生热线、突发事件、消费维权和环境问题，系统帮助管理者形成“发现异常、识别主题、查看空间分布、生成处置建议、记录反馈结果”的闭环流程。
+
+在政府治理场景中，AI 分析结果需要以高密度、可解释的方式呈现给业务人员。图\ref{fig:chapter2-ai-wordcloud}给出了 AI 语义分析与词云聚合的组合界面，一方面帮助管理者快速识别事件类别、情绪倾向与风险标签，另一方面帮助其从高频词中把握群众关注焦点。
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{chapter2-ai-analysis.png}\\[0.3em]
+		{\small （a）AI 语义分析界面}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{chapter2-wordcloud.png}\\[0.3em]
+		{\small （b）热点词云界面}
+	\end{minipage}
+	\caption{AI 分析与热点词云组合展示}
+	\label{fig:chapter2-ai-wordcloud}
+\end{figure}
+
+当系统完成事件识别后，还需要进一步支撑趋势判断与处置推演。图\ref{fig:chapter2-trend-decision}展示了趋势预测与决策模拟的双图联动方式，用于帮助管理者识别风险走向、比较应对策略并提前配置处置资源。
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{chapter2-trend-analysis.png}\\[0.3em]
+		{\small （a）趋势预测界面}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{chapter2-decision-sim.png}\\[0.3em]
+		{\small （b）决策模拟界面}
+	\end{minipage}
+	\caption{趋势预测与决策模拟组合展示}
+	\label{fig:chapter2-trend-decision}
+\end{figure}
+
+上述双图说明，智舆在政府治理场景中并不止于“看见问题”，而是进一步支撑“判断走向”和“比较方案”两类关键动作。这种能力使系统更接近管理者真实决策流程，也为后续面向不同场景的策略迁移提供了统一底座。
+
+\subsection{文旅景区场景}
+围绕节假日客流、服务投诉、舆论热词和品牌形象波动，系统支持景区快速掌握游客体验问题并优化服务响应。
+
+对于文旅景区等空间关联度较高的场景，单纯的列表或图表并不足以支撑现场调度。图\ref{fig:chapter2-3d-restoration}展示了三维场景复原能力，可将热点区域、风险点位和事件状态映射到空间场景中，提升跨部门协同沟通的直观性。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{chapter2-3d-restoration.png}
+	\caption{三维场景复原与空间态势展示图}
+	\label{fig:chapter2-3d-restoration}
+\end{figure}
+
+这类三维表达能力说明，智舆不仅能完成信息识别，还能把分析结果转化为便于现场理解和协同指挥的空间视图。除了景区等重空间场景外，这种可视化能力同样适用于校园与企业等需要分层研判和快速定位的问题场景。
+
+\subsection{校园与企业场景}
+围绕校园舆情预警、企业品牌声量、负面讨论扩散和突发公关风险，系统提供轻量化、可视化、可解释的研判支持。
+
+对于校园、企业以及多层级治理单位而言，风险分析不能停留在单一视角，还需要支持从全国到区县的逐级穿透。图\ref{fig:chapter2-drilldown}以四联图方式展示国家、省、市、区县四级钻取界面，体现系统在宏观态势总览与局部问题定位之间的连续分析能力。
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{chapter2-drill-national.png}\\[0.3em]
+		{\small （a）全国层级总览}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{chapter2-drill-province.png}\\[0.3em]
+		{\small （b）省级态势穿透}
+	\end{minipage}
+
+	\vspace{0.8em}
+
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{chapter2-drill-city.png}\\[0.3em]
+		{\small （c）市级问题定位}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{chapter2-drill-district.png}\\[0.3em]
+		{\small （d）区县精细化研判}
+	\end{minipage}
+	\caption{国家、省、市、区县四级穿透分析界面}
+	\label{fig:chapter2-drilldown}
+\end{figure}
+
+除静态分析能力外，智舆还强调用户在系统中的操作路径应当清晰、连贯、可复用。图\ref{fig:chapter2-interaction-flow}展示了从信息进入、智能分析、结果查看到辅助决策的交互流程，体现了产品工作流与用户任务链路的一致性。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{chapter2-interaction-flow.png}
+	\caption{智舆交互流程图}
+	\label{fig:chapter2-interaction-flow}
+\end{figure}
+
+总体来看，智舆已经形成从信息采集、智能分析到可视化呈现和辅助决策的完整交互闭环。这样的产品组织方式既有利于下沉市场客户快速上手，也为后续功能扩展与场景复制保留了清晰的演进空间。
