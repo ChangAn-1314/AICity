@@ -1,0 +1,258 @@
+% !TEX program = xelatex
+\documentclass[12pt,a4paper,openany,fontset=windows,AutoFakeBold=2]{ctexbook}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage[table]{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{etoolbox}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage[skip=12pt,indent=2em]{parskip}
+\usepackage{caption}
+\usepackage{eso-pic}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+\usetikzlibrary{calc,shapes.geometric}
+
+\pgfplotsset{compat=1.18}
+
+\geometry{left=3cm,right=3cm,top=3cm,bottom=2.3cm}
+\setmainfont{Segoe UI}
+\setsansfont{Segoe UI}
+\setmonofont{Consolas}
+\setCJKmainfont{Microsoft YaHei}
+\setCJKsansfont{Microsoft YaHei}
+\setCJKmonofont{Microsoft YaHei UI}
+\renewcommand{\familydefault}{\sfdefault}
+\setlength{\parindent}{2em}
+\setstretch{1.5}
+\graphicspath{{picture/}}
+
+\definecolor{primaryblue}{RGB}{18,73,132}
+\definecolor{accentgold}{RGB}{191,144,0}
+\definecolor{lightbg}{RGB}{247,249,252}
+\definecolor{headercharcoal}{RGB}{54,60,67}
+\definecolor{pagehexcyan}{RGB}{0,176,185}
+\definecolor{pagehexcyandark}{RGB}{0,124,146}
+\definecolor{pagehexcyanlight}{RGB}{80,219,224}
+\definecolor{tablealt}{RGB}{248,250,252}
+\definecolor{tablegrid}{RGB}{214,222,228}
+
+\hypersetup{colorlinks=true,linkcolor=primaryblue,urlcolor=primaryblue}
+
+\newcommand{\chuhao}{\fontsize{42pt}{50pt}\selectfont}
+\newcommand{\xiaochuhao}{\fontsize{36pt}{44pt}\selectfont}
+\newcommand{\yihao}{\fontsize{26pt}{32pt}\selectfont}
+\newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}
+\newcommand{\sanhao}{\fontsize{16pt}{24pt}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{22pt}\selectfont}
+\newcommand{\xiaosi}{\fontsize{12pt}{20pt}\selectfont}
+
+\titleformat{\chapter}[block]
+  {\thispagestyle{empty}\raggedright\sffamily\bfseries\color{pagehexcyan}}
+  {\erhao 第\chinese{chapter}章}
+  {0.8em}
+  {\xiaochuhao}
+\titleformat{name=\chapter,numberless}[block]
+  {\thispagestyle{empty}\raggedright\sffamily\bfseries\color{pagehexcyan}}
+  {}
+  {0pt}
+  {\xiaochuhao}
+\titleformat{\section}{\raggedright\sffamily\bfseries\sanhao\color{pagehexcyan}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\raggedright\sffamily\bfseries\sihao\color{primaryblue}}{\thesubsection}{0.8em}{}
+\titlespacing*{\chapter}{0pt}{0.8em}{1.1em}
+\titlespacing*{\section}{0pt}{1.4em}{24pt}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.5em}
+
+\renewcommand{\arraystretch}{1.22}
+\setlength{\arrayrulewidth}{0.25pt}
+\arrayrulecolor{pagehexcyan}
+\heavyrulewidth=0.5pt
+\lightrulewidth=0.5pt
+\cmidrulewidth=0.5pt
+\aboverulesep=0pt
+\belowrulesep=0pt
+\cmidrulesep=0pt
+\cmidrulekern=0pt
+
+\newcommand{\tblhead}[1]{%
+  \cellcolor{pagehexcyan}{%
+    \parbox[c][4.8ex][c]{\linewidth}{\centering\color{white}\bfseries #1}%
+  }%
+}
+
+\newcommand{\rowsep}{\arrayrulecolor{pagehexcyan}\specialrule{0.3pt}{0pt}{0pt}}
+
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+
+\DeclareCaptionLabelFormat{planlabel}{\textcolor{pagehexcyan}{#1~#2}}
+\captionsetup{
+  font={small,sf},
+  labelfont={bf,sf},
+  textfont={sf,color=headercharcoal},
+  labelformat=planlabel,
+  labelsep=quad,
+  skip=4pt
+}
+\captionsetup[figure]{justification=centering}
+\captionsetup[table]{justification=centering}
+
+\pagestyle{empty}
+\makeatletter
+\let\ps@plain\ps@empty
+\let\cleardoublepage\clearpage
+\makeatother
+
+\newif\ifshowpageframe
+\showpageframetrue
+
+\newcommand{\hidepageframe}{\global\showpageframefalse}
+\newcommand{\showpageframe}{\global\showpageframetrue}
+
+\let\paperchapterorig\chapter
+\RenewDocumentCommand{\chapter}{s o m}{%
+  \IfBooleanTF{#1}{%
+    \paperchapterorig*{#3}%
+  }{%
+    \IfNoValueTF{#2}{\paperchapterorig{#3}}{\paperchapterorig[#2]{#3}}%
+  }%
+}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\newtcolorbox{infobox}[1]{
+  colback=lightbg,
+  colframe=primaryblue,
+  boxrule=0.8pt,
+  arc=2pt,
+  title=#1
+}
+
+\newcommand{\placeholderfigure}[4][0.86\textwidth]{
+  \begin{figure}[H]
+  \centering
+  \fcolorbox{primaryblue}{lightbg}{%
+    \begin{minipage}[c][5.4cm][c]{#1}
+    \centering
+    {\heiti\sihao #2\par}
+    \vspace{0.4cm}
+    {\xiaosi #3\par}
+    \end{minipage}%
+  }
+  \caption{#4}
+  \end{figure}
+}
+
+\newcommand{\pageheadercenterY}{1.02cm}
+\newcommand{\pageheaderheight}{0.38cm}
+\newcommand{\pagewatermarkwidth}{2.18cm}
+\newcommand{\pagehexsize}{1.92cm}
+
+\newcommand{\setglobalbackground}{%
+  \AddToShipoutPictureBG{%
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[anchor=south west,inner sep=0pt] at (current page.south west) {%
+        \IfFileExists{cover-background.jpg}{%
+          \includegraphics[width=\paperwidth,height=\paperheight]{cover-background.jpg}%
+        }{%
+          \includegraphics[width=\paperwidth,height=\paperheight]{cover-background.png}%
+        }%
+      };
+      \fill[white,opacity=0.35] (current page.south west) rectangle (current page.north east);
+    \end{tikzpicture}%
+  }%
+}
+
+\newcommand{\setpageframe}{%
+  \AddToShipoutPictureFG{%
+    \begin{tikzpicture}[remember picture,overlay]
+      \ifshowpageframe
+      \fill[headercharcoal]
+        ($(current page.north west)+(0,-\pageheadercenterY+0.19cm)$)
+        rectangle
+        ($(current page.north east)+(0,-\pageheadercenterY-0.19cm)$);
+      \node[
+        anchor=west,
+        text=white,
+        font=\heiti\fontsize{10.5pt}{10.5pt}\selectfont
+      ] at ($(current page.north west)+(3cm,-\pageheadercenterY)$) {智舆};
+      \node[
+        regular polygon,
+        regular polygon sides=6,
+        shape border rotate=30,
+        shade,
+        left color=pagehexcyandark,
+        right color=pagehexcyanlight,
+        draw=none,
+        minimum size=\pagehexsize,
+        inner sep=0pt
+      ] (pagenumberbadge) at ($(current page.north east)+(-1.76cm,-\pageheadercenterY)$) {};
+      \node[
+        text=white,
+        font=\bfseries\fontsize{12pt}{12pt}\selectfont
+      ] at (pagenumberbadge.center) {\thepage};
+      \node[
+        anchor=south east,
+        inner sep=0pt,
+        opacity=0.14
+      ] at ($(current page.south east)+(-0.62cm,0.28cm)$) {%
+        \includegraphics[width=\pagewatermarkwidth]{logonew.png}%
+      };
+      \node[
+        anchor=south east,
+        inner sep=0pt
+      ] at ($(current page.south east)+(-0.68cm,0.34cm)$) {%
+        \includegraphics[width=\pagewatermarkwidth]{logonew.png}%
+      };
+      \fi
+    \end{tikzpicture}%
+  }%
+}
+
+\begin{document}
+
+\color{headercharcoal}
+
+\setglobalbackground
+\setpageframe
+
+\hidepageframe
+\input{chapters/cover}
+\showpageframe
+\frontmatter
+\hidepageframe
+\tableofcontents
+\showpageframe
+
+\mainmatter
+\input{chapters/abstract}
+\input{chapters/chapter1_background}
+\input{chapters/chapter2_product}
+\input{chapters/chapter3_technology}
+\input{chapters/chapter4_market}
+\input{chapters/chapter5_business}
+\input{chapters/chapter6_execution}
+\input{chapters/chapter7_finance}
+\input{chapters/chapter8_team}
+\input{chapters/chapter9_social_value}
+\input{chapters/chapter10_risk}
+\input{chapters/appendix}
+
+\end{document}
