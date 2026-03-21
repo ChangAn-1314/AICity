@@ -31,6 +31,7 @@
     "@vitest/coverage-v8": "^4.0.15",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.20",
+    "baseline-browser-mapping": "^2.10.0",
     "jsdom": "^27.2.0",
     "playwright": "^1.57.0",
     "postcss": "^8.5.1",
