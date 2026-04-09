@@ -1,0 +1,114 @@
+\chapter{团队构成、组织机制与资源协同}
+
+\section{团队互补性}
+
+智舆项目的核心竞争力不仅来自技术路线，还来自团队的复合协同能力。围绕城市治理型 AI 产品的落地，需要同时具备前端展示、后端工程、AI 分析、数据处理、产品设计和商业推进能力，因此团队必须形成技术实现、场景理解、方案表达三位一体结构。
+
+\begin{table}[htbp]
+\t\centering
+\t\caption{团队角色分工}
+\t\begin{tabularx}{\textwidth}{|L{2.6cm}L{3.2cm}YL{2.8cm}|}
+\t\t\toprule
+\t\t\tblhead{角色} & \tblhead{核心职责} & \tblhead{价值说明} & \tblhead{配置方式} \\
+\t\t\midrule
+\t\t\rowcolors{2}{tablealt}{white}
+\t\t产品负责人 & 定义场景、统筹版本、组织调研、把控商业计划书主线 & 连接用户需求、技术研发和方案表达，是项目节奏控制中枢 & 由核心成员承担 \\
+\t\t前端与可视化负责人 & 负责界面交互、态势大屏、图表表达与演示体验 & 直接影响客户和试点单位对产品可用性的第一感知 & 由专项成员承担 \\
+\t\t后端与数据工程负责人 & 负责数据接入、接口设计、任务调度、存储与日志管理 & 决定系统的稳定性、扩展性和试点部署效率 & 由专项成员承担 \\
+\t\tAI 与算法负责人 & 负责语义分析、情绪识别、事件抽取、多 Agent 推演和模型调优 & 决定项目 AI+ 能力是否真实有效、是否可解释 & 由专项成员承担 \\
+\t\t运营与商务负责人 & 负责调研访谈、试点推进、资料归档、合作沟通与传播 & 决定项目能否完成从产品原型到市场样板的转化 & 由专项成员承担 \\
+\t\t\bottomrule
+\t\end{tabularx}
+\end{table}
+
+\section{组织机制}
+
+团队组织机制应服务于快速验证、持续迭代、证据沉淀三类目标，而不是停留在临时分工层面。项目采用双周迭代机制，以需求池、版本池和证据池三套清单并行管理。
+
+\begin{table}[htbp]
+\t\centering
+\t\caption{项目组织机制设计}
+\t\begin{tabularx}{\textwidth}{|L{3cm}YL{3cm}|}
+\t\t\toprule
+\t\t\tblhead{机制模块} & \tblhead{运行方式} & \tblhead{输出结果} \\
+\t\t\midrule
+\t\t\rowcolors{2}{tablealt}{white}
+\t\t需求评审机制 & 每周整理来自调研、试点、客户反馈和开发过程的问题，按优先级进入需求池 & 需求优先级列表、版本排期 \\
+\t\t双周迭代机制 & 以两周为一个开发周期，明确本期目标、演示件和验收标准 & 迭代计划表、版本更新说明 \\
+\t\t证据归档机制 & 每次迭代同步归档截图、录屏、测试记录、访谈纪要与复盘结论 & 附录证据包、真实性索引表 \\
+\t\t质量复盘机制 & 对模型输出、系统性能、演示稳定性和用户反馈做阶段复盘 & 问题闭环清单、优化方案 \\
+\t\t关键事项决策机制 & 对试点范围、成本投入、版本方向和对外承诺形成小组集体决策 & 决策纪要、风险提示 \\
+\t\t\bottomrule
+\t\end{tabularx}
+\end{table}
+
+该机制的目标，是让团队具备创业团队的执行逻辑。重要事项可追溯，需求变更可记录，成果迭代可证明。
+
+\section{外部资源支撑}
+
+智舆并非孤立完成，其成长依赖学校平台、实验室资源、指导教师、赛事平台与地方合作网络的共同支撑。产教融合的价值在于学校提供人才与实验环境，导师提供方法与方向校正，赛事平台提供展示与验证场景，地方资源提供真实需求与试点机会。
+
+\begin{table}[htbp]
+\t\centering
+\t\caption{外部资源支撑矩阵}
+\t\begin{tabularx}{\textwidth}{|L{3cm}YL{3cm}|}
+\t\t\toprule
+\t\t\tblhead{资源类型} & \tblhead{支撑方式} & \tblhead{预期价值} \\
+\t\t\midrule
+\t\t\rowcolors{2}{tablealt}{white}
+\t\t学校平台 & 提供创新项目孵化、跨专业协作和展示支持 & 降低早期研发与组织成本 \\
+\t\t实验室与课程资源 & 提供数据分析、算法实验和项目实践环境 & 提升技术验证效率 \\
+\t\t指导教师 & 提供技术路线、商业表达和合规边界指导 & 避免项目方向偏离真实需求 \\
+\t\t赛事平台 & 提供客户反馈、同行比较和成果展示窗口 & 加快产品表达与市场验证 \\
+\t\t地方合作网络 & 提供调研对象、试点触点和真实业务场景 & 增强落地真实性和复制机会 \\
+\t\t\bottomrule
+\t\end{tabularx}
+\end{table}
+
+团队在相关方向上已形成一定项目积累。除智舆项目本身外，团队已有 VisionAgentSystem 相关研究与成果沉淀，已取得校级科研项目立项、挑战杯省级奖项和软件著作权登记。这些积累说明团队并非从零开始进入 AI 智能体与多模态应用方向，而是在既有研究基础上继续推进城市治理场景的产品化探索，相关研究工作具有一定连续性。
+
+\begin{figure}[htbp]
+\t\centering
+\t\includegraphics[width=0.48\textwidth]{picture/vision-agent-award.jpg}
+\t\hfill
+\t\includegraphics[width=0.48\textwidth]{picture/vision-agent-copyright.png}
+\t\caption{团队相关项目积累：省级竞赛成果与软件著作权}
+\t\label{fig:chapter8-team-evidence}
+\end{figure}
+
+\begin{figure}[htbp]
+\t\centering
+\t\includegraphics[width=0.58\textwidth]{picture/vision-agent-school-project.png}
+\t\caption{团队相关项目积累：VisionAgentSystem 校级科研项目申报评审材料}
+\t\label{fig:chapter8-team-school-project}
+\end{figure}
+
+\section{治理原则与长期稳定性}
+
+项目运营主体\textbf{和鸣科技(武汉)有限公司}已于 2026 年 2 月完成工商注册，法定代表人为安朝辉，注册资本 50 万元，经营范围涵盖人工智能应用软件开发、数据处理和存储支持服务、软件开发、技术服务等。公司主体的建立为项目商业化运作提供了法律基础和市场信用支撑。
+
+\begin{figure}[htbp]
+\t\centering
+\t\includegraphics[width=0.58\textwidth]{picture/heming-business-license.png}
+\t\caption{和鸣科技(武汉)有限公司电子营业执照}
+\t\label{fig:chapter8-business-license}
+\end{figure}
+
+考虑到项目当前仍处于比赛团队向创业团队过渡阶段，治理结构的重点在于明确控制权、激励机制和关键岗位稳定性，不提前包装成熟公司架构。
+
+\begin{table}[htbp]
+\t\centering
+\t\caption{治理原则}
+\t\begin{tabularx}{\textwidth}{|L{3cm}Y|}
+\t\t\toprule
+\t\t\tblhead{治理原则} & \tblhead{具体内容} \\
+\t\t\midrule
+\t\t\rowcolors{2}{tablealt}{white}
+\t\t控制权稳定 & 由核心发起人保持主要决策权，确保产品路线和试点节奏不被频繁打断 \\
+\t\t激励可持续 & 对核心研发、关键运营和长期贡献成员预留激励空间，提升稳定性 \\
+\t\t职责清晰 & 产品、技术、商务、财务等关键职能需明确责任边界，避免多人交叉失控 \\
+\t\t重大事项共决 & 对外合作承诺、预算使用、数据合规和版本方向应形成集体审议机制 \\
+\t\t真实性优先 & 团队对外表达必须与实际进度一致，避免因过度包装损伤公信力 \\
+\t\t\bottomrule
+\t\end{tabularx}
+\end{table}

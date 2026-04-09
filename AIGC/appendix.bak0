@@ -1,0 +1,104 @@
+\chapter{附录与证据材料索引}
+
+\section{附录索引设计}
+
+附录的价值在于快速验证正文中的关键结论。附录以“材料类型 + 支撑结论 + 当前状态”三列方式建立索引，优先保证高价值材料先被定位到。
+
+\begin{table}[htbp]
+\t\centering
+\t\caption{附录索引表}
+\t\begin{tabularx}{\textwidth}{|L{2.2cm}L{3.6cm}Y|}
+\t\t\hline
+\t\t\tblhead{附件编号} & \tblhead{材料类型} & \tblhead{支撑的正文结论} \\
+\t\t\hline
+\t\t\rowcolors{2}{tablealt}{white}
+\t\tA-00 & 公司营业执照与工商信息 & 支撑和鸣科技(武汉)有限公司主体真实性 \\
+\t\tA-01 & 客户沟通记录与需求确认材料 & 支撑首个企业客户合作进展与本地部署口径 \\
+\t\tA-02 & 系统页面截图与原型图 & 支撑项目具备原型和交互流程基础 \\
+\t\tA-03 & 测试记录与版本说明 & 支撑项目存在持续研发与迭代痕迹 \\
+\t\tA-04 & 试点方案、会议纪要、意向材料 & 支撑地方落地与合作推进的真实性 \\
+\t\tA-05 & 代码仓库关键页面截图 & 支撑工程基础与研发过程可追溯 \\
+\t\tA-06 & 团队证明、获奖与软著材料 & 支撑团队能力与项目积累 \\
+\t\tA-07 & 财务测算底表与参数说明 & 支撑收入、成本和盈亏平衡推导逻辑 \\
+\t\t\hline
+\t\end{tabularx}
+\end{table}
+
+\section{关键证明材料}
+
+本次版本已补入项目运营主体证明材料以及团队相关成果材料，用于支撑正文中关于主体真实性、团队积累与持续研发能力的表述。
+
+\begin{figure}[p]
+\t\centering
+\t\includegraphics[angle=90,width=0.985\textwidth,height=0.94\textheight,keepaspectratio]{picture/heming-business-license.png}
+\t\caption{公司主体证明材料：和鸣科技(武汉)有限公司电子营业执照}
+\t\label{fig:appendix-business-license}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[p]
+\t\centering
+\t\includegraphics[width=0.95\textwidth,height=0.92\textheight,keepaspectratio]{picture/vision-agent-school-project.png}
+\t\caption{团队相关成果材料：VisionAgentSystem 校级科研项目申报评审材料}
+\t\label{fig:appendix-team-school-project}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[p]
+\t\centering
+\t\includegraphics[angle=90,width=0.985\textwidth,height=0.94\textheight,keepaspectratio]{picture/vision-agent-award.jpg}
+\t\caption{团队相关成果材料：VisionAgentSystem 省级竞赛奖项}
+\t\label{fig:appendix-team-award}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[p]
+\t\centering
+\t\includegraphics[width=0.95\textwidth,height=0.92\textheight,keepaspectratio]{picture/vision-agent-copyright.png}
+\t\caption{团队相关成果材料：VisionAgentSystem 软件著作权}
+\t\label{fig:appendix-team-copyright}
+\end{figure}
+
+\clearpage
+
+\section{测试与评估模板}
+
+\begin{table}[htbp]
+\t\centering
+\t\caption{测试与评估模板}
+\t\begin{tabularx}{\textwidth}{|L{3.2cm}Y|}
+\t\t\hline
+\t\t\tblhead{模板名称} & \tblhead{字段说明} \\
+\t\t\hline
+\t\t\rowcolors{2}{tablealt}{white}
+\t\t测试指标定义表 & 指标名称、定义方式、采样频率、目标值、说明 \\
+\t\t试点评估表 & 试点场景、试点周期、使用人数、主要成效、问题清单、下一步计划 \\
+\t\t真实性核验表 & 正文结论、对应附件编号、材料状态、核验结果、备注 \\
+\t\t版本迭代记录表 & 版本编号、更新时间、改动内容、测试结果、截图索引 \\
+\t\t\hline
+\t\end{tabularx}
+\end{table}
+
+\section{真实性核验清单}
+
+\begin{table}[htbp]
+\t\centering
+\t\caption{真实性核验清单示例}
+\t\begin{tabularx}{\textwidth}{|L{4cm}L{3cm}Y|}
+\t\t\hline
+\t\t\tblhead{正文关键结论} & \tblhead{对应材料类型} & \tblhead{核验要求} \\
+\t\t\hline
+\t\t\rowcolors{2}{tablealt}{white}
+\t\t项目具备完整商业计划书工程 & PDF 成稿、LaTeX 目录截图 & 核验目录完整、章节可编译、页码连续 \\
+\t\t项目具备原型与界面基础 & 系统截图、录屏、交互稿 & 核验界面真实存在，避免只保留静态概念图 \\
+\t\t项目具备试点推进基础 & 会议纪要、需求确认单、意向材料 & 核验沟通对象、场景边界和推进状态 \\
+\t\t项目财务测算有推导逻辑 & 测算底表、参数说明、敏感性分析表 & 核验关键参数来源与口径说明是否一致 \\
+\t\t团队能力表述可信 & 成员分工说明、作品截图、奖项或证明材料 & 核验成员职责与已承担工作是否匹配 \\
+\t\t社会价值不是空泛口号 & 指标设计表、试点评估表、用户反馈 & 核验价值表达是否能落到可衡量结果 \\
+\t\t风险控制机制可执行 & 风险矩阵、权限与复核机制说明 & 核验风险是否有明确责任人与应对动作 \\
+\t\t\hline
+\t\end{tabularx}
+\end{table}
