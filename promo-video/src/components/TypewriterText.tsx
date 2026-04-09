@@ -55,7 +55,7 @@ export const TypewriterText: React.FC<{
         <span
           style={{
             opacity: cursorOpacity,
-            color: COLORS.cyan,
+            color: COLORS.secondary,
             fontWeight: "100",
           }}
         >

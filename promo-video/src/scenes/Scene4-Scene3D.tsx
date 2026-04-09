@@ -9,6 +9,7 @@ import {
 import {ThreeCanvas} from "@remotion/three";
 import {COLORS} from "../config";
 import {MovingCamera} from "../components/MovingCamera";
+import {StudioLights} from "../components/StudioLights";
 import {VideoScreen} from "../components/VideoScreen";
 
 export const Scene4Scene3D: React.FC = () => {
@@ -45,13 +46,16 @@ export const Scene4Scene3D: React.FC = () => {
           lookAt={[0, 0, 0]}
           fov={50}
         />
-        <ambientLight intensity={1} />
+        <StudioLights />
         <VideoScreen
           src="video/3d场景还原展示.mp4"
           position={[0, 0, 0]}
           rotation={[0, videoRotY, 0]}
           width={16}
           height={9}
+          showReflection
+          reflectionOpacity={0.12}
+          showShell
         />
       </ThreeCanvas>
     </AbsoluteFill>

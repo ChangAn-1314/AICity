@@ -9,6 +9,7 @@ import {
 import {ThreeCanvas} from "@remotion/three";
 import {COLORS, FONTS} from "../config";
 import {MovingCamera} from "../components/MovingCamera";
+import {StudioLights} from "../components/StudioLights";
 import {VideoScreen} from "../components/VideoScreen";
 
 export const Scene2MapOverview: React.FC = () => {
@@ -39,13 +40,15 @@ export const Scene2MapOverview: React.FC = () => {
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
       <ThreeCanvas width={width} height={height} style={{position: "absolute"}}>
         <MovingCamera position={[cameraX, cameraY, cameraZ]} lookAt={[0, 0, 0]} fov={50} />
-        <ambientLight intensity={1} />
+        <StudioLights />
         <VideoScreen
           src="video/全国视图 旋转画面 （舆情气泡 连接线 全国轮廓）.mp4"
           position={[0, 0, 0]}
           rotation={[-0.3, 0, 0]}
           width={16}
           height={9}
+          showReflection
+          showShell
         />
       </ThreeCanvas>
 
