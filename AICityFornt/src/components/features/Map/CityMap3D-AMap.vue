@@ -2513,11 +2513,6 @@ onMounted(() => {
   window.addEventListener("navigate-to-hotspot", handleGlobalNavigate);
 });
 
-// 暴露地图实例供外部使用（如演示模式）
-defineExpose({
-  mapInstance
-});
-
 onUnmounted(() => {
   // 移除全局事件监听
   window.removeEventListener("navigate-to-hotspot", handleGlobalNavigate);

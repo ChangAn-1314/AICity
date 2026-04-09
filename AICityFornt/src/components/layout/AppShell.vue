@@ -32,11 +32,9 @@ import StatisticsReport from "@/components/features/Reports/StatisticsReport.vue
 import ReportGenerator from "@/components/features/Reports/ReportGenerator.vue";
 
 import VoiceButton from "@/components/features/Voice/VoiceButton.vue";
-import DemoButton from "@/components/features/Demo/DemoButton.vue";
 import { useFocusMode } from "@/composables/useFocusMode";
 import { useStaggeredEntrance } from "@/composables/useStaggeredEntrance";
 import { useMapStore } from "@/stores/map";
-import { useDemoMode } from "@/composables/useDemoMode";
 
 const { isFocusMode } = useFocusMode();
 const { isReady, getStaggerStyle } = useStaggeredEntrance({
@@ -45,10 +43,6 @@ const { isReady, getStaggerStyle } = useStaggeredEntrance({
 });
 
 const mapStore = useMapStore();
-const { isDemoPlaying, demoProgress, initDemo, playDemo, stopDemo } = useDemoMode();
-
-// 地图组件引用
-const cityMapRef = ref(null);
 
 // --- City Selector Logic ---
 const selectedRegion = ref([])
@@ -189,16 +183,6 @@ onMounted(() => {
       }
     }
   });
-  
-  // 初始化演示模式 - 等待地图加载完成
-  setTimeout(() => {
-    if (cityMapRef.value?.mapInstance) {
-      initDemo(cityMapRef.value.mapInstance, mapStore);
-      console.log('[AppShell] 演示模式已初始化');
-    } else {
-      console.warn('[AppShell] 地图实例未就绪，演示模式初始化失败');
-    }
-  }, 2000);
 });
 
 // Provide control to DynamicIsland
@@ -240,15 +224,6 @@ const toggleRightPanel = () => {
   <div
     class="relative w-full h-screen bg-slate-900 text-slate-50 overflow-hidden font-sans select-none"
   >
-    <!-- Demo Button -->
-    <DemoButton
-      :show="true"
-      :isPlaying="isDemoPlaying"
-      :progress="demoProgress"
-      @play="playDemo"
-      @stop="stopDemo"
-    />
-
     <!-- Admin Overlay -->
     <Transition name="fade">
       <AdminLayout
@@ -293,7 +268,7 @@ const toggleRightPanel = () => {
       class="absolute inset-0 z-0 transition-all duration-500"
       :class="{ 'scale-105': isFocusMode }"
     >
-      <CityMap3D ref="cityMapRef" />
+      <CityMap3D />
       <!-- Background Overlay for better text contrast -->
       <div class="absolute inset-0 bg-slate-900/20 pointer-events-none"></div>
     </div>
