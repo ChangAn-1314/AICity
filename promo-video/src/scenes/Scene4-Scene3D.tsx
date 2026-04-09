@@ -17,16 +17,22 @@ export const Scene4Scene3D: React.FC = () => {
   const {width, height} = useVideoConfig();
 
   const cameraAngle = interpolate(
-    frame, [0, 300], [-0.4, Math.PI * 0.5],
-    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)}
+    frame,
+    [0, 90, 240, 300],
+    [-0.32, -0.12, 0.86, 1.02],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const cameraRadius = interpolate(
-    frame, [0, 150, 300], [11, 7, 9],
-    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)}
+    frame,
+    [0, 90, 240, 300],
+    [10.4, 9.2, 7.4, 7.6],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const cameraY = interpolate(
-    frame, [0, 150, 300], [4, 0.5, 2],
-    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)}
+    frame,
+    [0, 90, 240, 300],
+    [3.6, 2.7, 1.1, 1.25],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
   const videoRotY = interpolate(
@@ -54,9 +60,13 @@ export const Scene4Scene3D: React.FC = () => {
           width={16}
           height={9}
           showReflection
-          reflectionOpacity={0.12}
+          reflectionOpacity={0.06}
           showShell
         />
+        <mesh position={[-5.2, 1.1, 2.1]} rotation={[0.08, 0.22, 0]}>
+          <planeGeometry args={[2.2, 10.5]} />
+          <meshBasicMaterial color="#080808" transparent opacity={0.05} />
+        </mesh>
       </ThreeCanvas>
     </AbsoluteFill>
   );

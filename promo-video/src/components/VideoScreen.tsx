@@ -113,7 +113,7 @@ export const VideoScreen: React.FC<SharedProps> = ({
   mode = "plane",
   curvature = 18,
   showReflection = true,
-  reflectionOpacity = 0.14,
+  reflectionOpacity = 0.08,
   reflectionOffset = 0.45,
   showShell = true,
   shellDepth = 0.14,
@@ -166,7 +166,7 @@ export const VideoScreen: React.FC<SharedProps> = ({
       {showReflection ? (
         <mesh position={[0, -height - reflectionOffset, 0.02]} rotation={[-Math.PI / 2, 0, 0]}>
           <planeGeometry args={[width * 1.12, height * 0.92]} />
-          <meshStandardMaterial color="#0f0f0f" transparent opacity={0.12} roughness={0.24} metalness={0.08} />
+          <meshStandardMaterial color="#0f0f0f" transparent opacity={0.07} roughness={0.24} metalness={0.08} />
         </mesh>
       ) : null}
     </group>

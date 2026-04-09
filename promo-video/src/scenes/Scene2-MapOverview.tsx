@@ -17,18 +17,24 @@ export const Scene2MapOverview: React.FC = () => {
   const {width, height} = useVideoConfig();
 
   const cameraY = interpolate(
-    frame, [0, 360], [7, 1.5],
-    {extrapolateRight: "clamp", easing: Easing.bezier(0.25, 0.1, 0.25, 1)}
+    frame,
+    [0, 90, 270, 360],
+    [7.2, 5.6, 2.2, 1.8],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
   const cameraZ = interpolate(
-    frame, [0, 360], [12, 7],
-    {extrapolateRight: "clamp", easing: Easing.bezier(0.25, 0.1, 0.25, 1)}
+    frame,
+    [0, 90, 270, 360],
+    [12.4, 11.2, 8.1, 7.7],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
   const cameraX = interpolate(
-    frame, [0, 360], [-1, 1],
-    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)}
+    frame,
+    [0, 120, 270, 360],
+    [-0.8, -0.5, 0.3, 0.55],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
   const titleOpacity = interpolate(
@@ -48,6 +54,7 @@ export const Scene2MapOverview: React.FC = () => {
           width={16}
           height={9}
           showReflection
+          reflectionOpacity={0.05}
           showShell
         />
       </ThreeCanvas>

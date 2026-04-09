@@ -17,16 +17,22 @@ export const Scene5Decision: React.FC = () => {
   const {width, height} = useVideoConfig();
 
   const cameraX = interpolate(
-    frame, [0, 300], [10, 0],
-    {extrapolateRight: "clamp", easing: Easing.bezier(0.25, 0.1, 0.25, 1)}
+    frame,
+    [0, 90, 240, 300],
+    [9.5, 7.4, 2.1, 1.0],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const cameraY = interpolate(
-    frame, [0, 300], [2, 0.3],
-    {extrapolateRight: "clamp", easing: Easing.bezier(0.25, 0.1, 0.25, 1)}
+    frame,
+    [0, 90, 240, 300],
+    [1.8, 1.55, 0.9, 0.82],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const cameraZ = interpolate(
-    frame, [0, 300], [6, 9],
-    {extrapolateRight: "clamp", easing: Easing.bezier(0.25, 0.1, 0.25, 1)}
+    frame,
+    [0, 90, 240, 300],
+    [7.2, 7.45, 8.15, 8.35],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
   return (
@@ -41,9 +47,13 @@ export const Scene5Decision: React.FC = () => {
           width={16}
           height={9}
           showReflection
-          reflectionOpacity={0.11}
+          reflectionOpacity={0.05}
           showShell
         />
+        <mesh position={[5.6, 0.5, 3.2]} rotation={[0, -0.18, 0]}>
+          <planeGeometry args={[2.8, 8.8]} />
+          <meshBasicMaterial color="#060606" transparent opacity={0.04} />
+        </mesh>
       </ThreeCanvas>
     </AbsoluteFill>
   );
