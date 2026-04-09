@@ -63,4 +63,4 @@ export const SCENE_DURATIONS = {
 } as const;
 
 // 转场时长
-export const TRANSITION_FRAMES = 15;
+export const TRANSITION_FRAMES = 30;

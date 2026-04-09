@@ -7,7 +7,7 @@ import {
   Easing,
 } from "remotion";
 import {ThreeCanvas} from "@remotion/three";
-import {COLORS, FONTS} from "../config";
+import {COLORS} from "../config";
 import {MovingCamera} from "../components/MovingCamera";
 import {VideoScreen} from "../components/VideoScreen";
 
@@ -16,130 +16,44 @@ export const Scene4Scene3D: React.FC = () => {
   const {width, height} = useVideoConfig();
 
   const cameraAngle = interpolate(
-    frame,
-    [0, 300],
-    [0, Math.PI * 0.4],
-    {
-      extrapolateRight: "clamp",
-      easing: Easing.inOut(Easing.ease),
-    }
+    frame, [0, 300], [-0.4, Math.PI * 0.5],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)}
   );
-
   const cameraRadius = interpolate(
-    frame,
-    [0, 150, 300],
-    [14, 8, 10],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-      easing: Easing.inOut(Easing.ease),
-    }
+    frame, [0, 150, 300], [11, 7, 9],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)}
   );
-
   const cameraY = interpolate(
-    frame,
-    [0, 150, 300],
-    [6, 1, 3],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-      easing: Easing.inOut(Easing.ease),
-    }
+    frame, [0, 150, 300], [4, 0.5, 2],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)}
   );
 
-  const titleOpacity = interpolate(
-    frame,
-    [45, 75, 255, 285],
-    [0, 1, 1, 0],
-    {extrapolateLeft: "clamp", extrapolateRight: "clamp"}
-  );
-
-  const titleY = interpolate(
-    frame,
-    [45, 75],
-    [20, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-      easing: Easing.out(Easing.ease),
-    }
-  );
-
-  const subtitleOpacity = interpolate(
-    frame,
-    [75, 105, 255, 285],
-    [0, 1, 1, 0],
-    {extrapolateLeft: "clamp", extrapolateRight: "clamp"}
+  const videoRotY = interpolate(
+    frame, [0, 300], [0, 0.15],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)}
   );
 
   return (
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
-      <ThreeCanvas
-        width={width}
-        height={height}
-        style={{position: "absolute", zIndex: 0}}
-      >
+      <ThreeCanvas width={width} height={height} style={{position: "absolute"}}>
         <MovingCamera
           position={[
             Math.sin(cameraAngle) * cameraRadius,
             cameraY,
             Math.cos(cameraAngle) * cameraRadius,
           ]}
+          lookAt={[0, 0, 0]}
           fov={50}
         />
-        <ambientLight intensity={0.8} />
-
+        <ambientLight intensity={1} />
         <VideoScreen
           src="video/3d场景还原展示.mp4"
           position={[0, 0, 0]}
+          rotation={[0, videoRotY, 0]}
           width={16}
           height={9}
         />
-
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -4.6, 0]}>
-          <planeGeometry args={[70, 70, 35, 35]} />
-          <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.02} />
-        </mesh>
       </ThreeCanvas>
-
-      <div
-        style={{
-          position: "absolute",
-          bottom: 60,
-          left: 0,
-          right: 0,
-          textAlign: "center",
-          zIndex: 2,
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: FONTS.title,
-            fontSize: 44,
-            fontWeight: 600,
-            color: COLORS.textPrimary,
-            margin: 0,
-            opacity: titleOpacity,
-            transform: `translateY(${titleY}px)`,
-            letterSpacing: "0.08em",
-          }}
-        >
-          3D 场景还原
-        </h2>
-        <p
-          style={{
-            fontFamily: FONTS.body,
-            fontSize: 22,
-            fontWeight: 400,
-            color: COLORS.textSecondary,
-            margin: "16px 0 0 0",
-            opacity: subtitleOpacity,
-            letterSpacing: "0.15em",
-          }}
-        >
-          文本 · 图片 · 视频 → 三维重建
-        </p>
-      </div>
     </AbsoluteFill>
   );
 };
