@@ -10,19 +10,7 @@ import {
 import {Video} from "@remotion/media";
 import {ThreeCanvas} from "@remotion/three";
 import {COLORS, FONTS} from "../config";
-
-const VideoPlane: React.FC<{src: string; width: number; height: number}> = ({
-  src,
-  width,
-  height,
-}) => {
-  return (
-    <mesh position={[0, 0, 0]}>
-      <planeGeometry args={[16, 9]} />
-      <meshBasicMaterial transparent opacity={0} />
-    </mesh>
-  );
-};
+import {MovingCamera} from "../components/MovingCamera";
 
 export const Scene2MapOverview: React.FC = () => {
   const frame = useCurrentFrame();
@@ -125,12 +113,9 @@ export const Scene2MapOverview: React.FC = () => {
       <ThreeCanvas
         width={width}
         height={height}
-        camera={{
-          position: [cameraX, cameraY, cameraZ],
-          fov: 50,
-        }}
         style={{position: "absolute", zIndex: 0, opacity: 0.4}}
       >
+        <MovingCamera position={[cameraX, cameraY, cameraZ]} fov={50} />
         <ambientLight intensity={0.2} />
 
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]}>

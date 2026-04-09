@@ -10,6 +10,7 @@ import {
 import {Video} from "@remotion/media";
 import {ThreeCanvas} from "@remotion/three";
 import {COLORS, FONTS} from "../config";
+import {MovingCamera} from "../components/MovingCamera";
 
 export const Scene5Decision: React.FC = () => {
   const frame = useCurrentFrame();
@@ -101,12 +102,9 @@ export const Scene5Decision: React.FC = () => {
       <ThreeCanvas
         width={width}
         height={height}
-        camera={{
-          position: [0, cameraY, cameraZ],
-          fov: 50,
-        }}
         style={{position: "absolute", zIndex: 0, opacity: 0.3}}
       >
+        <MovingCamera position={[0, cameraY, cameraZ]} fov={50} />
         <ambientLight intensity={0.15} />
 
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]}>

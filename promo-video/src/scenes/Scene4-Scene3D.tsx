@@ -10,6 +10,7 @@ import {
 import {Video} from "@remotion/media";
 import {ThreeCanvas} from "@remotion/three";
 import {COLORS, FONTS} from "../config";
+import {MovingCamera} from "../components/MovingCamera";
 
 export const Scene4Scene3D: React.FC = () => {
   const frame = useCurrentFrame();
@@ -103,16 +104,16 @@ export const Scene4Scene3D: React.FC = () => {
       <ThreeCanvas
         width={width}
         height={height}
-        camera={{
-          position: [
+        style={{position: "absolute", zIndex: 0, opacity: 0.25}}
+      >
+        <MovingCamera
+          position={[
             Math.sin(cameraAngle) * cameraRadius,
             cameraY,
             Math.cos(cameraAngle) * cameraRadius,
-          ],
-          fov: 50,
-        }}
-        style={{position: "absolute", zIndex: 0, opacity: 0.25}}
-      >
+          ]}
+          fov={50}
+        />
         <ambientLight intensity={0.1} />
 
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]}>
