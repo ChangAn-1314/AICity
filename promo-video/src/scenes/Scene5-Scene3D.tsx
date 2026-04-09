@@ -1,206 +1,145 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {
   useCurrentFrame,
   useVideoConfig,
   interpolate,
   AbsoluteFill,
   Easing,
+  staticFile,
 } from "remotion";
+import {Video} from "@remotion/media";
 import {ThreeCanvas} from "@remotion/three";
-import * as THREE from "three";
-import {COLORS, FONTS, VIDEO} from "../config";
-import {GlassPanel} from "../components/GlassPanel";
-
-const Scene3DModel: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-
-  const wireframeProgress = interpolate(frame, [30, 60], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  const solidProgress = interpolate(frame, [60, 120], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.out(Easing.quad),
-  });
-
-  const rotation = interpolate(frame, [120, 240], [0, Math.PI * 2], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  const geometry = useMemo(() => {
-    const geo = new THREE.BoxGeometry(1, 1.5, 1);
-    return geo;
-  }, []);
-
-  const wireframeMaterial = useMemo(() => {
-    return new THREE.MeshBasicMaterial({
-      color: COLORS.cyan,
-      wireframe: true,
-      transparent: true,
-    });
-  }, []);
-
-  const solidMaterial = useMemo(() => {
-    return new THREE.MeshStandardMaterial({
-      color: COLORS.cyan,
-      metalness: 0.3,
-      roughness: 0.4,
-      transparent: true,
-    });
-  }, []);
-
-  const wireframeOpacity = wireframeProgress * (1 - solidProgress);
-  const solidOpacity = solidProgress;
-
-  return (
-    <ThreeCanvas width={VIDEO.WIDTH} height={VIDEO.HEIGHT}>
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[5, 5, 5]} intensity={0.8} />
-      <perspectiveCamera position={[0, 0.5, 3]} fov={50} />
-
-      <mesh
-        geometry={geometry}
-        material={wireframeMaterial}
-        rotation={[0, rotation, 0]}
-        material-opacity={wireframeOpacity}
-      />
-      <mesh
-        geometry={geometry}
-        material={solidMaterial}
-        rotation={[0, rotation, 0]}
-        material-opacity={solidOpacity}
-      />
-    </ThreeCanvas>
-  );
-};
+import {COLORS, FONTS} from "../config";
 
 export const Scene5Scene3D: React.FC = () => {
   const frame = useCurrentFrame();
+  const {width, height} = useVideoConfig();
 
-  const newsOpacity = interpolate(frame, [0, 30], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  const cameraZ = interpolate(
+    frame,
+    [0, 60, 180, 240],
+    [20, 8, 6, 12],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: Easing.inOut(Easing.ease),
+    }
+  );
 
-  const modelOpacity = interpolate(frame, [30, 60], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  const cameraY = interpolate(
+    frame,
+    [0, 60, 180, 240],
+    [12, 4, 2, 6],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: Easing.inOut(Easing.ease),
+    }
+  );
 
-  const subtitle1Opacity = interpolate(frame, [0, 20], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const subtitle2Opacity = interpolate(frame, [60, 80], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const subtitle3Opacity = interpolate(frame, [180, 200], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  const cameraAngle = interpolate(
+    frame,
+    [0, 240],
+    [0, Math.PI * 0.5],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: Easing.inOut(Easing.ease),
+    }
+  );
 
-  const shrinkScale = interpolate(frame, [180, 210], [1, 0.3], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.in(Easing.quad),
-  });
-  const shrinkX = interpolate(frame, [180, 210], [0, 600], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const shrinkY = interpolate(frame, [180, 210], [0, -300], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  const videoOpacity = interpolate(
+    frame,
+    [0, 30, 210, 240],
+    [0, 1, 1, 0],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    }
+  );
+
+  const gridPulse = Math.sin(frame * 0.05) * 0.05 + 0.15;
+  const ringRotation = frame * 0.01;
+
+  const titleOpacity = interpolate(
+    frame,
+    [30, 60, 210, 240],
+    [0, 1, 1, 0],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    }
+  );
 
   return (
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
-      <div
-        style={{
-          position: "absolute",
-          left: 100,
-          top: "50%",
-          transform: "translateY(-50%)",
-          width: 500,
-          opacity: newsOpacity,
+      <ThreeCanvas
+        width={width}
+        height={height}
+        camera={{
+          position: [
+            Math.sin(cameraAngle) * cameraZ,
+            cameraY,
+            Math.cos(cameraAngle) * cameraZ,
+          ],
+          fov: 55,
         }}
+        style={{position: "absolute", zIndex: 1}}
       >
-        <GlassPanel>
-          <div
-            style={{
-              fontFamily: FONTS.zh,
-              fontSize: 14,
-              color: COLORS.textMuted,
-              marginBottom: 8,
-            }}
-          >
-            来源: 微博 · 2026-04-09 10:32
-          </div>
-          <div
-            style={{
-              fontFamily: FONTS.zh,
-              fontSize: 24,
-              fontWeight: "700",
-              color: COLORS.textPrimary,
-              lineHeight: 1.6,
-            }}
-          >
-            信阳市区羊山新区某路段施工围挡设置不当，引发市民通行不便
-          </div>
-          <div
-            style={{
-              marginTop: 16,
-              fontFamily: FONTS.zh,
-              fontSize: 16,
-              color: COLORS.textSecondary,
-              lineHeight: 1.8,
-            }}
-          >
-            多位市民反映该路段施工围挡占据大半路面，导致早晚高峰期间严重拥堵...
-          </div>
-        </GlassPanel>
-      </div>
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 15, 10]} intensity={0.8} />
+        <pointLight position={[0, 5, 0]} intensity={0.6} color="#06b6d4" />
 
-      <div
-        style={{
-          position: "absolute",
-          right: 100,
-          top: "50%",
-          width: 600,
-          height: 600,
-          transform: `translateY(-50%) translate(${shrinkX}px, ${shrinkY}px) scale(${shrinkScale})`,
-          opacity: modelOpacity,
-        }}
-      >
-        <Scene3DModel />
-      </div>
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]}>
+          <planeGeometry args={[60, 60, 30, 30]} />
+          <meshBasicMaterial
+            color="#06b6d4"
+            wireframe
+            transparent
+            opacity={gridPulse}
+          />
+        </mesh>
 
-      <div
+        <mesh rotation={[Math.PI / 2, 0, ringRotation]} position={[0, 3, 0]}>
+          <torusGeometry args={[5, 0.15, 16, 64]} />
+          <meshBasicMaterial
+            color="#d946ef"
+            wireframe
+            transparent
+            opacity={0.4}
+          />
+        </mesh>
+
+        <mesh rotation={[Math.PI / 3, ringRotation, 0]} position={[0, 3, 0]}>
+          <torusGeometry args={[4, 0.1, 16, 64]} />
+          <meshBasicMaterial
+            color="#06b6d4"
+            wireframe
+            transparent
+            opacity={0.3}
+          />
+        </mesh>
+      </ThreeCanvas>
+
+      <AbsoluteFill
         style={{
-          position: "absolute",
-          top: 60,
-          left: 0,
-          right: 0,
-          textAlign: "center",
+          zIndex: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          opacity: videoOpacity,
         }}
       >
-        <div
+        <Video
+          src={staticFile("video/3d场景还原展示.mp4")}
           style={{
-            fontFamily: FONTS.zh,
-            fontSize: 36,
-            fontWeight: "700",
-            color: COLORS.textPrimary,
-            opacity: subtitle1Opacity,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
           }}
-        >
-          AI根据舆情内容自动还原现场
-        </div>
-      </div>
+          muted
+        />
+      </AbsoluteFill>
 
       <div
         style={{
@@ -209,19 +148,34 @@ export const Scene5Scene3D: React.FC = () => {
           left: 0,
           right: 0,
           textAlign: "center",
+          zIndex: 3,
+          opacity: titleOpacity,
         }}
       >
-        <div
+        <h2
           style={{
-            fontFamily: FONTS.zh,
-            fontSize: 28,
-            fontWeight: "400",
-            color: COLORS.textSecondary,
-            opacity: subtitle2Opacity,
+            fontFamily: FONTS.title,
+            fontSize: 56,
+            fontWeight: 700,
+            color: COLORS.textPrimary,
+            margin: 0,
+            textShadow: `0 0 30px ${COLORS.cyanGlow}, 0 4px 20px rgba(0,0,0,0.8)`,
           }}
         >
-          文字/图片/视频 → 3D模型
-        </div>
+          AI 3D场景还原
+        </h2>
+        <p
+          style={{
+            fontFamily: FONTS.body,
+            fontSize: 28,
+            fontWeight: 400,
+            color: COLORS.textSecondary,
+            margin: "20px 0 0 0",
+            textShadow: "0 2px 10px rgba(0,0,0,0.8)",
+          }}
+        >
+          文本 · 图片 · 视频 → 三维现场重建
+        </p>
       </div>
     </AbsoluteFill>
   );

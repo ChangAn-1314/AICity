@@ -33,7 +33,9 @@ export const COLORS = {
   cyanLight: "#22d3ee",             // cyan-400
   cyanGlow: "rgba(6, 182, 212, 0.5)",
   purple: "#d946ef",                // fuchsia-500
+  purpleGlow: "rgba(217, 70, 239, 0.5)",
   emerald: "#10b981",               // emerald-500
+  emeraldGlow: "rgba(16, 185, 129, 0.5)",
   red: "#ef4444",                   // red-500
   amber: "#f59e0b",                 // amber-500
   textPrimary: "#f8fafc",           // slate-50
