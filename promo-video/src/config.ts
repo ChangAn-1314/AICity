@@ -25,23 +25,20 @@ export const FONTS = {
   data: monoFont,      // 数据用 JetBrains Mono
 } as const;
 
-// 项目配色 (来自 cyberpunk.css)
+// 项目配色 (苹果发布会风格：银灰+玻璃+冷白光)
 export const COLORS = {
-  bg: "#0f172a",                    // slate-900
-  bgPanel: "rgba(15, 23, 42, 0.6)", // slate-900/60
-  cyan: "#06b6d4",                  // cyan-500
-  cyanLight: "#22d3ee",             // cyan-400
-  cyanGlow: "rgba(6, 182, 212, 0.5)",
-  purple: "#d946ef",                // fuchsia-500
-  purpleGlow: "rgba(217, 70, 239, 0.5)",
-  emerald: "#10b981",               // emerald-500
-  emeraldGlow: "rgba(16, 185, 129, 0.5)",
-  red: "#ef4444",                   // red-500
-  amber: "#f59e0b",                 // amber-500
-  textPrimary: "#f8fafc",           // slate-50
-  textSecondary: "#94a3b8",         // slate-400
-  textMuted: "#64748b",             // slate-500
+  bg: "#0a0a0a",                    // 深黑背景
+  bgPanel: "rgba(255, 255, 255, 0.05)", // 玻璃面板
+  primary: "#e5e5e5",               // 冷白主色
+  secondary: "#a1a1a1",             // 银灰次要色
+  accent: "#ffffff",                // 纯白强调色
+  glass: "rgba(255, 255, 255, 0.08)", // 玻璃质感
+  glassStroke: "rgba(255, 255, 255, 0.15)", // 玻璃边框
+  textPrimary: "#f5f5f5",           // 主文字
+  textSecondary: "#a1a1a1",         // 次要文字
+  textMuted: "#737373",             // 弱化文字
   border: "rgba(255, 255, 255, 0.1)",
+  shadow: "rgba(0, 0, 0, 0.5)",
 } as const;
 
 // 视频常量
@@ -55,15 +52,14 @@ export const VIDEO = {
   BAR_FRAMES: 60,          // 每小节帧数 (4拍)
 } as const;
 
-// 镜头时长 (帧)
+// 镜头时长 (帧) - 6个场景
 export const SCENE_DURATIONS = {
-  scene1: 240,   // 0-8s     开场粒子城市
-  scene2: 180,   // 8-14s    品牌亮相
-  scene3: 360,   // 14-26s   全景地图
-  scene4: 300,   // 26-36s   AI分析
-  scene5: 240,   // 36-44s   3D现场还原
-  scene6: 270,   // 44-53s   决策推演
-  scene7: 210,   // 53-60s   结尾CTA
+  scene1: 240,   // 0-8s     Logo开场
+  scene2: 360,   // 8-20s    全国视图
+  scene3: 360,   // 20-32s   信阳AI分析
+  scene4: 300,   // 32-42s   3D场景还原
+  scene5: 300,   // 42-52s   AI决策推演
+  scene6: 240,   // 52-60s   结尾CTA
 } as const;
 
 // 转场时长

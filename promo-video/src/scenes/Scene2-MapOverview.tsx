@@ -11,39 +11,51 @@ import {Video} from "@remotion/media";
 import {ThreeCanvas} from "@remotion/three";
 import {COLORS, FONTS} from "../config";
 
-export const Scene3MapOverview: React.FC = () => {
+const VideoPlane: React.FC<{src: string; width: number; height: number}> = ({
+  src,
+  width,
+  height,
+}) => {
+  return (
+    <mesh position={[0, 0, 0]}>
+      <planeGeometry args={[16, 9]} />
+      <meshBasicMaterial transparent opacity={0} />
+    </mesh>
+  );
+};
+
+export const Scene2MapOverview: React.FC = () => {
   const frame = useCurrentFrame();
   const {width, height} = useVideoConfig();
 
-  const cameraX = interpolate(
+  const cameraZ = interpolate(
     frame,
-    [0, 180, 360],
-    [-5, 0, 5],
+    [0, 360],
+    [14, 8],
     {
-      extrapolateLeft: "clamp",
       extrapolateRight: "clamp",
-      easing: Easing.inOut(Easing.ease),
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
     }
   );
 
   const cameraY = interpolate(
     frame,
+    [0, 360],
+    [6, 1.5],
+    {
+      extrapolateRight: "clamp",
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+    }
+  );
+
+  const cameraX = interpolate(
+    frame,
     [0, 180, 360],
-    [3, 0, -2],
+    [-1.5, 0, 1.5],
     {
       extrapolateLeft: "clamp",
       extrapolateRight: "clamp",
       easing: Easing.inOut(Easing.ease),
-    }
-  );
-
-  const cameraZ = interpolate(
-    frame,
-    [0, 120],
-    [15, 8],
-    {
-      extrapolateRight: "clamp",
-      easing: Easing.out(Easing.quad),
     }
   );
 
@@ -59,15 +71,33 @@ export const Scene3MapOverview: React.FC = () => {
 
   const videoScale = interpolate(
     frame,
-    [0, 120],
-    [1.2, 1],
+    [0, 360],
+    [1.15, 1],
     {
       extrapolateRight: "clamp",
-      easing: Easing.out(Easing.quad),
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
     }
   );
 
-  const planeRotation = frame * 0.002;
+  const videoPerspective = interpolate(
+    frame,
+    [0, 360],
+    [8, 2],
+    {
+      extrapolateRight: "clamp",
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+    }
+  );
+
+  const videoRotateX = interpolate(
+    frame,
+    [0, 360],
+    [12, 0],
+    {
+      extrapolateRight: "clamp",
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+    }
+  );
 
   const titleOpacity = interpolate(
     frame,
@@ -79,6 +109,17 @@ export const Scene3MapOverview: React.FC = () => {
     }
   );
 
+  const titleY = interpolate(
+    frame,
+    [60, 90],
+    [30, 0],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: Easing.out(Easing.ease),
+    }
+  );
+
   return (
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
       <ThreeCanvas
@@ -86,51 +127,42 @@ export const Scene3MapOverview: React.FC = () => {
         height={height}
         camera={{
           position: [cameraX, cameraY, cameraZ],
-          fov: 60,
+          fov: 50,
         }}
-        style={{position: "absolute", zIndex: 1}}
+        style={{position: "absolute", zIndex: 0, opacity: 0.4}}
       >
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[10, 10, 10]} intensity={0.6} />
-        
-        <mesh rotation={[-Math.PI / 2, 0, planeRotation]} position={[0, -3, 0]}>
-          <planeGeometry args={[80, 80, 40, 40]} />
-          <meshBasicMaterial
-            color="#06b6d4"
-            wireframe
-            transparent
-            opacity={0.15}
-          />
-        </mesh>
+        <ambientLight intensity={0.2} />
 
-        <mesh rotation={[-Math.PI / 2, 0, -planeRotation * 0.5]} position={[0, -3.1, 0]}>
-          <planeGeometry args={[100, 100, 50, 50]} />
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]}>
+          <planeGeometry args={[60, 60, 30, 30]} />
           <meshBasicMaterial
-            color="#d946ef"
+            color="#ffffff"
             wireframe
             transparent
-            opacity={0.08}
+            opacity={0.04}
           />
         </mesh>
       </ThreeCanvas>
 
       <AbsoluteFill
         style={{
-          zIndex: 2,
+          zIndex: 1,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           opacity: videoOpacity,
+          perspective: `${1200 + videoPerspective * 100}px`,
         }}
       >
         <div
           style={{
-            transform: `scale(${videoScale})`,
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            transform: `scale(${videoScale}) rotateX(${videoRotateX}deg)`,
+            transformOrigin: "center bottom",
+            width: "92%",
+            height: "85%",
+            borderRadius: 12,
+            overflow: "hidden",
+            boxShadow: "0 40px 80px rgba(0,0,0,0.6), 0 0 1px rgba(255,255,255,0.1)",
           }}
         >
           <Video
@@ -148,38 +180,27 @@ export const Scene3MapOverview: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          top: 80,
+          top: 50,
           left: 0,
           right: 0,
           textAlign: "center",
-          zIndex: 3,
+          zIndex: 2,
           opacity: titleOpacity,
+          transform: `translateY(${titleY}px)`,
         }}
       >
         <h2
           style={{
             fontFamily: FONTS.title,
-            fontSize: 56,
-            fontWeight: 700,
+            fontSize: 44,
+            fontWeight: 600,
             color: COLORS.textPrimary,
             margin: 0,
-            textShadow: `0 0 30px ${COLORS.cyanGlow}, 0 4px 20px rgba(0,0,0,0.8)`,
+            letterSpacing: "0.08em",
           }}
         >
-          全国舆情态势一览
+          全国舆情态势
         </h2>
-        <p
-          style={{
-            fontFamily: FONTS.body,
-            fontSize: 28,
-            fontWeight: 400,
-            color: COLORS.textSecondary,
-            margin: "20px 0 0 0",
-            textShadow: "0 2px 10px rgba(0,0,0,0.8)",
-          }}
-        >
-          实时监测 · 智能分析 · 精准预警
-        </p>
       </div>
     </AbsoluteFill>
   );
