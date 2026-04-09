@@ -5,12 +5,11 @@ import {
   interpolate,
   AbsoluteFill,
   Easing,
-  staticFile,
 } from "remotion";
-import {Video} from "@remotion/media";
 import {ThreeCanvas} from "@remotion/three";
 import {COLORS, FONTS} from "../config";
 import {MovingCamera} from "../components/MovingCamera";
+import {VideoScreen} from "../components/VideoScreen";
 
 export const Scene5Decision: React.FC = () => {
   const frame = useCurrentFrame();
@@ -19,7 +18,7 @@ export const Scene5Decision: React.FC = () => {
   const cameraZ = interpolate(
     frame,
     [0, 300],
-    [14, 7],
+    [14, 6],
     {
       extrapolateRight: "clamp",
       easing: Easing.bezier(0.25, 0.1, 0.25, 1),
@@ -29,37 +28,7 @@ export const Scene5Decision: React.FC = () => {
   const cameraY = interpolate(
     frame,
     [0, 300],
-    [8, 2],
-    {
-      extrapolateRight: "clamp",
-      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-    }
-  );
-
-  const videoOpacity = interpolate(
-    frame,
-    [0, 30, 270, 300],
-    [0, 1, 1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
-  );
-
-  const videoScale = interpolate(
-    frame,
-    [0, 300],
-    [1.08, 1],
-    {
-      extrapolateRight: "clamp",
-      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-    }
-  );
-
-  const videoRotateX = interpolate(
-    frame,
-    [0, 300],
-    [6, 0],
+    [8, 1],
     {
       extrapolateRight: "clamp",
       easing: Easing.bezier(0.25, 0.1, 0.25, 1),
@@ -70,10 +39,7 @@ export const Scene5Decision: React.FC = () => {
     frame,
     [45, 75, 255, 285],
     [0, 1, 1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp"}
   );
 
   const titleY = interpolate(
@@ -91,10 +57,7 @@ export const Scene5Decision: React.FC = () => {
     frame,
     [75, 105, 255, 285],
     [0, 1, 1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp"}
   );
 
   return (
@@ -102,54 +65,23 @@ export const Scene5Decision: React.FC = () => {
       <ThreeCanvas
         width={width}
         height={height}
-        style={{position: "absolute", zIndex: 0, opacity: 0.3}}
+        style={{position: "absolute", zIndex: 0}}
       >
         <MovingCamera position={[0, cameraY, cameraZ]} fov={50} />
-        <ambientLight intensity={0.15} />
+        <ambientLight intensity={0.8} />
 
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]}>
+        <VideoScreen
+          src="video/ai决策演示.mp4"
+          position={[0, 0, 0]}
+          width={16}
+          height={9}
+        />
+
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -4.6, 0]}>
           <planeGeometry args={[60, 60, 30, 30]} />
-          <meshBasicMaterial
-            color="#ffffff"
-            wireframe
-            transparent
-            opacity={0.03}
-          />
+          <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.025} />
         </mesh>
       </ThreeCanvas>
-
-      <AbsoluteFill
-        style={{
-          zIndex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          opacity: videoOpacity,
-          perspective: "1400px",
-        }}
-      >
-        <div
-          style={{
-            transform: `scale(${videoScale}) rotateX(${videoRotateX}deg)`,
-            transformOrigin: "center bottom",
-            width: "90%",
-            height: "82%",
-            borderRadius: 12,
-            overflow: "hidden",
-            boxShadow: "0 35px 70px rgba(0,0,0,0.55), 0 0 1px rgba(255,255,255,0.08)",
-          }}
-        >
-          <Video
-            src={staticFile("video/ai决策演示.mp4")}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-            muted
-          />
-        </div>
-      </AbsoluteFill>
 
       <div
         style={{

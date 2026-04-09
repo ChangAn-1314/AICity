@@ -5,12 +5,11 @@ import {
   interpolate,
   AbsoluteFill,
   Easing,
-  staticFile,
 } from "remotion";
-import {Video} from "@remotion/media";
 import {ThreeCanvas} from "@remotion/three";
 import {COLORS, FONTS} from "../config";
 import {MovingCamera} from "../components/MovingCamera";
+import {VideoScreen} from "../components/VideoScreen";
 
 export const Scene3AIAnalysis: React.FC = () => {
   const frame = useCurrentFrame();
@@ -19,7 +18,7 @@ export const Scene3AIAnalysis: React.FC = () => {
   const cameraX = interpolate(
     frame,
     [0, 360],
-    [-3, 3],
+    [-4, 4],
     {
       extrapolateRight: "clamp",
       easing: Easing.inOut(Easing.ease),
@@ -29,7 +28,7 @@ export const Scene3AIAnalysis: React.FC = () => {
   const cameraY = interpolate(
     frame,
     [0, 180, 360],
-    [4, 2, 3],
+    [5, 1, 3],
     {
       extrapolateLeft: "clamp",
       extrapolateRight: "clamp",
@@ -37,23 +36,13 @@ export const Scene3AIAnalysis: React.FC = () => {
     }
   );
 
-  const videoOpacity = interpolate(
-    frame,
-    [0, 30, 330, 360],
-    [0, 1, 1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
-  );
-
-  const videoTranslateX = interpolate(
+  const cameraZ = interpolate(
     frame,
     [0, 360],
-    [-2, 2],
+    [12, 7],
     {
       extrapolateRight: "clamp",
-      easing: Easing.inOut(Easing.ease),
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
     }
   );
 
@@ -61,10 +50,7 @@ export const Scene3AIAnalysis: React.FC = () => {
     frame,
     [45, 75, 300, 330],
     [0, 1, 1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp"}
   );
 
   const titleY = interpolate(
@@ -82,10 +68,7 @@ export const Scene3AIAnalysis: React.FC = () => {
     frame,
     [75, 105, 300, 330],
     [0, 1, 1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp"}
   );
 
   return (
@@ -93,62 +76,23 @@ export const Scene3AIAnalysis: React.FC = () => {
       <ThreeCanvas
         width={width}
         height={height}
-        style={{position: "absolute", zIndex: 0, opacity: 0.3}}
+        style={{position: "absolute", zIndex: 0}}
       >
-        <MovingCamera position={[cameraX, cameraY, 10]} fov={50} />
-        <ambientLight intensity={0.15} />
+        <MovingCamera position={[cameraX, cameraY, cameraZ]} fov={50} />
+        <ambientLight intensity={0.8} />
 
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]}>
+        <VideoScreen
+          src="video/信阳视图 双十二舆情气泡展开 展示ai分析 词云 ai预测.mp4"
+          position={[0, 0, 0]}
+          width={16}
+          height={9}
+        />
+
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -4.6, 0]}>
           <planeGeometry args={[80, 80, 40, 40]} />
-          <meshBasicMaterial
-            color="#ffffff"
-            wireframe
-            transparent
-            opacity={0.03}
-          />
-        </mesh>
-
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.05, 0]}>
-          <planeGeometry args={[80, 80, 20, 20]} />
-          <meshBasicMaterial
-            color="#ffffff"
-            wireframe
-            transparent
-            opacity={0.02}
-          />
+          <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.025} />
         </mesh>
       </ThreeCanvas>
-
-      <AbsoluteFill
-        style={{
-          zIndex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          opacity: videoOpacity,
-        }}
-      >
-        <div
-          style={{
-            transform: `translateX(${videoTranslateX}%)`,
-            width: "90%",
-            height: "82%",
-            borderRadius: 12,
-            overflow: "hidden",
-            boxShadow: "0 30px 60px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.08)",
-          }}
-        >
-          <Video
-            src={staticFile("video/信阳视图 双十二舆情气泡展开 展示ai分析 词云 ai预测.mp4")}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-            muted
-          />
-        </div>
-      </AbsoluteFill>
 
       <div
         style={{

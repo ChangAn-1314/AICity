@@ -5,12 +5,11 @@ import {
   interpolate,
   AbsoluteFill,
   Easing,
-  staticFile,
 } from "remotion";
-import {Video} from "@remotion/media";
 import {ThreeCanvas} from "@remotion/three";
 import {COLORS, FONTS} from "../config";
 import {MovingCamera} from "../components/MovingCamera";
+import {VideoScreen} from "../components/VideoScreen";
 
 export const Scene2MapOverview: React.FC = () => {
   const frame = useCurrentFrame();
@@ -19,7 +18,7 @@ export const Scene2MapOverview: React.FC = () => {
   const cameraZ = interpolate(
     frame,
     [0, 360],
-    [14, 8],
+    [14, 6],
     {
       extrapolateRight: "clamp",
       easing: Easing.bezier(0.25, 0.1, 0.25, 1),
@@ -29,7 +28,7 @@ export const Scene2MapOverview: React.FC = () => {
   const cameraY = interpolate(
     frame,
     [0, 360],
-    [6, 1.5],
+    [8, 1],
     {
       extrapolateRight: "clamp",
       easing: Easing.bezier(0.25, 0.1, 0.25, 1),
@@ -39,7 +38,7 @@ export const Scene2MapOverview: React.FC = () => {
   const cameraX = interpolate(
     frame,
     [0, 180, 360],
-    [-1.5, 0, 1.5],
+    [-2, 0, 2],
     {
       extrapolateLeft: "clamp",
       extrapolateRight: "clamp",
@@ -47,54 +46,11 @@ export const Scene2MapOverview: React.FC = () => {
     }
   );
 
-  const videoOpacity = interpolate(
-    frame,
-    [0, 30, 330, 360],
-    [0, 1, 1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
-  );
-
-  const videoScale = interpolate(
-    frame,
-    [0, 360],
-    [1.15, 1],
-    {
-      extrapolateRight: "clamp",
-      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-    }
-  );
-
-  const videoPerspective = interpolate(
-    frame,
-    [0, 360],
-    [8, 2],
-    {
-      extrapolateRight: "clamp",
-      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-    }
-  );
-
-  const videoRotateX = interpolate(
-    frame,
-    [0, 360],
-    [12, 0],
-    {
-      extrapolateRight: "clamp",
-      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-    }
-  );
-
   const titleOpacity = interpolate(
     frame,
     [60, 90, 300, 330],
     [0, 1, 1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp"}
   );
 
   const titleY = interpolate(
@@ -113,54 +69,23 @@ export const Scene2MapOverview: React.FC = () => {
       <ThreeCanvas
         width={width}
         height={height}
-        style={{position: "absolute", zIndex: 0, opacity: 0.4}}
+        style={{position: "absolute", zIndex: 0}}
       >
         <MovingCamera position={[cameraX, cameraY, cameraZ]} fov={50} />
-        <ambientLight intensity={0.2} />
+        <ambientLight intensity={0.8} />
 
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]}>
+        <VideoScreen
+          src="video/全国视图 旋转画面 （舆情气泡 连接线 全国轮廓）.mp4"
+          position={[0, 0, 0]}
+          width={16}
+          height={9}
+        />
+
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -4.6, 0]}>
           <planeGeometry args={[60, 60, 30, 30]} />
-          <meshBasicMaterial
-            color="#ffffff"
-            wireframe
-            transparent
-            opacity={0.04}
-          />
+          <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.03} />
         </mesh>
       </ThreeCanvas>
-
-      <AbsoluteFill
-        style={{
-          zIndex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          opacity: videoOpacity,
-          perspective: `${1200 + videoPerspective * 100}px`,
-        }}
-      >
-        <div
-          style={{
-            transform: `scale(${videoScale}) rotateX(${videoRotateX}deg)`,
-            transformOrigin: "center bottom",
-            width: "92%",
-            height: "85%",
-            borderRadius: 12,
-            overflow: "hidden",
-            boxShadow: "0 40px 80px rgba(0,0,0,0.6), 0 0 1px rgba(255,255,255,0.1)",
-          }}
-        >
-          <Video
-            src={staticFile("video/全国视图 旋转画面 （舆情气泡 连接线 全国轮廓）.mp4")}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-            muted
-          />
-        </div>
-      </AbsoluteFill>
 
       <div
         style={{

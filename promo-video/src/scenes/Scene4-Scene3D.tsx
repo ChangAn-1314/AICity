@@ -5,12 +5,11 @@ import {
   interpolate,
   AbsoluteFill,
   Easing,
-  staticFile,
 } from "remotion";
-import {Video} from "@remotion/media";
 import {ThreeCanvas} from "@remotion/three";
 import {COLORS, FONTS} from "../config";
 import {MovingCamera} from "../components/MovingCamera";
+import {VideoScreen} from "../components/VideoScreen";
 
 export const Scene4Scene3D: React.FC = () => {
   const frame = useCurrentFrame();
@@ -29,7 +28,7 @@ export const Scene4Scene3D: React.FC = () => {
   const cameraRadius = interpolate(
     frame,
     [0, 150, 300],
-    [12, 9, 11],
+    [14, 8, 10],
     {
       extrapolateLeft: "clamp",
       extrapolateRight: "clamp",
@@ -40,29 +39,9 @@ export const Scene4Scene3D: React.FC = () => {
   const cameraY = interpolate(
     frame,
     [0, 150, 300],
-    [4, 1, 2.5],
+    [6, 1, 3],
     {
       extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-      easing: Easing.inOut(Easing.ease),
-    }
-  );
-
-  const videoOpacity = interpolate(
-    frame,
-    [0, 30, 270, 300],
-    [0, 1, 1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
-  );
-
-  const videoRotateY = interpolate(
-    frame,
-    [0, 300],
-    [-8, 8],
-    {
       extrapolateRight: "clamp",
       easing: Easing.inOut(Easing.ease),
     }
@@ -72,10 +51,7 @@ export const Scene4Scene3D: React.FC = () => {
     frame,
     [45, 75, 255, 285],
     [0, 1, 1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp"}
   );
 
   const titleY = interpolate(
@@ -93,10 +69,7 @@ export const Scene4Scene3D: React.FC = () => {
     frame,
     [75, 105, 255, 285],
     [0, 1, 1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp"}
   );
 
   return (
@@ -104,7 +77,7 @@ export const Scene4Scene3D: React.FC = () => {
       <ThreeCanvas
         width={width}
         height={height}
-        style={{position: "absolute", zIndex: 0, opacity: 0.25}}
+        style={{position: "absolute", zIndex: 0}}
       >
         <MovingCamera
           position={[
@@ -114,60 +87,20 @@ export const Scene4Scene3D: React.FC = () => {
           ]}
           fov={50}
         />
-        <ambientLight intensity={0.1} />
+        <ambientLight intensity={0.8} />
 
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]}>
+        <VideoScreen
+          src="video/3d场景还原展示.mp4"
+          position={[0, 0, 0]}
+          width={16}
+          height={9}
+        />
+
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -4.6, 0]}>
           <planeGeometry args={[70, 70, 35, 35]} />
-          <meshBasicMaterial
-            color="#ffffff"
-            wireframe
-            transparent
-            opacity={0.025}
-          />
-        </mesh>
-
-        <mesh position={[0, 0, 0]}>
-          <boxGeometry args={[0.5, 0.5, 0.5]} />
-          <meshBasicMaterial
-            color="#ffffff"
-            wireframe
-            transparent
-            opacity={0.15}
-          />
+          <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.02} />
         </mesh>
       </ThreeCanvas>
-
-      <AbsoluteFill
-        style={{
-          zIndex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          opacity: videoOpacity,
-          perspective: "1400px",
-        }}
-      >
-        <div
-          style={{
-            transform: `rotateY(${videoRotateY}deg)`,
-            width: "88%",
-            height: "80%",
-            borderRadius: 12,
-            overflow: "hidden",
-            boxShadow: "0 35px 70px rgba(0,0,0,0.55), 0 0 1px rgba(255,255,255,0.08)",
-          }}
-        >
-          <Video
-            src={staticFile("video/3d场景还原展示.mp4")}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-            muted
-          />
-        </div>
-      </AbsoluteFill>
 
       <div
         style={{
