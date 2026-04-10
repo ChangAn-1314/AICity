@@ -16,27 +16,23 @@ export const Scene2MapOverview: React.FC = () => {
   const frame = useCurrentFrame();
   const {width, height} = useVideoConfig();
 
-  const cameraX = interpolate(
-    frame, [0, 360], [-4.5, 4.5],
+  // 150° 方向向量: cos(150°)=-0.866, sin(150°)=0.5
+  const dirX = -0.866;
+  const dirY = 0.5;
+  const travel = interpolate(
+    frame, [0, 360], [-6, 6],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
-  );
-  const cameraY = interpolate(
-    frame, [0, 360], [-3.2, 3.2],
-    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
-  );
-  const cameraZ = interpolate(
-    frame, [0, 360], [2.6, 2.6],
-    {extrapolateRight: "clamp"},
   );
 
-  const lookAtX = interpolate(
-    frame, [0, 360], [-2.5, 2.5],
+  const cameraX = dirX * travel;
+  const cameraY = interpolate(
+    frame, [0, 360], [-4.0, 4.0],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
-  const lookAtY = interpolate(
-    frame, [0, 360], [-1.8, 1.8],
-    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
-  );
+  const cameraZ = 2.6;
+
+  const lookAtX = cameraX + dirX * 1.5;
+  const lookAtY = cameraY + dirY * 1.5;
 
   const titleOpacity = interpolate(
     frame, [60, 90, 300, 330], [0, 0.6, 0.6, 0],
