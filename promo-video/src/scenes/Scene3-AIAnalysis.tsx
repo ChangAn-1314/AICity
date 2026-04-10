@@ -17,11 +17,11 @@ export const Scene3AIAnalysis: React.FC = () => {
   const {width, height} = useVideoConfig();
 
   const cameraX = interpolate(
-    frame, [0, 360], [-5.0, -0.7],
+    frame, [0, 360], [-3.8, 1.0],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const cameraY = 0;
-  const cameraZ = 2.6;
+  const cameraZ = 4.6;
 
   const lookAtX = cameraX;
   const lookAtY = 0;
