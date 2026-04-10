@@ -16,29 +16,21 @@ export const Scene5Decision: React.FC = () => {
   const frame = useCurrentFrame();
   const {width, height} = useVideoConfig();
 
-  const cameraX = interpolate(
-    frame,
-    [0, 90, 240, 300],
-    [6.8, 5.2, 2.3, 1.1],
-    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
-  );
+  const cameraX = 0;
   const cameraY = interpolate(
-    frame,
-    [0, 90, 240, 300],
-    [1.2, 1.05, 0.9, 0.84],
+    frame, [0, 300], [4.5, 0.2],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
-  const cameraZ = interpolate(
-    frame,
-    [0, 90, 240, 300],
-    [8.1, 8.15, 8.25, 8.3],
-    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
-  );
+  const cameraZ = 2.6;
+
+  const lookAtX = 0;
+  const lookAtY = cameraY - Math.sin(Math.PI / 3) * 2;
+  const lookAtZ = -Math.cos(Math.PI / 3) * 2;
 
   return (
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
       <ThreeCanvas width={width} height={height} style={{position: "absolute"}}>
-        <MovingCamera position={[cameraX, cameraY, cameraZ]} lookAt={[0, 0, 0]} fov={50} />
+        <MovingCamera position={[cameraX, cameraY, cameraZ]} lookAt={[lookAtX, lookAtY, lookAtZ]} fov={50} />
         <StudioLights />
         <VideoScreen
           src="video/ai决策演示.mp4"

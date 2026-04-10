@@ -17,28 +17,19 @@ export const Scene3AIAnalysis: React.FC = () => {
   const {width, height} = useVideoConfig();
 
   const cameraX = interpolate(
-    frame,
-    [0, 90, 240, 360],
-    [-3.8, -4.7, -0.9, -3.1],
+    frame, [0, 360], [-5.0, -0.7],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
-  const cameraY = interpolate(
-    frame,
-    [0, 90, 240, 360],
-    [3.3, 2.6, 0.95, 2.7],
-    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
-  );
-  const cameraZ = interpolate(
-    frame,
-    [0, 90, 240, 360],
-    [9.7, 8.9, 7.2, 9.2],
-    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
-  );
+  const cameraY = 0;
+  const cameraZ = 2.6;
+
+  const lookAtX = cameraX;
+  const lookAtY = 0;
 
   return (
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
       <ThreeCanvas width={width} height={height} style={{position: "absolute"}}>
-        <MovingCamera position={[cameraX, cameraY, cameraZ]} lookAt={[0, 0, 0]} fov={50} />
+        <MovingCamera position={[cameraX, cameraY, cameraZ]} lookAt={[lookAtX, lookAtY, 0]} fov={50} />
         <StudioLights />
         <VideoScreen
           src="video/信阳视图 双十二舆情气泡展开 展示ai分析 词云 ai预测.mp4"
