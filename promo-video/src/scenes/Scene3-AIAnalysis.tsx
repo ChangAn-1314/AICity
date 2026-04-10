@@ -44,7 +44,7 @@ export const Scene3AIAnalysis: React.FC = () => {
           showShell
           shellDepth={0.12}
           shellRadius={0.16}
-          playbackRate={0.5}
+          playbackRate={0.3}
         />
       </ThreeCanvas>
     </AbsoluteFill>
