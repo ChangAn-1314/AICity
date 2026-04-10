@@ -27,8 +27,6 @@ export const PromoVideo: React.FC = () => {
           <Scene2MapOverview />
         </TransitionSeries.Sequence>
 
-        <TransitionSeries.Transition presentation={FADE()} timing={TIMING()} />
-
         <TransitionSeries.Sequence durationInFrames={SCENE_DURATIONS.scene3}>
           <Scene3AIAnalysis />
         </TransitionSeries.Sequence>
