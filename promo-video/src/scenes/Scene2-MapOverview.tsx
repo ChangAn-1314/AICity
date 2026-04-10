@@ -18,7 +18,7 @@ export const Scene2MapOverview: React.FC = () => {
 
   const cameraX = 0;
   const cameraY = interpolate(
-    frame, [0, 360], [-4.5, 4.1],
+    frame, [0, 360], [-4.5, -0.2],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const cameraZ = 2.6;
