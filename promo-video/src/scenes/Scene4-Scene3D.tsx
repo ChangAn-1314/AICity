@@ -24,7 +24,7 @@ export const Scene4Scene3D: React.FC = () => {
   const radius = interpolate(
     frame,
     [0, 75, 150, 225, 300],
-    [3.8, 2.4, 1.8, 2.2, 3.4],
+    [5.2, 4.3, 3.6, 4.0, 5.0],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const cameraX = Math.sin(angle) * radius;
@@ -32,7 +32,7 @@ export const Scene4Scene3D: React.FC = () => {
   const cameraY = interpolate(
     frame,
     [0, 75, 150, 225, 300],
-    [1.8, 0.6, -0.3, 0.2, 1.0],
+    [2.2, 1.4, 0.7, 1.0, 1.6],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
