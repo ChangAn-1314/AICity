@@ -16,37 +16,25 @@ export const Scene2MapOverview: React.FC = () => {
   const frame = useCurrentFrame();
   const {width, height} = useVideoConfig();
 
-  const cameraY = interpolate(
-    frame,
-    [0, 90, 180, 270, 360],
-    [2.8, 1.6, 0.4, -1.2, -2.8],
-    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
-  );
-
-  const cameraZ = interpolate(
-    frame,
-    [0, 90, 180, 270, 360],
-    [3.2, 2.4, 1.8, 2.0, 2.6],
-    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
-  );
-
   const cameraX = interpolate(
-    frame,
-    [0, 90, 180, 270, 360],
-    [-5.5, -3.0, 0, 3.0, 5.5],
+    frame, [0, 360], [-4.5, 4.5],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
+  );
+  const cameraY = interpolate(
+    frame, [0, 360], [-3.2, 3.2],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
+  );
+  const cameraZ = interpolate(
+    frame, [0, 360], [2.6, 2.6],
+    {extrapolateRight: "clamp"},
   );
 
   const lookAtX = interpolate(
-    frame,
-    [0, 180, 360],
-    [-3.5, 0, 3.5],
+    frame, [0, 360], [-2.5, 2.5],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const lookAtY = interpolate(
-    frame,
-    [0, 180, 360],
-    [1.5, -0.3, -1.8],
+    frame, [0, 360], [-1.8, 1.8],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
