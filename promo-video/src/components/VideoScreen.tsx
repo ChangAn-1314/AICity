@@ -26,6 +26,7 @@ type SharedProps = {
   shellDepth?: number;
   shellRadius?: number;
   startFrom?: number;
+  playbackRate?: number;
 };
 
 const useCanvasVideoTexture = (src: string) => {
@@ -127,6 +128,7 @@ export const VideoScreen: React.FC<SharedProps> = ({
   shellDepth = 0.14,
   shellRadius = 0.22,
   startFrom = 0,
+  playbackRate = 1,
 }) => {
   const {texture, onVideoFrame, videoPath} = useCanvasVideoTexture(src);
 
@@ -139,7 +141,14 @@ export const VideoScreen: React.FC<SharedProps> = ({
 
   return (
     <group position={position} rotation={rotation} scale={scale}>
-      <Video src={videoPath} onVideoFrame={onVideoFrame} muted headless trimBefore={startFrom} />
+      <Video
+        src={videoPath}
+        onVideoFrame={onVideoFrame}
+        muted
+        headless
+        trimBefore={startFrom}
+        playbackRate={playbackRate}
+      />
 
       {showShellForMode ? (
         <RoundedBox
