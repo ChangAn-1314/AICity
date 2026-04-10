@@ -24,7 +24,8 @@ export const Scene2MapOverview: React.FC = () => {
   const cameraZ = 2.6;
 
   const lookAtX = 0;
-  const lookAtY = cameraY;
+  const lookAtY = cameraY + Math.sin(Math.PI / 6) * 2;
+  const lookAtZ = -Math.cos(Math.PI / 6) * 2;
 
   const titleOpacity = interpolate(
     frame, [60, 90, 300, 330], [0, 0.6, 0.6, 0],
@@ -34,7 +35,7 @@ export const Scene2MapOverview: React.FC = () => {
   return (
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
       <ThreeCanvas width={width} height={height} style={{position: "absolute"}}>
-        <MovingCamera position={[cameraX, cameraY, cameraZ]} lookAt={[lookAtX, lookAtY, 0]} fov={50} />
+        <MovingCamera position={[cameraX, cameraY, cameraZ]} lookAt={[lookAtX, lookAtY, lookAtZ]} fov={50} />
         <StudioLights />
         <VideoScreen
           src="video/全国视图 旋转画面 （舆情气泡 连接线 全国轮廓）.mp4"
