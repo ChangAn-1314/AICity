@@ -138,13 +138,16 @@ export const VideoScreen: React.FC<SharedProps> = ({
       <Video src={videoPath} onVideoFrame={onVideoFrame} muted headless />
 
       {showShell ? (
-        <RoundedBox args={shellSize} radius={shellRadius} smoothness={6} position={[0, 0, -shellDepth / 2]}>
-          <meshStandardMaterial
-            color="#171717"
-            metalness={0.45}
-            roughness={0.38}
-            transparent
-            opacity={0.95}
+        <RoundedBox
+          args={shellSize}
+          radius={shellRadius}
+          smoothness={6}
+          position={[0, 0, -shellDepth * 0.8]}
+          renderOrder={-1}
+        >
+          <meshBasicMaterial
+            color="#151515"
+            toneMapped={false}
           />
         </RoundedBox>
       ) : null}
@@ -171,9 +174,9 @@ export const VideoScreen: React.FC<SharedProps> = ({
       ) : null}
 
       {showReflection ? (
-        <mesh position={[0, -height - reflectionOffset, 0.02]} rotation={[-Math.PI / 2, 0, 0]}>
+        <mesh position={[0, -height - reflectionOffset, -0.05]} rotation={[-Math.PI / 2, 0, 0]} renderOrder={-2}>
           <planeGeometry args={[width * 1.12, height * 0.92]} />
-          <meshStandardMaterial color="#0f0f0f" transparent opacity={0.07} roughness={0.24} metalness={0.08} />
+          <meshBasicMaterial color="#0a0a0a" transparent opacity={0.06} toneMapped={false} />
         </mesh>
       ) : null}
     </group>
