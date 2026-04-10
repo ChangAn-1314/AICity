@@ -18,22 +18,35 @@ export const Scene2MapOverview: React.FC = () => {
 
   const cameraY = interpolate(
     frame,
-    [0, 90, 270, 360],
-    [7.2, 6.1, 4.2, 3.3],
+    [0, 90, 180, 270, 360],
+    [2.8, 1.6, 0.4, -1.2, -2.8],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
   const cameraZ = interpolate(
     frame,
-    [0, 90, 270, 360],
-    [12.6, 12.1, 10.9, 9.7],
+    [0, 90, 180, 270, 360],
+    [3.2, 2.4, 1.8, 2.0, 2.6],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
   const cameraX = interpolate(
     frame,
-    [0, 120, 270, 360],
-    [0, -0.3, -2.2, -3.8],
+    [0, 90, 180, 270, 360],
+    [-5.5, -3.0, 0, 3.0, 5.5],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
+  );
+
+  const lookAtX = interpolate(
+    frame,
+    [0, 180, 360],
+    [-3.5, 0, 3.5],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
+  );
+  const lookAtY = interpolate(
+    frame,
+    [0, 180, 360],
+    [1.5, -0.3, -1.8],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
@@ -45,7 +58,7 @@ export const Scene2MapOverview: React.FC = () => {
   return (
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
       <ThreeCanvas width={width} height={height} style={{position: "absolute"}}>
-        <MovingCamera position={[cameraX, cameraY, cameraZ]} lookAt={[0, 0, 0]} fov={50} />
+        <MovingCamera position={[cameraX, cameraY, cameraZ]} lookAt={[lookAtX, lookAtY, 0]} fov={50} />
         <StudioLights />
         <VideoScreen
           src="video/全国视图 旋转画面 （舆情气泡 连接线 全国轮廓）.mp4"

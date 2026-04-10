@@ -16,22 +16,29 @@ export const Scene4Scene3D: React.FC = () => {
   const frame = useCurrentFrame();
   const {width, height} = useVideoConfig();
 
-  const cameraX = interpolate(
+  const t = frame / 300;
+  const angle = interpolate(
+    t, [0, 1], [-0.5, Math.PI * 0.65],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp"},
+  );
+  const radius = interpolate(
     frame,
-    [0, 90, 240, 300],
-    [-3.1, -1.2, 3.8, 6.8],
+    [0, 75, 150, 225, 300],
+    [3.8, 2.4, 1.8, 2.2, 3.4],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
+  const cameraX = Math.sin(angle) * radius;
+  const cameraZ = Math.cos(angle) * radius;
   const cameraY = interpolate(
     frame,
-    [0, 90, 240, 300],
-    [2.7, 2.0, 1.3, 1.2],
+    [0, 75, 150, 225, 300],
+    [1.8, 0.6, -0.3, 0.2, 1.0],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
-  const cameraZ = interpolate(
-    frame,
-    [0, 90, 240, 300],
-    [9.2, 8.0, 7.4, 8.1],
+
+  const lookAtX = Math.sin(angle) * 0.8;
+  const lookAtY = interpolate(
+    frame, [0, 150, 300], [0.5, -0.4, 0],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
@@ -45,7 +52,7 @@ export const Scene4Scene3D: React.FC = () => {
       <ThreeCanvas width={width} height={height} style={{position: "absolute"}}>
         <MovingCamera
           position={[cameraX, cameraY, cameraZ]}
-          lookAt={[0, 0, 0]}
+          lookAt={[lookAtX, lookAtY, 0]}
           fov={50}
         />
         <StudioLights />
