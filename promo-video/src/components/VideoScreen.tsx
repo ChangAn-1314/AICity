@@ -145,8 +145,15 @@ export const VideoScreen: React.FC<SharedProps> = ({
           position={[0, 0, -shellDepth * 0.8]}
           renderOrder={-1}
         >
-          <meshBasicMaterial
+          <meshStandardMaterial
             color="#151515"
+            metalness={0.35}
+            roughness={0.55}
+            envMapIntensity={0.5}
+            depthWrite={false}
+            polygonOffset
+            polygonOffsetFactor={2}
+            polygonOffsetUnits={2}
             toneMapped={false}
           />
         </RoundedBox>
