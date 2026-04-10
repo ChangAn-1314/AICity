@@ -23,9 +23,8 @@ export const Scene2MapOverview: React.FC = () => {
   );
   const cameraZ = 2.6;
 
-  // 150° 方向向量: cos(150°)=-0.866, sin(150°)=0.5
-  const lookAtX = cameraX + (-0.866) * 2;
-  const lookAtY = cameraY + 0.5 * 2;
+  const lookAtX = 0;
+  const lookAtY = cameraY;
 
   const titleOpacity = interpolate(
     frame, [60, 90, 300, 330], [0, 0.6, 0.6, 0],
