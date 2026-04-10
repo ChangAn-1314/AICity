@@ -16,22 +16,24 @@ export const Scene3AIAnalysis: React.FC = () => {
   const frame = useCurrentFrame();
   const {width, height} = useVideoConfig();
 
-  const t = frame / 360;
-  const arcAngle = interpolate(
-    t, [0, 1], [-0.6, 0.6],
-    {extrapolateLeft: "clamp", extrapolateRight: "clamp"}
-  );
-  const radius = interpolate(
-    frame, [0, 180, 360], [10, 7, 9],
-    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)}
+  const cameraX = interpolate(
+    frame,
+    [0, 90, 240, 360],
+    [-3.8, -4.7, -0.9, -3.1],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const cameraY = interpolate(
-    frame, [0, 180, 360], [3, 0.5, 2],
-    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)}
+    frame,
+    [0, 90, 240, 360],
+    [3.3, 2.6, 0.95, 2.7],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
-
-  const cameraX = Math.sin(arcAngle) * radius;
-  const cameraZ = Math.cos(arcAngle) * radius;
+  const cameraZ = interpolate(
+    frame,
+    [0, 90, 240, 360],
+    [9.7, 8.9, 7.2, 9.2],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
+  );
 
   return (
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
@@ -47,7 +49,7 @@ export const Scene3AIAnalysis: React.FC = () => {
           mode="curved"
           curvature={18}
           showReflection
-          reflectionOpacity={0.1}
+          reflectionOpacity={0.06}
           showShell
           shellDepth={0.12}
           shellRadius={0.16}

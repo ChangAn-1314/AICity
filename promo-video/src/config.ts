@@ -1,10 +1,7 @@
-import {loadFont as loadNotoSansSC} from "@remotion/google-fonts/NotoSansSC";
 import {loadFont as loadInterTight} from "@remotion/google-fonts/InterTight";
 import {loadFont as loadJetBrainsMono} from "@remotion/google-fonts/JetBrainsMono";
 
-const {fontFamily: zhFont} = loadNotoSansSC("normal", {
-  weights: ["400", "700", "900"],
-});
+const zhFont = '"Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif';
 
 const {fontFamily: enFont} = loadInterTight("normal", {
   weights: ["400", "700"],

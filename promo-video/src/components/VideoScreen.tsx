@@ -3,7 +3,7 @@ import {useThree} from "@react-three/fiber";
 import {RoundedBox} from "@react-three/drei";
 import {Video} from "@remotion/media";
 import {staticFile, useRemotionEnvironment} from "remotion";
-import {CanvasTexture, DoubleSide, type Side} from "three";
+import {CanvasTexture, ClampToEdgeWrapping, DoubleSide, LinearFilter, LinearMipmapLinearFilter, SRGBColorSpace, type Side} from "three";
 
 const VIDEO_W = 1920;
 const VIDEO_H = 1080;
@@ -39,6 +39,12 @@ const useCanvasVideoTexture = (src: string) => {
 
     const context = canvas.getContext("2d")!;
     const texture = new CanvasTexture(canvas as HTMLCanvasElement);
+    texture.colorSpace = SRGBColorSpace;
+    texture.generateMipmaps = false;
+    texture.minFilter = LinearFilter;
+    texture.magFilter = LinearFilter;
+    texture.wrapS = ClampToEdgeWrapping;
+    texture.wrapT = ClampToEdgeWrapping;
     return {context, texture};
   });
 
@@ -47,6 +53,7 @@ const useCanvasVideoTexture = (src: string) => {
 
   const onVideoFrame = useCallback(
     (frame: CanvasImageSource) => {
+      canvasStuff.context.clearRect(0, 0, VIDEO_W, VIDEO_H);
       canvasStuff.context.drawImage(frame, 0, 0, VIDEO_W, VIDEO_H);
       canvasStuff.texture.needsUpdate = true;
 

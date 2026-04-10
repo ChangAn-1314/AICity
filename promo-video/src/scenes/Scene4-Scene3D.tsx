@@ -16,23 +16,23 @@ export const Scene4Scene3D: React.FC = () => {
   const frame = useCurrentFrame();
   const {width, height} = useVideoConfig();
 
-  const cameraAngle = interpolate(
+  const cameraX = interpolate(
     frame,
     [0, 90, 240, 300],
-    [-0.32, -0.12, 0.86, 1.02],
+    [-3.1, -1.2, 3.8, 6.8],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
-  );
-  const cameraRadius = interpolate(
-    frame,
-    [0, 90, 240, 300],
-    [10.4, 9.2, 7.4, 7.6],
-    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const cameraY = interpolate(
     frame,
     [0, 90, 240, 300],
-    [3.6, 2.7, 1.1, 1.25],
-    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
+    [2.7, 2.0, 1.3, 1.2],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
+  );
+  const cameraZ = interpolate(
+    frame,
+    [0, 90, 240, 300],
+    [9.2, 8.0, 7.4, 8.1],
+    {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
   const videoRotY = interpolate(
@@ -44,11 +44,7 @@ export const Scene4Scene3D: React.FC = () => {
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
       <ThreeCanvas width={width} height={height} style={{position: "absolute"}}>
         <MovingCamera
-          position={[
-            Math.sin(cameraAngle) * cameraRadius,
-            cameraY,
-            Math.cos(cameraAngle) * cameraRadius,
-          ]}
+          position={[cameraX, cameraY, cameraZ]}
           lookAt={[0, 0, 0]}
           fov={50}
         />
@@ -68,6 +64,14 @@ export const Scene4Scene3D: React.FC = () => {
           <meshBasicMaterial color="#080808" transparent opacity={0.05} />
         </mesh>
       </ThreeCanvas>
+      <AbsoluteFill
+        style={{
+          pointerEvents: "none",
+          opacity: interpolate(frame, [0, 45, 240, 300], [0, 0.06, 0.06, 0]),
+          background: "radial-gradient(circle at 18% 40%, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 24%, rgba(255,255,255,0) 58%)",
+          filter: "blur(38px)",
+        }}
+      />
     </AbsoluteFill>
   );
 };

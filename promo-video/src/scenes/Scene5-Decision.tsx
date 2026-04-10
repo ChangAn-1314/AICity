@@ -19,19 +19,19 @@ export const Scene5Decision: React.FC = () => {
   const cameraX = interpolate(
     frame,
     [0, 90, 240, 300],
-    [9.5, 7.4, 2.1, 1.0],
+    [6.8, 5.2, 2.3, 1.1],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const cameraY = interpolate(
     frame,
     [0, 90, 240, 300],
-    [1.8, 1.55, 0.9, 0.82],
+    [1.2, 1.05, 0.9, 0.84],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
   const cameraZ = interpolate(
     frame,
     [0, 90, 240, 300],
-    [7.2, 7.45, 8.15, 8.35],
+    [8.1, 8.15, 8.25, 8.3],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
@@ -50,10 +50,6 @@ export const Scene5Decision: React.FC = () => {
           reflectionOpacity={0.05}
           showShell
         />
-        <mesh position={[5.6, 0.5, 3.2]} rotation={[0, -0.18, 0]}>
-          <planeGeometry args={[2.8, 8.8]} />
-          <meshBasicMaterial color="#060606" transparent opacity={0.04} />
-        </mesh>
       </ThreeCanvas>
     </AbsoluteFill>
   );

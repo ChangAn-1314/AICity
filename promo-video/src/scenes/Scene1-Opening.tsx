@@ -32,10 +32,10 @@ export const Scene1Opening: React.FC = () => {
       >
         <Video
           src={staticFile("video/logo开场.mp4")}
+          objectFit="contain"
           style={{
             width: "100%",
             height: "100%",
-            objectFit: "contain",
           }}
           muted
         />

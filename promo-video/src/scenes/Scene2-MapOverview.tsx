@@ -19,21 +19,21 @@ export const Scene2MapOverview: React.FC = () => {
   const cameraY = interpolate(
     frame,
     [0, 90, 270, 360],
-    [7.2, 5.6, 2.2, 1.8],
+    [7.2, 6.1, 4.2, 3.3],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
   const cameraZ = interpolate(
     frame,
     [0, 90, 270, 360],
-    [12.4, 11.2, 8.1, 7.7],
+    [12.6, 12.1, 10.9, 9.7],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
   const cameraX = interpolate(
     frame,
     [0, 120, 270, 360],
-    [-0.8, -0.5, 0.3, 0.55],
+    [0, -0.3, -2.2, -3.8],
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)},
   );
 
