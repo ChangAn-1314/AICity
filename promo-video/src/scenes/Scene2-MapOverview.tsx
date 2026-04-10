@@ -24,8 +24,8 @@ export const Scene2MapOverview: React.FC = () => {
   const cameraZ = 2.6;
 
   const lookAtX = 0;
-  const lookAtY = cameraY + Math.sin(Math.PI / 6) * 2;
-  const lookAtZ = -Math.cos(Math.PI / 6) * 2;
+  const lookAtY = cameraY + Math.sin(Math.PI / 3) * 2;
+  const lookAtZ = -Math.cos(Math.PI / 3) * 2;
 
   const titleOpacity = interpolate(
     frame, [60, 90, 300, 330], [0, 0.6, 0.6, 0],
@@ -46,6 +46,7 @@ export const Scene2MapOverview: React.FC = () => {
           showReflection
           reflectionOpacity={0.05}
           showShell
+          startFrom={1.5}
         />
       </ThreeCanvas>
 
