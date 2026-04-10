@@ -18,7 +18,7 @@ export const Scene4Scene3D: React.FC = () => {
 
   const t = frame / 300;
   const angle = interpolate(
-    t, [0, 1], [-0.5, Math.PI * 0.65],
+    t, [0, 1], [-0.45, Math.PI * 0.42],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp"},
   );
   const radius = interpolate(
