@@ -15,6 +15,9 @@ import {VideoScreen} from "../components/VideoScreen";
 export const Scene5Decision: React.FC = () => {
   const frame = useCurrentFrame();
   const {width, height} = useVideoConfig();
+  const videoAspect = 526 / 1138;
+  const screenHeight = 9;
+  const screenWidth = screenHeight * videoAspect;
 
   const cameraX = 0;
   const cameraY = interpolate(
@@ -36,8 +39,8 @@ export const Scene5Decision: React.FC = () => {
           src="video/ai决策演示.mp4"
           position={[0, 0, 0]}
           rotation={[0, 0, 0]}
-          width={16}
-          height={9}
+          width={screenWidth}
+          height={screenHeight}
           showReflection
           reflectionOpacity={0.05}
           showShell
