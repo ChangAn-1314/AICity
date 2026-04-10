@@ -85,7 +85,7 @@ const ScreenSurface: React.FC<{
 }> = ({width, height, mode, curvature, side = DoubleSide, texture, opacity = 1}) => {
   if (mode === "curved") {
     return (
-      <mesh>
+      <mesh position={[0, 0, -curvature]}>
         <cylinderGeometry
           args={[
             curvature,
@@ -135,11 +135,13 @@ export const VideoScreen: React.FC<SharedProps> = ({
     [height, shellDepth, width],
   );
 
+  const showShellForMode = showShell && mode === "plane";
+
   return (
     <group position={position} rotation={rotation} scale={scale}>
       <Video src={videoPath} onVideoFrame={onVideoFrame} muted headless trimBefore={startFrom} />
 
-      {showShell ? (
+      {showShellForMode ? (
         <RoundedBox
           args={shellSize}
           radius={shellRadius}
