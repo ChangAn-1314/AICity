@@ -19,22 +19,22 @@ export const Scene6Ending: React.FC = () => {
   const {width, height} = useVideoConfig();
 
   const videoScale = interpolate(
-    frame, [0, 90], [4.5, 1],
+    frame, [0, 90], [6.5, 1],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp",
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
   const videoZ = interpolate(
-    frame, [0, 90], [2, 0],
+    frame, [0, 90], [5.5, 0],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp",
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
   const videoX = interpolate(
-    frame, [0, 90], [0, -4.5],
+    frame, [0, 90], [0.8, -4.5],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp",
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
   const videoRotY = interpolate(
-    frame, [0, 90], [0, 0.2],
+    frame, [0, 90], [-Math.PI * 0.55, 0.2],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp",
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
