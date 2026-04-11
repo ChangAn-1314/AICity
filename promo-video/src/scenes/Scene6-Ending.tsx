@@ -4,11 +4,11 @@ import {
   useVideoConfig,
   interpolate,
   AbsoluteFill,
-  Img,
   staticFile,
   Easing,
 } from "remotion";
 import {ThreeCanvas} from "@remotion/three";
+import {Html} from "@react-three/drei";
 import {COLORS, FONTS} from "../config";
 import {MovingCamera} from "../components/MovingCamera";
 import {StudioLights} from "../components/StudioLights";
@@ -19,53 +19,58 @@ export const Scene6Ending: React.FC = () => {
   const {width, height} = useVideoConfig();
 
   const videoScale = interpolate(
-    frame, [0, 90], [6.5, 1],
+    frame, [0, 140], [6.5, 1],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp",
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
   const videoZ = interpolate(
-    frame, [0, 90], [5.5, 0],
+    frame, [0, 140], [5.5, 0],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp",
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
   const videoX = interpolate(
-    frame, [0, 90], [2.0, -2.8],
+    frame, [0, 140], [2.0, -2.8],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp",
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
+  const videoY = interpolate(
+    frame, [0, 140, 240], [0, 0, -2.6],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp",
+     easing: Easing.inOut(Easing.ease)},
+  );
   const videoRotY = interpolate(
-    frame, [0, 90], [-Math.PI * 0.55, 0.2],
+    frame, [0, 140], [-Math.PI * 0.55, 0.2],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp",
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
 
   const logoScale = interpolate(
-    frame, [70, 110], [2.5, 1],
+    frame, [110, 160], [2.5, 1],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp",
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
   const logoOpacity = interpolate(
-    frame, [70, 95], [0, 1],
+    frame, [110, 145], [0, 1],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp"},
   );
 
   const titleScale = interpolate(
-    frame, [95, 130], [1.8, 1],
+    frame, [140, 185], [1.8, 1],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp",
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
   const titleOpacity = interpolate(
-    frame, [95, 120], [0, 1],
+    frame, [140, 170], [0, 1],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp"},
   );
 
   const subtitleOpacity = interpolate(
-    frame, [130, 160], [0, 1],
+    frame, [175, 205], [0, 1],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp"},
   );
 
   const competitionOpacity = interpolate(
-    frame, [165, 195], [0, 0.6],
+    frame, [205, 230], [0, 0.6],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp"},
   );
 
@@ -83,7 +88,7 @@ export const Scene6Ending: React.FC = () => {
         />
         <StudioLights />
         <group
-          position={[videoX, 0, videoZ]}
+          position={[videoX, videoY, videoZ]}
           rotation={[0, videoRotY, 0]}
           scale={[videoScale, videoScale, videoScale]}
         >
@@ -98,74 +103,77 @@ export const Scene6Ending: React.FC = () => {
             shellRadius={0.18}
           />
         </group>
+
+        <group position={[3.4, 0.1, 0]}>
+          <Html transform sprite={false} center>
+            <div style={{
+              width: 520,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 44,
+              transform: `scale(${logoScale})`,
+              opacity: Math.max(logoOpacity, titleOpacity, subtitleOpacity, competitionOpacity),
+            }}>
+              <img
+                src={staticFile("video/logonew.png")}
+                alt="智舆 logo"
+                style={{
+                  width: 180,
+                  height: 180,
+                  objectFit: "contain",
+                  opacity: logoOpacity,
+                  display: "block",
+                }}
+              />
+
+              <div style={{
+                opacity: titleOpacity,
+                transform: `scale(${titleScale})`,
+                transformOrigin: "center center",
+              }}>
+                <div style={{
+                  fontFamily: FONTS.title,
+                  fontSize: 72,
+                  fontWeight: 600,
+                  color: COLORS.textPrimary,
+                  letterSpacing: "0.12em",
+                  textAlign: "center",
+                  whiteSpace: "nowrap",
+                }}>
+                  智舆
+                </div>
+              </div>
+
+              <div style={{
+                fontFamily: FONTS.body,
+                fontSize: 26,
+                fontWeight: 400,
+                color: COLORS.textSecondary,
+                opacity: subtitleOpacity,
+                letterSpacing: "0.2em",
+                textAlign: "center",
+                whiteSpace: "nowrap",
+              }}>
+                让城市治理更智慧
+              </div>
+
+              <div style={{
+                fontFamily: FONTS.body,
+                fontSize: 20,
+                fontWeight: 400,
+                color: COLORS.textMuted,
+                opacity: competitionOpacity,
+                letterSpacing: "0.15em",
+                textAlign: "center",
+                whiteSpace: "nowrap",
+              }}>
+                2025 讯飞杯
+              </div>
+            </div>
+          </Html>
+        </group>
       </ThreeCanvas>
-
-      <div style={{
-        position: "absolute",
-        right: "5%",
-        top: 0,
-        width: "40%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 44,
-      }}>
-        <div style={{
-          transform: `scale(${logoScale})`,
-          opacity: logoOpacity,
-        }}>
-          <Img
-            src={staticFile("video/logonew.png")}
-            style={{
-              width: 180,
-              height: 180,
-              objectFit: "contain",
-            }}
-          />
-        </div>
-
-        <div style={{
-          opacity: titleOpacity,
-          transform: `scale(${titleScale})`,
-        }}>
-          <h1 style={{
-            fontFamily: FONTS.title,
-            fontSize: 72,
-            fontWeight: 600,
-            color: COLORS.textPrimary,
-            margin: 0,
-            letterSpacing: "0.12em",
-            textAlign: "center",
-          }}>
-            智舆
-          </h1>
-        </div>
-
-        <div style={{
-          fontFamily: FONTS.body,
-          fontSize: 26,
-          fontWeight: 400,
-          color: COLORS.textSecondary,
-          opacity: subtitleOpacity,
-          letterSpacing: "0.2em",
-          textAlign: "center",
-        }}>
-          让城市治理更智慧
-        </div>
-
-        <div style={{
-          fontFamily: FONTS.body,
-          fontSize: 20,
-          fontWeight: 400,
-          color: COLORS.textMuted,
-          opacity: competitionOpacity,
-          letterSpacing: "0.15em",
-        }}>
-          2025 讯飞杯
-        </div>
-      </div>
     </AbsoluteFill>
   );
 };
