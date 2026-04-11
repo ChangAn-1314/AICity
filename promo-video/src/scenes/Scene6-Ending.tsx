@@ -29,7 +29,7 @@ export const Scene6Ending: React.FC = () => {
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
   const videoX = interpolate(
-    frame, [0, 90], [0.8, -4.5],
+    frame, [0, 90], [2.0, -2.8],
     {extrapolateLeft: "clamp", extrapolateRight: "clamp",
      easing: Easing.bezier(0.22, 1, 0.36, 1)},
   );
