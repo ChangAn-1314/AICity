@@ -43,7 +43,7 @@ export const VIDEO = {
   WIDTH: 1920,
   HEIGHT: 1080,
   FPS: 30,
-  TOTAL_FRAMES: 1800,     // 60s
+  TOTAL_FRAMES: 2370,     // 79s (2220 scenes + 150 black transitions)
   BPM: 120,               // BGM 节奏
   BEAT_FRAMES: 15,         // 每拍帧数 (30fps / 2beats per sec)
   BAR_FRAMES: 60,          // 每小节帧数 (4拍)
@@ -55,8 +55,8 @@ export const SCENE_DURATIONS = {
   scene2: 360,   // 8-20s    全国视图
   scene3: 360,   // 20-32s   信阳AI分析
   scene4: 300,   // 32-42s   3D场景还原
-  scene5: 300,   // 42-52s   AI决策推演
-  scene6: 240,   // 52-60s   结尾CTA
+  scene5: 600,   // 42-52s   AI决策推演
+  scene6: 360,   // 52-64s   结尾CTA
 } as const;
 
 // 转场时长

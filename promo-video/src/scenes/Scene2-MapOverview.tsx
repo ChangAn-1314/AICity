@@ -11,10 +11,19 @@ import {COLORS, FONTS} from "../config";
 import {MovingCamera} from "../components/MovingCamera";
 import {StudioLights} from "../components/StudioLights";
 import {VideoScreen} from "../components/VideoScreen";
+import {FloatingText3D} from "../components/FloatingText3D";
 
 export const Scene2MapOverview: React.FC = () => {
   const frame = useCurrentFrame();
   const {width, height} = useVideoConfig();
+
+  const blurAmount = interpolate(
+    frame,
+    [0, 120],
+    [16, 0],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp",
+     easing: Easing.bezier(0.25, 1, 0.5, 1)},
+  );
 
   const cameraX = 0;
   const cameraY = interpolate(
@@ -34,7 +43,12 @@ export const Scene2MapOverview: React.FC = () => {
 
   return (
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
-      <ThreeCanvas width={width} height={height} style={{position: "absolute"}}>
+      <svg width={0} height={0} style={{position: "absolute"}}>
+        <filter id="scene2-gaussian">
+          <feGaussianBlur in="SourceGraphic" stdDeviation={blurAmount} />
+        </filter>
+      </svg>
+      <ThreeCanvas width={width} height={height} style={{position: "absolute", filter: "url(#scene2-gaussian)"}}>
         <MovingCamera position={[cameraX, cameraY, cameraZ]} lookAt={[lookAtX, lookAtY, lookAtZ]} fov={50} />
         <StudioLights />
         <VideoScreen
@@ -48,6 +62,16 @@ export const Scene2MapOverview: React.FC = () => {
           showShell
           startFrom={1.5}
         />
+        <FloatingText3D
+          label="全国舆情态势"
+          frame={frame}
+          appearFrame={40}
+          disappearFrame={320}
+          position={[-1.0, 0.2, 0.3]}
+          rotation={[-0.3, 0, 0]}
+          fontSize={0.2}
+          vertical
+        />
       </ThreeCanvas>
 
       <div style={{
@@ -58,7 +82,6 @@ export const Scene2MapOverview: React.FC = () => {
           fontFamily: FONTS.body, fontSize: 20, fontWeight: 400,
           color: COLORS.textSecondary, letterSpacing: "0.3em",
         }}>
-          全国舆情态势
         </span>
       </div>
     </AbsoluteFill>

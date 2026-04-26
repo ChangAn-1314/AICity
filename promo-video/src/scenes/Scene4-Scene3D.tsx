@@ -11,10 +11,19 @@ import {COLORS} from "../config";
 import {MovingCamera} from "../components/MovingCamera";
 import {StudioLights} from "../components/StudioLights";
 import {VideoScreen} from "../components/VideoScreen";
+import {FloatingText3D} from "../components/FloatingText3D";
 
 export const Scene4Scene3D: React.FC = () => {
   const frame = useCurrentFrame();
   const {width, height} = useVideoConfig();
+
+  const blurAmount = interpolate(
+    frame,
+    [0, 100],
+    [12, 0],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp",
+     easing: Easing.bezier(0.25, 1, 0.5, 1)},
+  );
 
   const t = frame / 300;
   const angle = interpolate(
@@ -47,9 +56,20 @@ export const Scene4Scene3D: React.FC = () => {
     {extrapolateRight: "clamp", easing: Easing.inOut(Easing.ease)}
   );
 
+  const textOffsetAngle = angle + 0.25;
+  const textRadius = radius * 0.42;
+  const textX = Math.sin(textOffsetAngle) * textRadius;
+  const textZ = Math.cos(textOffsetAngle) * textRadius;
+  const textY = cameraY + 0.8;
+
   return (
     <AbsoluteFill style={{backgroundColor: COLORS.bg}}>
-      <ThreeCanvas width={width} height={height} style={{position: "absolute"}}>
+      <svg width={0} height={0} style={{position: "absolute"}}>
+        <filter id="scene4-gaussian">
+          <feGaussianBlur in="SourceGraphic" stdDeviation={blurAmount} />
+        </filter>
+      </svg>
+      <ThreeCanvas width={width} height={height} style={{position: "absolute", filter: "url(#scene4-gaussian)"}}>
         <MovingCamera
           position={[cameraX, cameraY, cameraZ]}
           lookAt={[lookAtX, lookAtY, 0]}
@@ -70,6 +90,15 @@ export const Scene4Scene3D: React.FC = () => {
           <planeGeometry args={[2.2, 10.5]} />
           <meshBasicMaterial color="#080808" transparent opacity={0.05} />
         </mesh>
+        <FloatingText3D
+          label="3D 场景还原"
+          frame={frame}
+          appearFrame={30}
+          disappearFrame={260}
+          position={[textX-0.5, textY-1, textZ]}
+          rotation={[0, videoRotY, 0]}
+          fontSize={0.19}
+        />
       </ThreeCanvas>
       <AbsoluteFill
         style={{
