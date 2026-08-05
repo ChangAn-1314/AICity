@@ -111,7 +111,7 @@ Gatherone deadline has passed. We have not received payment, and we are done wai
 NOW everybody can download and watch。
 AND WE BUILD A ENUMTOOLS OF COLDCARD ENUMTOOLS
 
-https://github.com/yinpengmaoca-hue/gatherone-backup/releases/tag/v20260720
+https://github.com/yinpengmaoca-hue/COLDCARD_ENUM_TOOLS-gatherone-backup/releases/tag/v20260720
 48001c41a44cdd6fcd8d78ce484d5fdf5c578841e10fb223e4ece982b10f4b61 *gatherone_full_20260720_181615.sql.gz.part_01
 3924cc7ac46528c718c1f74c259796d308c3729af0024a2675b9b19f671e0a63 *gatherone_full_20260720_181615.sql.gz.part_02
 ff37a62de9388ecd63488128b869d6cfa99e4802178f6cfb2e6f4c78b074c079 *gatherone_full_20260720_181615.sql.gz.part_03
